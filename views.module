@@ -1224,6 +1224,7 @@ function _views_build_query(&$view, $args = array()) {
   $info['sql'] = $query->query();
   $info['countsql'] = $query->query(true);
   $info['summary'] = $summary;
+  $info['level'] = $level;
 
   // DEBUG
 //  print "<pre>" . var_export($view, TRUE) . "</pre>";
@@ -1277,12 +1278,12 @@ function views_view($type, $view, $args = array()) {
   // DEBUG
 //  $output = "<pre>" . var_export($items, true) . "</pre>";
 
-  if ($summary) {
-    $out .= theme("views_summary_$view->name", $view, $type, $level, $items);
+  if ($info['summary']) {
+    $out .= theme("views_summary_$view->name", $view, $type, $info['level'], $items);
     if ($out)
       $output .= $out;
     else
-      $output .= theme('views_summary', $view, $type, $level, $items);
+      $output .= theme('views_summary', $view, $type, $info['level'], $items);
   }
   else {
     $output .= theme("views_view_$view->name", $view, $type, $items);
