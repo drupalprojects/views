@@ -1,4 +1,3 @@
-# $Id$
 #
 # Esperanto translation of Drupal (general)
 # Copyright 2008 Chuck Smith <chuck@chucksmith.de>
