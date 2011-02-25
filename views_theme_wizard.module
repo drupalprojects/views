@@ -1,5 +1,4 @@
 <?php
-// $Id$
 
 function views_theme_wizard_menu($may_cache) {
   if ($may_cache) {

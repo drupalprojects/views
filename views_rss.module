@@ -1,5 +1,4 @@
 <?php
-// $Id$
 
 /**
  * Provide views plugins for the feed types we support.

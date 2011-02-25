@@ -1,6 +1,5 @@
 <?php
 
-// $Id$
 /**
  * This include file implements views functionality for the file.inc and
  * upload module

@@ -1,4 +1,3 @@
-; $Id$
 name = Views UI
 description = The Views UI module allows you to create and edit views.
 package = Views

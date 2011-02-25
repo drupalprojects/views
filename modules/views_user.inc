@@ -1,5 +1,4 @@
 <?php
-// $Id$
 
 /**
  * This include file implements views functionality on behalf of user.module
