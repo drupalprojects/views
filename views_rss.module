@@ -1,5 +1,4 @@
 <?php
-// $Id$
 
 function views_rss_help($section = 'admin/help#views_rss') {
   $output = '';

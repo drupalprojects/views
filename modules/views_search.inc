@@ -1,5 +1,4 @@
 <?php
-// $Id$
 
 function search_views_tables() {
   $tables['temp_search_results'] = array(

@@ -1,6 +1,5 @@
 <?php
 
-// $Id$
 /*
  * This builds a query for the view.
  */
