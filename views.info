@@ -1,4 +1,0 @@
-name = Views
-description = Create customized lists and queries from your database.
-package = Views
-core = 6.x
