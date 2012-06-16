@@ -249,7 +249,6 @@ files[] = tests/plugins/views_plugin_display.test
 files[] = tests/views_access.test
 files[] = tests/field/views_fieldapi.test
 files[] = tests/views_groupby.test
-files[] = tests/views_handlers.test
 files[] = tests/views_module.test
 files[] = tests/views_plugin_localization_test.inc
 files[] = tests/views_translatable.test
