@@ -248,7 +248,6 @@ files[] = tests/test_plugins/views_test_plugin_access_test_dynamic.inc
 files[] = tests/test_plugins/views_test_plugin_access_test_static.inc
 files[] = tests/plugins/views_plugin_display.test
 files[] = tests/views_access.test
-files[] = tests/views_analyze.test
 files[] = tests/views_argument_default.test
 files[] = tests/field/views_fieldapi.test
 files[] = tests/views_groupby.test
