@@ -19,7 +19,7 @@ function views_views_plugins() {
       'default' => array(
         'title' => t('Master'),
         'help' => t('Default settings for this view.'),
-        'handler' => 'views_plugin_display_default',
+        'handler' => 'Drupal\views\Plugins\views\display\DefaultDisplay',
         'theme' => 'views_view',
         'no ui' => TRUE,
         'no remove' => TRUE,
@@ -35,7 +35,7 @@ function views_views_plugins() {
       'page' => array(
         'title' => t('Page'),
         'help' => t('Display the view as a page, with a URL and menu links.'),
-        'handler' => 'views_plugin_display_page',
+        'handler' => 'Drupal\views\Plugins\views\display\PageDisplay',
         'theme' => 'views_view',
         'uses hook menu' => TRUE,
         'contextual links locations' => array('page'),
@@ -49,7 +49,7 @@ function views_views_plugins() {
       'block' => array(
         'title' => t('Block'),
         'help' => t('Display the view as a block.'),
-        'handler' => 'views_plugin_display_block',
+        'handler' => 'Drupal\views\Plugins\views\display\BlockDisplay',
         'theme' => 'views_view',
         'uses hook block' => TRUE,
         'contextual links locations' => array('block'),
@@ -63,7 +63,7 @@ function views_views_plugins() {
       'attachment' => array(
         'title' => t('Attachment'),
         'help' => t('Attachments added to other displays to achieve multiple views in the same view.'),
-        'handler' => 'views_plugin_display_attachment',
+        'handler' => 'Drupal\views\Plugins\views\display\AttachmentDisplay',
         'theme' => 'views_view',
         'contextual links locations' => array(),
         'use ajax' => TRUE,
@@ -75,7 +75,7 @@ function views_views_plugins() {
       'feed' => array(
         'title' => t('Feed'),
         'help' => t('Display the view as a feed, such as an RSS feed.'),
-        'handler' => 'views_plugin_display_feed',
+        'handler' => 'Drupal\views\Plugins\views\display\FeedDisplay',
         'uses hook menu' => TRUE,
         'use ajax' => FALSE,
         'use pager' => FALSE,
@@ -101,7 +101,7 @@ function views_views_plugins() {
       'default' => array(
         'title' => t('Empty display extender'),
         'help' => t('Default settings for this view.'),
-        'handler' => 'views_plugin_display_extender',
+        'handler' => 'Drupal\views\Plugins\views\display_extender\DisplayExtenderPlugin',
         // You can force the plugin to be enabled
         'enabled' => FALSE,
         'no ui' => TRUE,
@@ -112,7 +112,7 @@ function views_views_plugins() {
       'default' => array(
         'title' => t('Unformatted list'),
         'help' => t('Displays rows one after another.'),
-        'handler' => 'views_plugin_style_default',
+        'handler' => 'Drupal\views\Plugins\views\style\DefaultStyle',
         'theme' => 'views_view_unformatted',
         'uses row plugin' => TRUE,
         'uses row class' => TRUE,
@@ -124,7 +124,7 @@ function views_views_plugins() {
       'list' => array(
         'title' => t('HTML list'),
         'help' => t('Displays rows as an HTML list.'),
-        'handler' => 'views_plugin_style_list',
+        'handler' => 'Drupal\views\Plugins\views\style\ListStyle',
         'theme' => 'views_view_list',
         'uses row plugin' => TRUE,
         'uses row class' => TRUE,
@@ -135,7 +135,7 @@ function views_views_plugins() {
       'grid' => array(
         'title' => t('Grid'),
         'help' => t('Displays rows in a grid.'),
-        'handler' => 'views_plugin_style_grid',
+        'handler' => 'Drupal\views\Plugins\views\style\GridStyle',
         'theme' => 'views_view_grid',
         'uses fields' => FALSE,
         'uses row plugin' => TRUE,
@@ -147,7 +147,7 @@ function views_views_plugins() {
       'table' => array(
         'title' => t('Table'),
         'help' => t('Displays rows in a table.'),
-        'handler' => 'views_plugin_style_table',
+        'handler' => 'Drupal\views\Plugins\views\style\TableStyle',
         'theme' => 'views_view_table',
         'uses row plugin' => FALSE,
         'uses row class' => TRUE,
@@ -159,7 +159,7 @@ function views_views_plugins() {
       'default_summary' => array(
         'title' => t('List'),
         'help' => t('Displays the default summary as a list.'),
-        'handler' => 'views_plugin_style_summary',
+        'handler' => 'Drupal\views\Plugins\views\style\StyleSummaryPlugin',
         'theme' => 'views_view_summary',
         'type' => 'summary', // only shows up as a summary style
         'uses options' => TRUE,
@@ -168,7 +168,7 @@ function views_views_plugins() {
       'unformatted_summary' => array(
         'title' => t('Unformatted'),
         'help' => t('Displays the summary unformatted, with option for one after another or inline.'),
-        'handler' => 'views_plugin_style_summary_unformatted',
+        'handler' => 'Drupal\views\Plugins\views\style\UnformattedStyleSummary',
         'theme' => 'views_view_summary_unformatted',
         'type' => 'summary', // only shows up as a summary style
         'uses options' => TRUE,
@@ -177,7 +177,7 @@ function views_views_plugins() {
       'rss' => array(
         'title' => t('RSS Feed'),
         'help' => t('Generates an RSS feed from a view.'),
-        'handler' => 'views_plugin_style_rss',
+        'handler' => 'Drupal\views\Plugins\views\style\RssStyle',
         'theme' => 'views_view_rss',
         'uses row plugin' => TRUE,
         'uses options' => TRUE,
@@ -189,7 +189,7 @@ function views_views_plugins() {
       'fields' => array(
         'title' => t('Fields'),
         'help' => t('Displays the fields with an optional template.'),
-        'handler' => 'views_plugin_row_fields',
+        'handler' => 'Drupal\views\Plugins\views\row\FieldsRow',
         'theme' => 'views_view_fields',
         'uses fields' => TRUE,
         'uses options' => TRUE,
@@ -199,7 +199,7 @@ function views_views_plugins() {
       'rss_fields' => array(
         'title' => t('Fields'),
         'help' => t('Display fields as RSS items.'),
-        'handler' => 'views_plugin_row_rss_fields',
+        'handler' => 'Drupal\views\Plugins\views\row\RssFieldsRow',
         'theme' => 'views_view_row_rss',
         'uses fields' => TRUE,
         'uses options' => TRUE,
@@ -261,13 +261,14 @@ function views_views_plugins() {
     'query' => array(
       'parent' => array(
         'no ui' => TRUE,
-        'handler' => 'views_plugin_query',
+        'handler' => 'Drupal\views\Plugins\views\query\QueryPlugin',
         'parent' => '',
       ),
       'views_query' => array(
         'title' => t('SQL Query'),
         'help' => t('Query will be generated and run using the Drupal database API.'),
-        'handler' => 'views_plugin_query_default'
+        'handler' => 'views_plugin_query_default',
+        'class' => 'Drupal\views\Plugins\views\query\SqlQuery',
       ),
     ),
     'cache' => array(

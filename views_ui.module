@@ -654,10 +654,12 @@ function views_ui_views_plugins_alter(&$plugins) {
   // paths underneath "admin/structure/views/view/{$view->name}" (i.e., paths
   // for editing and performing other contextual actions on the view).
   foreach ($plugins['display'] as &$display) {
+/*
     $display['contextual links']['views_ui'] = array(
       'parent path' => 'admin/structure/views/view',
       'argument properties' => array('name'),
     );
+*/
   }
 }
 
