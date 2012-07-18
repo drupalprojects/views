@@ -2,10 +2,10 @@
 
 /**
  * @file
- * Definition of Drupal\views\Plugins\views\argument\NumericArgumentValidate.
+ * Definition of Drupal\views\Plugins\views\argument_validator\NumericArgumentValidate.
  */
 
-namespace Drupal\views\Plugins\views\argument;
+namespace Drupal\views\Plugins\views\argument_validator;
 
 /**
  * Validate whether an argument is numeric or not.

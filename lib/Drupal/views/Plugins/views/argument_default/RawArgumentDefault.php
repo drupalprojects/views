@@ -2,10 +2,10 @@
 
 /**
  * @file
- * Definition of Drupal\views\Plugins\views\argument\RawArgumentDefault.
+ * Definition of Drupal\views\Plugins\views\argument_default\RawArgumentDefault.
  */
 
-namespace Drupal\views\Plugins\views\argument;
+namespace Drupal\views\Plugins\views\argument_default;
 
 /**
  * Default argument plugin to use the raw value from the URL.

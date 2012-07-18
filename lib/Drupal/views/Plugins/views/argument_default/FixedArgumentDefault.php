@@ -2,10 +2,10 @@
 
 /**
  * @file
- * Definition of Drupal\views\Plugins\views\argument\FixedArgumentDefault.
+ * Definition of Drupal\views\Plugins\views\argument_default\FixedArgumentDefault.
  */
 
-namespace Drupal\views\Plugins\views\argument;
+namespace Drupal\views\Plugins\views\argument_default;
 
 /**
  * The fixed argument default handler.

@@ -2,10 +2,10 @@
 
 /**
  * @file
- * Definition of Drupal\views\Plugins\views\argument\PhpArgumentValidate.
+ * Definition of Drupal\views\Plugins\views\argument_validator\PhpArgumentValidate.
  */
 
-namespace Drupal\views\Plugins\views\argument;
+namespace Drupal\views\Plugins\views\argument_validator;
 
 /**
  * Provide PHP code to validate whether or not an argument is ok.

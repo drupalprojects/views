@@ -2,31 +2,25 @@
 
 /**
  * @file
- * Definition of Drupal\views\Plugins\views\argument\ArgumentDefaultPlugin.
+ * Definition of Drupal\views\Plugins\views\argument_validator\ArgumentValidatePlugin.
  */
 
-namespace Drupal\views\Plugins\views\argument;
+namespace Drupal\views\Plugins\views\argument_validator;
 
 use Drupal\views\Plugins\views\Plugin;
 
 /**
- * @defgroup views_argument_default_plugins Views argument default plugins
+ * @defgroup views_argument_validate_plugins Views argument validate plugins
  * @{
- * Allow specialized methods of filling in arguments when they aren't provided.
+ * Allow specialized methods of validating arguments.
  *
  * @see hook_views_plugins()
  */
 
 /**
- * The fixed argument default handler; also used as the base.
+ * Base argument validator plugin to provide basic functionality.
  */
-class ArgumentDefaultPlugin extends Plugin {
-  /**
-   * Return the default argument.
-   *
-   * This needs to be overridden by every default argument handler to properly do what is needed.
-   */
-  function get_argument() { }
+class ArgumentValidatePlugin extends Plugin {
 
   /**
    * Initialize this plugin with the view and the argument
@@ -62,8 +56,17 @@ class ArgumentDefaultPlugin extends Plugin {
   function options_submit(&$form, &$form_state, &$options = array()) { }
 
   /**
-   * Determine if the administrator has the privileges to use this
-   * plugin
+   * Convert options from the older style.
+   *
+   * In Views 3, the method of storing default argument options has changed
+   * and each plugin now gets its own silo. This method can be used to
+   * move arguments from the old style to the new style. See
+   * views_plugin_argument_default_fixed for a good example of this method.
+   */
+  function convert_options(&$options) { }
+
+  /**
+   * Determine if the administrator has the privileges to use this plugin
    */
   function access() { return TRUE; }
 
@@ -82,15 +85,17 @@ class ArgumentDefaultPlugin extends Plugin {
     }
   }
 
+  function validate_argument($arg) { return TRUE; }
+
   /**
-   * Convert options from the older style.
+   * Process the summary arguments for displaying.
    *
-   * In Views 3, the method of storing default argument options has changed
-   * and each plugin now gets its own silo. This method can be used to
-   * move arguments from the old style to the new style. See
-   * views_plugin_argument_default_fixed for a good example of this method.
+   * Some plugins alter the argument so it uses something else interal.
+   * For example the user validation set's the argument to the uid,
+   * for a faster query. But there are use cases where you want to use
+   * the old value again, for example the summary.
    */
-  function convert_options(&$options) { }
+  function process_summary_arguments(&$args) { }
 }
 
 /**

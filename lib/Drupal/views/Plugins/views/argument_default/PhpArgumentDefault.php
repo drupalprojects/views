@@ -2,10 +2,10 @@
 
 /**
  * @file
- * Definition of Drupal\views\Plugins\views\argument\PhpArgumentDefault.
+ * Definition of Drupal\views\Plugins\views\argument_default\PhpArgumentDefault.
  */
 
-namespace Drupal\views\Plugins\views\argument;
+namespace Drupal\views\Plugins\views\argument_default;
 
 /**
  * Default argument plugin to provide a PHP code block.
