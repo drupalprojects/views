@@ -19,7 +19,7 @@ function views_views_plugins() {
       'default' => array(
         'title' => t('Master'),
         'help' => t('Default settings for this view.'),
-        'handler' => 'Drupal\views\Plugins\views\display\DefaultDisplay',
+        'class' => 'Drupal\views\Plugins\views\display\DefaultDisplay',
         'theme' => 'views_view',
         'no ui' => TRUE,
         'no remove' => TRUE,
@@ -35,7 +35,7 @@ function views_views_plugins() {
       'page' => array(
         'title' => t('Page'),
         'help' => t('Display the view as a page, with a URL and menu links.'),
-        'handler' => 'Drupal\views\Plugins\views\display\PageDisplay',
+        'class' => 'Drupal\views\Plugins\views\display\PageDisplay',
         'theme' => 'views_view',
         'uses hook menu' => TRUE,
         'contextual links locations' => array('page'),
@@ -49,7 +49,7 @@ function views_views_plugins() {
       'block' => array(
         'title' => t('Block'),
         'help' => t('Display the view as a block.'),
-        'handler' => 'Drupal\views\Plugins\views\display\BlockDisplay',
+        'class' => 'Drupal\views\Plugins\views\display\BlockDisplay',
         'theme' => 'views_view',
         'uses hook block' => TRUE,
         'contextual links locations' => array('block'),
@@ -63,7 +63,7 @@ function views_views_plugins() {
       'attachment' => array(
         'title' => t('Attachment'),
         'help' => t('Attachments added to other displays to achieve multiple views in the same view.'),
-        'handler' => 'Drupal\views\Plugins\views\display\AttachmentDisplay',
+        'class' => 'Drupal\views\Plugins\views\display\AttachmentDisplay',
         'theme' => 'views_view',
         'contextual links locations' => array(),
         'use ajax' => TRUE,
@@ -75,7 +75,7 @@ function views_views_plugins() {
       'feed' => array(
         'title' => t('Feed'),
         'help' => t('Display the view as a feed, such as an RSS feed.'),
-        'handler' => 'Drupal\views\Plugins\views\display\FeedDisplay',
+        'class' => 'Drupal\views\Plugins\views\display\FeedDisplay',
         'uses hook menu' => TRUE,
         'use ajax' => FALSE,
         'use pager' => FALSE,
@@ -86,7 +86,7 @@ function views_views_plugins() {
       'embed' => array(
         'title' => t('Embed'),
         'help' => t('Provide a display which can be embedded using the views api.'),
-        'handler' => 'views_plugin_display_embed',
+        'class' => 'views_plugin_display_embed',
         'theme' => 'views_view',
         'uses hook menu' => FALSE,
         'use ajax' => TRUE,
@@ -101,7 +101,7 @@ function views_views_plugins() {
       'default' => array(
         'title' => t('Empty display extender'),
         'help' => t('Default settings for this view.'),
-        'handler' => 'Drupal\views\Plugins\views\display_extender\DisplayExtenderPlugin',
+        'class' => 'Drupal\views\Plugins\views\display_extender\DisplayExtenderPlugin',
         // You can force the plugin to be enabled
         'enabled' => FALSE,
         'no ui' => TRUE,
@@ -112,7 +112,7 @@ function views_views_plugins() {
       'default' => array(
         'title' => t('Unformatted list'),
         'help' => t('Displays rows one after another.'),
-        'handler' => 'Drupal\views\Plugins\views\style\DefaultStyle',
+        'class' => 'Drupal\views\Plugins\views\style\DefaultStyle',
         'theme' => 'views_view_unformatted',
         'uses row plugin' => TRUE,
         'uses row class' => TRUE,
@@ -124,7 +124,7 @@ function views_views_plugins() {
       'list' => array(
         'title' => t('HTML list'),
         'help' => t('Displays rows as an HTML list.'),
-        'handler' => 'Drupal\views\Plugins\views\style\ListStyle',
+        'class' => 'Drupal\views\Plugins\views\style\ListStyle',
         'theme' => 'views_view_list',
         'uses row plugin' => TRUE,
         'uses row class' => TRUE,
@@ -135,7 +135,7 @@ function views_views_plugins() {
       'grid' => array(
         'title' => t('Grid'),
         'help' => t('Displays rows in a grid.'),
-        'handler' => 'Drupal\views\Plugins\views\style\GridStyle',
+        'class' => 'Drupal\views\Plugins\views\style\GridStyle',
         'theme' => 'views_view_grid',
         'uses fields' => FALSE,
         'uses row plugin' => TRUE,
@@ -147,7 +147,7 @@ function views_views_plugins() {
       'table' => array(
         'title' => t('Table'),
         'help' => t('Displays rows in a table.'),
-        'handler' => 'Drupal\views\Plugins\views\style\TableStyle',
+        'class' => 'Drupal\views\Plugins\views\style\TableStyle',
         'theme' => 'views_view_table',
         'uses row plugin' => FALSE,
         'uses row class' => TRUE,
@@ -159,7 +159,7 @@ function views_views_plugins() {
       'default_summary' => array(
         'title' => t('List'),
         'help' => t('Displays the default summary as a list.'),
-        'handler' => 'Drupal\views\Plugins\views\style\StyleSummaryPlugin',
+        'class' => 'Drupal\views\Plugins\views\style\StyleSummaryPlugin',
         'theme' => 'views_view_summary',
         'type' => 'summary', // only shows up as a summary style
         'uses options' => TRUE,
@@ -168,7 +168,7 @@ function views_views_plugins() {
       'unformatted_summary' => array(
         'title' => t('Unformatted'),
         'help' => t('Displays the summary unformatted, with option for one after another or inline.'),
-        'handler' => 'Drupal\views\Plugins\views\style\UnformattedStyleSummary',
+        'class' => 'Drupal\views\Plugins\views\style\UnformattedStyleSummary',
         'theme' => 'views_view_summary_unformatted',
         'type' => 'summary', // only shows up as a summary style
         'uses options' => TRUE,
@@ -177,7 +177,7 @@ function views_views_plugins() {
       'rss' => array(
         'title' => t('RSS Feed'),
         'help' => t('Generates an RSS feed from a view.'),
-        'handler' => 'Drupal\views\Plugins\views\style\RssStyle',
+        'class' => 'Drupal\views\Plugins\views\style\RssStyle',
         'theme' => 'views_view_rss',
         'uses row plugin' => TRUE,
         'uses options' => TRUE,
@@ -189,7 +189,7 @@ function views_views_plugins() {
       'fields' => array(
         'title' => t('Fields'),
         'help' => t('Displays the fields with an optional template.'),
-        'handler' => 'Drupal\views\Plugins\views\row\FieldsRow',
+        'class' => 'Drupal\views\Plugins\views\row\FieldsRow',
         'theme' => 'views_view_fields',
         'uses fields' => TRUE,
         'uses options' => TRUE,
@@ -199,7 +199,7 @@ function views_views_plugins() {
       'rss_fields' => array(
         'title' => t('Fields'),
         'help' => t('Display fields as RSS items.'),
-        'handler' => 'Drupal\views\Plugins\views\row\RssFieldsRow',
+        'class' => 'Drupal\views\Plugins\views\row\RssFieldsRow',
         'theme' => 'views_view_row_rss',
         'uses fields' => TRUE,
         'uses options' => TRUE,
@@ -210,50 +210,50 @@ function views_views_plugins() {
     'argument default' => array(
       'parent' => array(
         'no ui' => TRUE,
-        'handler' => 'views_plugin_argument_default',
+        'class' => 'views_plugin_argument_default',
         'parent' => '',
       ),
       'fixed' => array(
         'title' => t('Fixed value'),
-        'handler' => 'views_plugin_argument_default_fixed',
+        'class' => 'views_plugin_argument_default_fixed',
       ),
       'php' => array(
         'title' => t('PHP Code'),
-        'handler' => 'views_plugin_argument_default_php',
+        'class' => 'views_plugin_argument_default_php',
       ),
       'raw' => array(
         'title' => t('Raw value from URL'),
-        'handler' => 'views_plugin_argument_default_raw',
+        'class' => 'views_plugin_argument_default_raw',
       ),
     ),
     'argument validator' => array(
       'php' => array(
         'title' => t('PHP Code'),
-        'handler' => 'views_plugin_argument_validate_php',
+        'class' => 'views_plugin_argument_validate_php',
       ),
       'numeric' => array(
         'title' => t('Numeric'),
-        'handler' => 'views_plugin_argument_validate_numeric',
+        'class' => 'views_plugin_argument_validate_numeric',
       ),
     ),
     'access' => array(
       'none' => array(
         'title' => t('None'),
         'help' => t('Will be available to all users.'),
-        'handler' => 'views_plugin_access_none',
+        'class' => 'views_plugin_access_none',
         'help topic' => 'access-none',
       ),
       'role' => array(
         'title' => t('Role'),
         'help' => t('Access will be granted to users with any of the specified roles.'),
-        'handler' => 'views_plugin_access_role',
+        'class' => 'views_plugin_access_role',
         'uses options' => TRUE,
         'help topic' => 'access-role',
       ),
       'perm' => array(
         'title' => t('Permission'),
         'help' => t('Access will be granted to users with the specified permission string.'),
-        'handler' => 'views_plugin_access_perm',
+        'class' => 'views_plugin_access_perm',
         'uses options' => TRUE,
         'help topic' => 'access-perm',
       ),
@@ -261,32 +261,32 @@ function views_views_plugins() {
     'query' => array(
       'parent' => array(
         'no ui' => TRUE,
-        'handler' => 'Drupal\views\Plugins\views\query\QueryPlugin',
+        'class' => 'Drupal\views\Plugins\views\query\QueryPlugin',
         'parent' => '',
       ),
       'views_query' => array(
         'title' => t('SQL Query'),
         'help' => t('Query will be generated and run using the Drupal database API.'),
-        'handler' => 'views_plugin_query_default',
+        'class' => 'views_plugin_query_default',
         'class' => 'Drupal\views\Plugins\views\query\SqlQuery',
       ),
     ),
     'cache' => array(
       'parent' => array(
         'no ui' => TRUE,
-        'handler' => 'views_plugin_cache',
+        'class' => 'views_plugin_cache',
         'parent' => '',
       ),
       'none' => array(
         'title' => t('None'),
         'help' => t('No caching of Views data.'),
-        'handler' => 'views_plugin_cache_none',
+        'class' => 'views_plugin_cache_none',
         'help topic' => 'cache-none',
       ),
       'time' => array(
         'title' => t('Time-based'),
         'help' => t('Simple time-based caching of data.'),
-        'handler' => 'views_plugin_cache_time',
+        'class' => 'views_plugin_cache_time',
         'uses options' => TRUE,
         'help topic' => 'cache-time',
       ),
@@ -294,20 +294,20 @@ function views_views_plugins() {
     'exposed_form' => array(
       'parent' => array(
         'no ui' => TRUE,
-        'handler' => 'views_plugin_exposed_form',
+        'class' => 'views_plugin_exposed_form',
         'parent' => '',
       ),
       'basic' => array(
         'title' => t('Basic'),
         'help' => t('Basic exposed form'),
-        'handler' => 'views_plugin_exposed_form_basic',
+        'class' => 'views_plugin_exposed_form_basic',
         'uses options' => TRUE,
         'help topic' => 'exposed-form-basic',
       ),
       'input_required' => array(
         'title' => t('Input required'),
         'help' => t('An exposed form that only renders a view if the form contains user input.'),
-        'handler' => 'views_plugin_exposed_form_input_required',
+        'class' => 'views_plugin_exposed_form_input_required',
         'uses options' => TRUE,
         'help topic' => 'exposed-form-input-required',
       ),
@@ -315,13 +315,13 @@ function views_views_plugins() {
     'pager' => array(
       'parent' => array(
         'no ui' => TRUE,
-        'handler' => 'views_plugin_pager',
+        'class' => 'views_plugin_pager',
         'parent' => '',
       ),
       'none' => array(
         'title' => t('Display all items'),
         'help' => t("Display all items that this view might find"),
-        'handler' => 'views_plugin_pager_none',
+        'class' => 'views_plugin_pager_none',
         'help topic' => 'pager-none',
         'uses options' => TRUE,
         'type' => 'basic',
@@ -329,7 +329,7 @@ function views_views_plugins() {
       'some' => array(
         'title' => t('Display a specified number of items'),
         'help' => t('Display a limited number items that this view might find.'),
-        'handler' => 'views_plugin_pager_some',
+        'class' => 'views_plugin_pager_some',
         'help topic' => 'pager-some',
         'uses options' => TRUE,
         'type' => 'basic',
@@ -338,7 +338,7 @@ function views_views_plugins() {
         'title' => t('Paged output, full pager'),
         'short title' => t('Full'),
         'help' => t('Paged output, full Drupal style'),
-        'handler' => 'views_plugin_pager_full',
+        'class' => 'views_plugin_pager_full',
         'help topic' => 'pager-full',
         'uses options' => TRUE,
       ),
@@ -346,7 +346,7 @@ function views_views_plugins() {
         'title' => t('Paged output, mini pager'),
         'short title' => t('Mini'),
         'help' => t('Use the mini pager output.'),
-        'handler' => 'views_plugin_pager_mini',
+        'class' => 'views_plugin_pager_mini',
         'help topic' => 'pager-mini',
         'uses options' => TRUE,
         'parent' => 'full',
@@ -355,19 +355,19 @@ function views_views_plugins() {
     'localization' => array(
       'parent' => array(
         'no ui' => TRUE,
-        'handler' => 'views_plugin_localization',
+        'class' => 'views_plugin_localization',
         'parent' => '',
       ),
      'none' => array(
         'title' => t('None'),
         'help' => t('Do not pass admin strings for translation.'),
-        'handler' => 'views_plugin_localization_none',
+        'class' => 'views_plugin_localization_none',
         'help topic' => 'localization-none',
       ),
       'core' => array(
         'title' => t('Core'),
         'help' => t("Use Drupal core t() function. Not recommended, as it doesn't support updates to existing strings."),
-        'handler' => 'views_plugin_localization_core',
+        'class' => 'views_plugin_localization_core',
         'help topic' => 'localization-core',
       ),
     ),
@@ -381,7 +381,7 @@ function views_views_plugins() {
     $plugins['style']['jump_menu_summary'] = array(
       'title' => t('Jump menu'),
       'help' => t('Puts all of the results into a select box and allows the user to go to a different page based upon the results.'),
-      'handler' => 'views_plugin_style_summary_jump_menu',
+      'class' => 'views_plugin_style_summary_jump_menu',
       'theme' => 'views_view_summary_jump_menu',
       'type' => 'summary', // only shows up as a summary style
       'uses options' => TRUE,
@@ -390,7 +390,7 @@ function views_views_plugins() {
     $plugins['style']['jump_menu'] = array(
       'title' => t('Jump menu'),
       'help' => t('Puts all of the results into a select box and allows the user to go to a different page based upon the results.'),
-      'handler' => 'views_plugin_style_jump_menu',
+      'class' => 'views_plugin_style_jump_menu',
       'theme' => 'views_view_jump_menu',
       'uses row plugin' => TRUE,
       'uses fields' => TRUE,
