@@ -47,6 +47,7 @@ define('VIEWS_HANDLER_RENDER_TEXT_PHASE_EMPTY', 2);
  * @ingroup views_field_handlers
  */
 class FieldPluginBase extends Plugin {
+
   var $field_alias = 'unknown';
   var $aliases = array();
 
@@ -380,6 +381,17 @@ class FieldPluginBase extends Plugin {
     if (isset($values->{$alias})) {
       return $values->{$alias};
     }
+  }
+
+  /**
+   * Determines if this field will be available as an option to group the result
+   * by in the style settings.
+   *
+   * @return bool
+   *  TRUE if this field handler is groupable, otherwise FALSE.
+   */
+  function use_string_group_by() {
+    return TRUE;
   }
 
   function option_definition() {
@@ -1235,7 +1247,7 @@ If you would like to have the characters \'[\' and \']\' please use the html ent
           $more_link_path = drupal_substr($more_link_path, drupal_strlen($base_path));
         }
 
-        $more_link = l($more_link_text, $more_link_path);
+        $more_link = l($more_link_text, $more_link_path, array('attributes' => array('class' => array('views-more-link'))));
 
         $suffix .= " " . $more_link;
       }
@@ -1248,7 +1260,7 @@ If you would like to have the characters \'[\' and \']\' please use the html ent
 
     if (!empty($alter['make_link']) && !empty($alter['path'])) {
       if (!isset($tokens)) {
-       $tokens = $this->get_render_tokens($alter);
+        $tokens = $this->get_render_tokens($alter);
       }
       $value = $this->render_as_link($alter, $value, $tokens);
     }
@@ -1334,7 +1346,7 @@ If you would like to have the characters \'[\' and \']\' please use the html ent
     // If no scheme is provided in the $path, assign the default 'http://'.
     // This allows a url of 'www.example.com' to be converted to 'http://www.example.com'.
     // Only do this on for external URLs.
-    if ($alter['external']){
+    if ($alter['external']) {
       if (!isset($url['scheme'])) {
         // There is no scheme, add the default 'http://' to the $path.
         $path = "http://$path";
@@ -1379,7 +1391,7 @@ If you would like to have the characters \'[\' and \']\' please use the html ent
       $options['attributes']['rel'] = $rel;
     }
 
-    $target = check_plain(trim(strtr($alter['target'],$tokens)));
+    $target = check_plain(trim(strtr($alter['target'], $tokens)));
     if (!empty($target)) {
       $options['attributes']['target'] = $target;
     }
@@ -1523,13 +1535,14 @@ If you would like to have the characters \'[\' and \']\' please use the html ent
 
     foreach ($array as $param => $val) {
       if (is_array($val)) {
-         // Copy parent_keys array, so we don't afect other elements of this iteration.
-         $child_parent_keys = $parent_keys;
-         $child_parent_keys[] = $param;
-         // Get the child tokens.
-         $child_tokens = $this->get_token_values_recursive($val, $child_parent_keys);
-         // Add them to the current tokens array.
-         $tokens += $child_tokens;
+        // Copy parent_keys array, so we don't affect other elements of this
+        // iteration.
+        $child_parent_keys = $parent_keys;
+        $child_parent_keys[] = $param;
+        // Get the child tokens.
+        $child_tokens = $this->get_token_values_recursive($val, $child_parent_keys);
+        // Add them to the current tokens array.
+        $tokens += $child_tokens;
       }
       else {
         // Create a token key based on array element structure.
@@ -1603,6 +1616,7 @@ If you would like to have the characters \'[\' and \']\' please use the html ent
   function ui_name($short = FALSE) {
     return $this->get_field(parent::ui_name($short));
   }
+
 }
 
 /**

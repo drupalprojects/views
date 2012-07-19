@@ -40,6 +40,7 @@ use Drupal\views\Plugins\Plugin;
  * @ingroup views_argument_handlers
  */
 class ArgumentPluginBase extends Plugin {
+
   var $validator = NULL;
   var $argument = NULL;
   var $value = NULL;
@@ -913,8 +914,7 @@ class ArgumentPluginBase extends Plugin {
     // Add the number of nodes counter
     $distinct = ($this->view->display_handler->get_option('distinct') && empty($this->query->no_distinct));
 
-    $count_alias = $this->query->add_field($this->query->base_table, $this->query->base_field, 'num_records',
-                                           array('count' => TRUE, 'distinct' => $distinct));
+    $count_alias = $this->query->add_field($this->query->base_table, $this->query->base_field, 'num_records', array('count' => TRUE, 'distinct' => $distinct));
     $this->query->add_groupby($this->name_alias);
 
     if ($count_field) {
@@ -1241,6 +1241,7 @@ class ArgumentPluginBase extends Plugin {
   function get_sort_name() {
     return t('Default sort', array(), array('context' => 'Sort order'));
   }
+
 }
 
 /**

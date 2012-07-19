@@ -24,6 +24,7 @@ namespace Drupal\views\Plugins\views\filter;
  * @ingroup views_filter_handlers
  */
 class BooleanOperator extends FilterPluginBase {
+
   // exposed filter options
   var $always_multiple = TRUE;
   // Don't display empty space where the operator would be.
@@ -39,7 +40,7 @@ class BooleanOperator extends FilterPluginBase {
     if (isset($this->definition['accept null'])) {
       $this->accept_null = (bool) $this->definition['accept null'];
     }
-    else if (isset($this->definition['accept_null'])) {
+    elseif (isset($this->definition['accept_null'])) {
       $this->accept_null = (bool) $this->definition['accept_null'];
     }
     $this->value_options = NULL;
@@ -175,4 +176,5 @@ class BooleanOperator extends FilterPluginBase {
       }
     }
   }
+
 }

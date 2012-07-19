@@ -26,6 +26,7 @@ namespace Drupal\views\Plugins\views\argument;
  * @ingroup views_argument_handlers
  */
 class Date extends ArgumentPluginBase {
+
   var $option_name = 'default_argument_date';
   var $arg_format = 'Y-m-d';
 
@@ -46,7 +47,7 @@ class Date extends ArgumentPluginBase {
     if (!$raw && $this->options['default_argument_type'] == 'date') {
       return date($this->arg_format, REQUEST_TIME);
     }
-    else if (!$raw && in_array($this->options['default_argument_type'], array('node_created', 'node_changed'))) {
+    elseif (!$raw && in_array($this->options['default_argument_type'], array('node_created', 'node_changed'))) {
       foreach (range(1, 3) as $i) {
         $node = menu_get_object('node', $i);
         if (!empty($node)) {
@@ -100,4 +101,5 @@ class Date extends ArgumentPluginBase {
   function get_sort_name() {
     return t('Date', array(), array('context' => 'Sort order'));
   }
+
 }
