@@ -4747,7 +4747,7 @@ function views_ui_admin_settings_basic($form, &$form_state) {
     ),
   );
 
-  $form['live_preview']['options']['ui_show_sql_query.where'] = array(
+  $form['live_preview']['options']['ui_show_sql_query_where'] = array(
     '#type' => 'radios',
     '#options' => array(
       'above' => t('Above the preview'),
@@ -4756,7 +4756,7 @@ function views_ui_admin_settings_basic($form, &$form_state) {
     '#default_value' => $config->get('ui.show.sql_query.where'),
   );
 
-  $form['live_preview']['options']['ui_show_sql_query.enabled'] = array(
+  $form['live_preview']['options']['ui_show_sql_query_enabled'] = array(
     '#type' => 'checkbox',
     '#title' => t('Show the SQL query'),
     '#default_value' => $config->get('ui.show.sql_query.enabled'),
@@ -4793,8 +4793,8 @@ function views_ui_admin_settings_basic_submit(&$form, &$form_state) {
     ->set('ui.exposed_filter_any_label', $form_state['values']['ui_exposed_filter_any_label'])
     ->set('ui.always_live_preview', $form_state['values']['ui_always_live_preview'])
     ->set('ui.show.preview_information', $form_state['values']['ui_show_preview_information'])
-    ->set('ui.show.sql_query_where', $form_state['values']['ui_show_sql_query.where'])
-    ->set('ui.show.sql_query.enabled', $form_state['values']['ui_show_sql_query.enabled'])
+    ->set('ui.show.sql_query.where', $form_state['values']['ui_show_sql_query_where'])
+    ->set('ui.show.sql_query.enabled', $form_state['values']['ui_show_sql_query_enabled'])
     ->set('ui.show.performance_statistics', $form_state['values']['ui_show_performance_statistics'])
     ->set('ui.show.additional_queries', $form_state['values']['ui_show_additional_queries'])
     ->save();
@@ -4847,7 +4847,7 @@ function views_ui_admin_settings_advanced() {
     '#default_value' => $config->get('no_javascript'),
   );
 
-  $form['debug']['debug.output'] = array(
+  $form['debug']['debug_output'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable views performance statistics/debug messages via the Devel module'),
     '#description' => t("Check this to enable some Views query and performance statistics/debug messages <em>if Devel is installed</em>."),
@@ -4874,7 +4874,7 @@ function views_ui_admin_settings_advanced() {
     $regions['drupal_debug'] = t('Devel logging (tmp://drupal_debug.txt)');
   }
 
-  $form['debug']['debug.region'] = array(
+  $form['debug']['debug_region'] = array(
     '#type' => 'select',
     '#title' => t('Page region to output performance statistics/debug messages'),
     '#default_value' => $config->get('debug.region'),
@@ -4922,9 +4922,9 @@ function views_ui_admin_settings_advanced_submit(&$form, &$form_state) {
     ->set('skip_cache', $form_state['values']['skip_cache'])
     ->set('sql_signature', $form_state['values']['sql_signature'])
     ->set('no_javascript', $form_state['values']['no_javascript'])
-    ->set('debug.output', $form_state['values']['debug.output'])
+    ->set('debug.output', $form_state['values']['debug_output'])
     ->set('localization_plugin', $form_state['values']['localization_plugin'])
-    ->set('debug.region', $form_state['values']['debug.region'])
+    ->set('debug.region', $form_state['values']['debug_region'])
     ->set('display_extenders', isset($form_state['values']['display_extenders']) ? $form_state['values']['display_extenders'] : array())
     ->save();
 }
