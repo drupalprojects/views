@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Definition of Drupal\views\Tests\Wizard\WizardItemsPerPageTest.
+ * Definition of Drupal\views\Tests\Wizard\ItemsPerPageTest.
  */
 
 namespace Drupal\views\Tests\Wizard;
@@ -10,11 +10,11 @@ namespace Drupal\views\Tests\Wizard;
 /**
  * Tests the ability of the views wizard to specify the number of items per page.
  */
-class WizardItemsPerPageTest extends WizardTestBase {
+class ItemsPerPageTest extends WizardTestBase {
 
   public static function getInfo() {
     return array(
-      'name' => 'Views UI wizard items per page functionality',
+      'name' => 'Items per page functionality',
       'description' => 'Test the ability of the views wizard to specify the number of items per page.',
       'group' => 'Views Wizard',
     );

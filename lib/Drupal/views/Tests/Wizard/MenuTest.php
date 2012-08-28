@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Definition of Drupal\views\Tests\Wizard\WizardMenuTest.
+ * Definition of Drupal\views\Tests\Wizard\MenuTest.
  */
 
 namespace Drupal\views\Tests\Wizard;
@@ -10,10 +10,11 @@ namespace Drupal\views\Tests\Wizard;
 /**
  * Tests the ability of the views wizard to put views in a menu.
  */
-class WizardMenuTest extends WizardTestBase {
+class MenuTest extends WizardTestBase {
+
   public static function getInfo() {
     return array(
-      'name' => 'Views UI wizard menu functionality',
+      'name' => 'Menu functionality',
       'description' => 'Test the ability of the views wizard to put views in a menu.',
       'group' => 'Views Wizard',
     );

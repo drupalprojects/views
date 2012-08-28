@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Definition of Drupal\views\Tests\Wizard\WizardSortingTest.
+ * Definition of Drupal\views\Tests\Wizard\SortingTest.
  */
 
 namespace Drupal\views\Tests\Wizard;
@@ -10,11 +10,11 @@ namespace Drupal\views\Tests\Wizard;
 /**
  * Tests the ability of the views wizard to create views with sorts.
  */
-class WizardSortingTest extends WizardTestBase {
+class SortingTest extends WizardTestBase {
 
   public static function getInfo() {
     return array(
-      'name' => 'Views UI wizard sorting functionality',
+      'name' => 'Sorting functionality',
       'description' => 'Test the ability of the views wizard to create views with sorts.',
       'group' => 'Views Wizard',
     );

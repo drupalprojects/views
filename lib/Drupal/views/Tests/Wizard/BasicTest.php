@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Definition of Drupal\views\Tests\Wizard\WizardBasicTest.
+ * Definition of Drupal\views\Tests\Wizard\BasicTest.
  */
 
 namespace Drupal\views\Tests\Wizard;
@@ -10,11 +10,11 @@ namespace Drupal\views\Tests\Wizard;
 /**
  * Tests creating views with the wizard and viewing them on the listing page.
  */
-class WizardBasicTest extends WizardTestBase {
+class BasicTest extends WizardTestBase {
 
   public static function getInfo() {
     return array(
-      'name' => 'Views UI wizard basic functionality',
+      'name' => 'Basic functionality',
       'description' => 'Test creating basic views with the wizard and viewing them on the listing page.',
       'group' => 'Views Wizard',
     );
