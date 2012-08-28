@@ -2,10 +2,10 @@
 
 /**
  * @file
- * Definition of Drupal\views\Tests\WizardMenuTest.
+ * Definition of Drupal\views\Tests\Wizard\WizardMenuTest.
  */
 
-namespace Drupal\views\Tests;
+namespace Drupal\views\Tests\Wizard;
 
 /**
  * Tests the ability of the views wizard to put views in a menu.
@@ -15,7 +15,7 @@ class WizardMenuTest extends WizardTestBase {
     return array(
       'name' => 'Views UI wizard menu functionality',
       'description' => 'Test the ability of the views wizard to put views in a menu.',
-      'group' => 'Views UI',
+      'group' => 'Views Wizard',
     );
   }
 
@@ -53,5 +53,5 @@ class WizardMenuTest extends WizardTestBase {
     }
     $this->assertTrue($found, t('Found a link to %path in the main menu', array('%path' => $view['page[path]'])));
   }
-}
 
+}

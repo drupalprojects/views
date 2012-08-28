@@ -2,10 +2,12 @@
 
 /**
  * @file
- * Definition of Drupal\views\Tests\WizardTestBase.
+ * Definition of Drupal\views\Tests\Wizard\WizardTestBase.
  */
 
-namespace Drupal\views\Tests;
+namespace Drupal\views\Tests\Wizard;
+
+use Drupal\views\Tests\ViewsSqlTest;
 
 /**
  * Views UI wizard tests.
@@ -21,4 +23,5 @@ abstract class WizardTestBase extends ViewsSqlTest {
     $views_admin = $this->drupalCreateUser(array('administer views', 'administer blocks', 'bypass node access', 'access user profiles', 'view revisions'));
     $this->drupalLogin($views_admin);
   }
+
 }
