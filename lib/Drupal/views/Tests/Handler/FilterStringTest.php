@@ -7,12 +7,10 @@
 
 namespace Drupal\views\Tests\Handler;
 
-use Drupal\views\Tests\ViewsSqlTest;
-
 /**
  * Tests the core Drupal\views\Plugin\views\filter\String handler.
  */
-class FilterStringTest extends ViewsSqlTest {
+class FilterStringTest extends HandlerTestBase {
 
   var $column_map = array();
 

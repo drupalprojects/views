@@ -7,15 +7,14 @@
 
 namespace Drupal\views\Tests\Handler;
 
-use Drupal\views\Tests\ViewsSqlTest;
 /**
  * Tests the core Drupal\views\Plugin\views\field\Url handler.
  */
-class FieldUrlTest extends ViewsSqlTest {
+class FieldUrlTest extends HandlerTestBase {
 
   public static function getInfo() {
     return array(
-      'name' => 'Field: Url',
+      'name' => 'Field: URL',
       'description' => 'Test the core Drupal\views\Plugin\views\field\Url handler.',
       'group' => 'Views Handlers',
     );

@@ -7,12 +7,10 @@
 
 namespace Drupal\views\Tests\Handler;
 
-use Drupal\views\Tests\ViewsSqlTest;
-
 /**
  * Tests the numeric filter handler.
  */
-class FilterNumericTest extends ViewsSqlTest {
+class FilterNumericTest extends HandlerTestBase {
 
   var $column_map = array();
 

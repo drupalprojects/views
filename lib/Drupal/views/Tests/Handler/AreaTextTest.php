@@ -7,14 +7,12 @@
 
 namespace Drupal\views\Tests\Handler;
 
-use Drupal\views\Tests\ViewsSqlTest;
-
 /**
  * Tests the text area handler.
  *
  * @see views_handler_area_text
  */
-class AreaTextTest extends ViewsSqlTest {
+class AreaTextTest extends HandlerTestBase {
 
   public static function getInfo() {
     return array(

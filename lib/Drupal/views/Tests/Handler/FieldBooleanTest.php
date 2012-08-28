@@ -7,12 +7,10 @@
 
 namespace Drupal\views\Tests\Handler;
 
-use Drupal\views\Tests\ViewsSqlTest;
-
 /**
  * Tests the core Drupal\views\Plugin\views\field\Boolean handler.
  */
-class FieldBooleanTest extends ViewsSqlTest {
+class FieldBooleanTest extends HandlerTestBase {
 
   public static function getInfo() {
     return array(
