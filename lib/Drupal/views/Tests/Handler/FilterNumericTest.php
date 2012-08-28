@@ -17,7 +17,7 @@ class FilterNumericTest extends HandlerTestBase {
   public static function getInfo() {
     return array(
       'name' => 'Filter: Numeric',
-      'description' => 'Tests the numeric filter handler',
+      'description' => 'Tests the numeric filter handler.',
       'group' => 'Views Handlers',
     );
   }

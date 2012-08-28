@@ -24,7 +24,7 @@ class ViewTest extends ViewTestBase {
   public static function getInfo() {
     return array(
       'name' => 'Views object',
-      'description' => 'Tests some functionality of the View class',
+      'description' => 'Tests some functionality of the View class.',
       'group' => 'Views',
     );
   }

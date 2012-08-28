@@ -19,7 +19,7 @@ class HandlerFieldUserNameTest extends UserTestBase {
   public static function getInfo() {
     return array(
       'name' => 'User: Name Field',
-      'description' => 'Tests the handler of the user: name field',
+      'description' => 'Tests the handler of the user: name field.',
       'group' => 'Views Modules',
     );
   }

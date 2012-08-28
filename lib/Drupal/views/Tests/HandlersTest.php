@@ -17,7 +17,7 @@ class HandlersTest extends ViewTestBase {
   public static function getInfo() {
     return array(
       'name' => 'Handlers tests',
-      'description' => 'Tests abstract handler definitions',
+      'description' => 'Tests abstract handler definitions.',
       'group' => 'Views',
     );
   }

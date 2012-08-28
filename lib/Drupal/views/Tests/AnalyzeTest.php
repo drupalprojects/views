@@ -15,7 +15,7 @@ class AnalyzeTest extends ViewTestBase {
   public static function getInfo() {
     return array(
       'name' => 'Views Analyze',
-      'description' => 'Test the views analyze system.',
+      'description' => 'Tests the views analyze system.',
       'group' => 'Views',
     );
   }

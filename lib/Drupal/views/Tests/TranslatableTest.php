@@ -24,7 +24,7 @@ class TranslatableTest extends ViewTestBase {
   public static function getInfo() {
     return array(
       'name' => 'Translatable tests',
-      'description' => 'Tests the pluggable translations',
+      'description' => 'Tests the pluggable translations.',
       'group' => 'Views',
     );
   }

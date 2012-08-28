@@ -15,7 +15,7 @@ class ModuleTest extends ViewTestBase {
   public static function getInfo() {
     return array(
       'name' => 'Views Module tests',
-      'description' => 'Tests some basic functions of views.module',
+      'description' => 'Tests some basic functions of views.module.',
       'group' => 'Views',
     );
   }
