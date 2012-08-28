@@ -2,20 +2,19 @@
 
 /**
  * @file
- * Definition of Drupal\views\Tests\User\HandlerFieldUserNameTest.
+ * Definition of Drupal\views\Tests\Plugin\HandlerFieldUserNameTest.
  */
 
-namespace Drupal\views\Tests\User;
+namespace Drupal\views\Tests\Plugin;
 
 use Drupal\views\View;
-use Drupal\views\Tests\ViewsSqlTest;
 
 /**
  * Tests the field username handler.
  *
  * @see views_handler_field_user_name
  */
-class HandlerFieldUserNameTest extends ViewsSqlTest {
+class HandlerFieldUserNameTest extends PluginTestBase {
   public static function getInfo() {
     return array(
       'name' => 'Tests user: name field',
