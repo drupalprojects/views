@@ -14,7 +14,7 @@ class GroupByTest extends UITestBase {
 
   public static function getInfo() {
     return array(
-      'name' => 'Groupby UI',
+      'name' => 'Group By functionality',
       'description' => 'Tests UI of aggregate functionality.',
       'group' => 'Views UI',
     );

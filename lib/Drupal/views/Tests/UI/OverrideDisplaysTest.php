@@ -14,7 +14,7 @@ class OverrideDisplaysTest extends UITestBase {
 
   public static function getInfo() {
     return array(
-      'name' => 'Views UI overridden displays',
+      'name' => 'Overridden displays functionality',
       'description' => 'Test that displays can be correctly overridden via the user interface.',
       'group' => 'Views UI',
     );

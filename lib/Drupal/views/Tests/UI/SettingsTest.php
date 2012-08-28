@@ -21,7 +21,7 @@ class SettingsTest extends UITestBase {
 
   public static function getInfo() {
     return array(
-      'name' => 'Views UI settings',
+      'name' => 'Settings functionality',
       'description' => 'Tests all ui related settings under admin/structure/views/settings.',
       'group' => 'Views UI',
     );

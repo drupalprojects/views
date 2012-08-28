@@ -14,7 +14,7 @@ class DefaultViewsTest extends UITestBase {
 
   public static function getInfo() {
     return array(
-      'name' => 'Views UI default views functionality',
+      'name' => 'Default views functionality',
       'description' => 'Test enabling, disabling, and reverting default views via the listing page.',
       'group' => 'Views UI',
     );
