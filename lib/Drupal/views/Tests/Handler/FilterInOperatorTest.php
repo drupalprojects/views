@@ -7,18 +7,25 @@
 
 namespace Drupal\views\Tests\Handler;
 
-use Drupal\views\Tests\ViewsSchemaTestBase;
+use Drupal\views\Tests\ViewsSqlTest;
 
 /**
  * Tests the core Drupal\views\Plugin\views\filter\InOperator handler.
  */
-class FilterInOperatorTest extends ViewsSchemaTestBase {
+class FilterInOperatorTest extends ViewsSqlTest {
+
   public static function getInfo() {
     return array(
       'name' => 'Filter: in_operator',
       'description' => 'Test the core Drupal\views\Plugin\views\filter\InOperator handler.',
       'group' => 'Views Handlers',
     );
+  }
+
+  protected function setUp() {
+    parent::setUp();
+
+    $this->enableViewsTestModule();
   }
 
   function viewsData() {

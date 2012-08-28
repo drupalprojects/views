@@ -7,12 +7,13 @@
 
 namespace Drupal\views\Tests\Handler;
 
-use Drupal\views\Tests\ViewsSchemaTestBase;
+use Drupal\views\Tests\ViewsSqlTest;
 
 /**
  * Tests the core Drupal\views\Plugin\views\filter\Equality handler.
  */
-class FilterEqualityTest extends ViewsSchemaTestBase {
+class FilterEqualityTest extends ViewsSqlTest {
+
   public static function getInfo() {
     return array(
       'name' => 'Filter: Equality',
@@ -23,6 +24,9 @@ class FilterEqualityTest extends ViewsSchemaTestBase {
 
   function setUp() {
     parent::setUp();
+
+    $this->enableViewsTestModule();
+
     $this->column_map = array(
       'views_test_name' => 'name',
     );

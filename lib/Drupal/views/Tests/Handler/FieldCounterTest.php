@@ -7,18 +7,25 @@
 
 namespace Drupal\views\Tests\Handler;
 
-use Drupal\views\Tests\ViewsSchemaTestBase;
+use Drupal\views\Tests\ViewsSqlTest;
 
 /**
  * Tests the Drupal\views\Plugin\views\field\Counter handler.
  */
-class FieldCounterTest extends ViewsSchemaTestBase {
+class FieldCounterTest extends ViewsSqlTest {
+
   public static function getInfo() {
     return array(
       'name' => 'Field: Counter',
       'description' => 'Tests the Drupal\views\Plugin\views\field\Counter handler.',
       'group' => 'Views Handlers',
     );
+  }
+
+  protected function setUp() {
+    parent::setUp();
+
+    $this->enableViewsTestModule();
   }
 
   function testSimple() {
@@ -71,4 +78,5 @@ class FieldCounterTest extends ViewsSchemaTestBase {
   // @TODO: Write tests for pager.
   function testPager() {
   }
+
 }

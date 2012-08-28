@@ -7,17 +7,24 @@
 
 namespace Drupal\views\Tests\Handler;
 
-use Drupal\views\Tests\ViewsSchemaTestBase;
+use Drupal\views\Tests\ViewsSqlTest;
 /**
  * Tests the core Drupal\views\Plugin\views\field\Url handler.
  */
-class FieldUrlTest extends ViewsSchemaTestBase {
+class FieldUrlTest extends ViewsSqlTest {
+
   public static function getInfo() {
     return array(
       'name' => 'Field: Url',
       'description' => 'Test the core Drupal\views\Plugin\views\field\Url handler.',
       'group' => 'Views Handlers',
     );
+  }
+
+  protected function setUp() {
+    parent::setUp();
+
+    $this->enableViewsTestModule();
   }
 
   function viewsData() {
@@ -60,4 +67,5 @@ class FieldUrlTest extends ViewsSchemaTestBase {
 
     $this->assertEqual(l('John', 'John'), $view->field['name']->advanced_render($view->result[0]));
   }
+
 }

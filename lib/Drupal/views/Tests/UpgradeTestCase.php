@@ -14,7 +14,7 @@ use Drupal\views\View;
  *
  * You can find all conversions by searching for "moved to".
  */
-class UpgradeTestCase extends ViewsSchemaTestBase {
+class UpgradeTestCase extends ViewsSqlTest {
 
   /**
    * Modules to enable.
@@ -36,7 +36,8 @@ class UpgradeTestCase extends ViewsSchemaTestBase {
 
   protected function setUp() {
     parent::setUp();
-    $this->resetAll();
+
+    $this->enableViewsTestModule();
   }
 
   function viewsData() {

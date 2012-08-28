@@ -7,18 +7,25 @@
 
 namespace Drupal\views\Tests\Handler;
 
-use Drupal\views\Tests\ViewsSchemaTestBase;
+use Drupal\views\Tests\ViewsSqlTest;
 
 /**
  * Tests the core Drupal\views\Plugin\views\field\Boolean handler.
  */
-class FieldBooleanTest extends ViewsSchemaTestBase {
+class FieldBooleanTest extends ViewsSqlTest {
+
   public static function getInfo() {
     return array(
       'name' => 'Field: Boolean',
       'description' => 'Test the core Drupal\views\Plugin\views\field\Boolean handler.',
       'group' => 'Views Handlers',
     );
+  }
+
+  protected function setUp() {
+    parent::setUp();
+
+    $this->enableViewsTestModule();
   }
 
   function dataSet() {
@@ -77,4 +84,5 @@ class FieldBooleanTest extends ViewsSchemaTestBase {
     $this->assertEqual(t('Test-True'), $view->field['age']->advanced_render($view->result[1]));
 
   }
+
 }

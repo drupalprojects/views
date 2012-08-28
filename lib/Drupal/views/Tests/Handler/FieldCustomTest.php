@@ -7,18 +7,25 @@
 
 namespace Drupal\views\Tests\Handler;
 
-use Drupal\views\Tests\ViewsSchemaTestBase;
+use Drupal\views\Tests\ViewsSqlTest;
 
 /**
  * Tests the core Drupal\views\Plugin\views\field\Custom handler.
  */
-class FieldCustomTest extends ViewsSchemaTestBase {
+class FieldCustomTest extends ViewsSqlTest {
+
   public static function getInfo() {
     return array(
       'name' => 'Field: Custom',
       'description' => 'Test the core Drupal\views\Plugin\views\field\Custom handler.',
       'group' => 'Views Handlers',
     );
+  }
+
+  protected function setUp() {
+    parent::setUp();
+
+    $this->enableViewsTestModule();
   }
 
   function viewsData() {
@@ -48,4 +55,5 @@ class FieldCustomTest extends ViewsSchemaTestBase {
 
     $this->assertEqual($random, $view->style_plugin->get_field(0, 'name'));
   }
+
 }

@@ -7,17 +7,19 @@
 
 namespace Drupal\views\Tests\UI;
 
-use Drupal\views\Tests\ViewsSchemaTestBase;
+use Drupal\views\Tests\ViewsSqlTest;
 
 /**
  * Provides a base class for testing the Views UI.
  */
-abstract class UITestBase extends ViewsSchemaTestBase {
+abstract class UITestBase extends ViewsSqlTest {
 
   protected $profile = 'standard';
 
   protected function setUp() {
     parent::setUp();
+
+    $this->enableViewsTestModule();
 
     $this->adminUser = $this->drupalCreateUser(array('administer views'));
 

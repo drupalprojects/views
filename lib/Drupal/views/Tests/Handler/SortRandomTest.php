@@ -7,18 +7,25 @@
 
 namespace Drupal\views\Tests\Handler;
 
-use Drupal\views\Tests\ViewsSchemaTestBase;
+use Drupal\views\Tests\ViewsSqlTest;
 
 /**
  * Tests for core Drupal\views\Plugin\views\sort\Random handler.
  */
-class SortRandomTest extends ViewsSchemaTestBase {
+class SortRandomTest extends ViewsSqlTest {
+
   public static function getInfo() {
     return array(
       'name' => 'Sort: random',
       'description' => 'Test the core Drupal\views\Plugin\views\sort\Random handler.',
       'group' => 'Views Handlers',
     );
+  }
+
+  protected function setUp() {
+    parent::setUp();
+
+    $this->enableViewsTestModule();
   }
 
   /**
@@ -90,4 +97,5 @@ class SortRandomTest extends ViewsSchemaTestBase {
       'views_test_age' => 'views_test_name',
     ));
   }
+
 }

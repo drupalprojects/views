@@ -7,12 +7,13 @@
 
 namespace Drupal\views\Tests\Handler;
 
-use Drupal\views\Tests\ViewsSchemaTestBase;
+use Drupal\views\Tests\ViewsSqlTest;
 
 /**
  * Tests the numeric filter handler.
  */
-class FilterNumericTest extends ViewsSchemaTestBase {
+class FilterNumericTest extends ViewsSqlTest {
+
   var $column_map = array();
 
   public static function getInfo() {
@@ -25,6 +26,9 @@ class FilterNumericTest extends ViewsSchemaTestBase {
 
   function setUp() {
     parent::setUp();
+
+    $this->enableViewsTestModule();
+
     $this->column_map = array(
       'views_test_name' => 'name',
       'views_test_age' => 'age',

@@ -10,7 +10,7 @@ namespace Drupal\views\Tests;
 /**
  * Tests basic functions from the Views module.
  */
-class ModuleTest extends ViewsSchemaTestBase {
+class ModuleTest extends ViewsSqlTest {
 
   public static function getInfo() {
     return array(
@@ -22,6 +22,8 @@ class ModuleTest extends ViewsSchemaTestBase {
 
   public function setUp() {
     parent::setUp();
+
+    $this->enableViewsTestModule();
     drupal_theme_rebuild();
   }
 

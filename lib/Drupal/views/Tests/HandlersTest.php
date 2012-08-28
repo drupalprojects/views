@@ -12,7 +12,7 @@ use stdClass;
 /**
  * Tests abstract handlers of views.
  */
-class HandlersTest extends ViewsSchemaTestBase {
+class HandlersTest extends ViewsSqlTest {
 
   public static function getInfo() {
     return array(
@@ -20,6 +20,12 @@ class HandlersTest extends ViewsSchemaTestBase {
       'description' => 'Tests abstract handler definitions',
       'group' => 'Views',
     );
+  }
+
+  protected function setUp() {
+    parent::setUp();
+
+    $this->enableViewsTestModule();
   }
 
   function testFilterInOperatorUi() {
