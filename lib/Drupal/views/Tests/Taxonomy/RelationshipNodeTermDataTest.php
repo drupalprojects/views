@@ -19,8 +19,8 @@ class RelationshipNodeTermDataTest extends ViewsSqlTest {
 
   public static function getInfo() {
     return array(
-      'name' => 'Tests handler relationship_node_term_data',
-      'description' => 'Tests the taxonomy term on node relationship handler',
+      'name' => 'Taxonomy: Node term data Relationship',
+      'description' => 'Tests the taxonomy term on node relationship handler.',
       'group' => 'Views Modules',
     );
   }
@@ -65,7 +65,6 @@ class RelationshipNodeTermDataTest extends ViewsSqlTest {
       ),
     );
     $this->column_map = array('nid' => 'nid');
-    debug($view->result);
     $this->assertIdenticalResultset($view, $resultset, $this->column_map);
   }
 
@@ -126,4 +125,5 @@ class RelationshipNodeTermDataTest extends ViewsSqlTest {
 
     return $view;
   }
+
 }

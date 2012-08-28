@@ -2,21 +2,21 @@
 
 /**
  * @file
- * Definition of Drupal\views\Tests\Plugin\UserArgumentDefaultTest.
+ * Definition of Drupal\views\Tests\User\ArgumentDefaultTest.
  */
 
-namespace Drupal\views\Tests\Plugin;
+namespace Drupal\views\Tests\User;
 
 use Drupal\views\View;
 
 /**
  * Tests views user argument default plugin.
  */
-class UserArgumentDefaultTest extends PluginTestBase {
+class ArgumentDefaultTest extends UserTestBase {
 
   public static function getInfo() {
     return array(
-      'name' => 'Argument default: User',
+      'name' => 'User: Argument default',
       'description' => 'Tests user argument default plugin.',
       'group' => 'Views Plugins',
     );

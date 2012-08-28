@@ -8,12 +8,11 @@
 namespace Drupal\views\Tests\User;
 
 use Drupal\views\View;
-use Drupal\views\Tests\ViewsSqlTest;
 
 /**
  * Tests basic user module integration into views.
  */
-class UserTest extends ViewsSqlTest {
+class UserTest extends UserTestBase {
 
   /**
    * Users to use during this test.
@@ -31,8 +30,8 @@ class UserTest extends ViewsSqlTest {
 
   public static function getInfo() {
     return array(
-      'name' => 'Tests basic user integration',
-      'description' => 'Tests the integration of user module.',
+      'name' => 'User: Basic integration',
+      'description' => 'Tests the integration of user.module.',
       'group' => 'Views Modules',
     );
   }

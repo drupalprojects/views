@@ -2,10 +2,10 @@
 
 /**
  * @file
- * Definition of Drupal\views\Tests\Plugin\HandlerFieldUserNameTest.
+ * Definition of Drupal\views\Tests\User\HandlerFieldUserNameTest.
  */
 
-namespace Drupal\views\Tests\Plugin;
+namespace Drupal\views\Tests\User;
 
 use Drupal\views\View;
 
@@ -14,10 +14,11 @@ use Drupal\views\View;
  *
  * @see views_handler_field_user_name
  */
-class HandlerFieldUserNameTest extends PluginTestBase {
+class HandlerFieldUserNameTest extends UserTestBase {
+
   public static function getInfo() {
     return array(
-      'name' => 'Tests user: name field',
+      'name' => 'User: Name Field',
       'description' => 'Tests the handler of the user: name field',
       'group' => 'Views Modules',
     );
@@ -97,4 +98,5 @@ class HandlerFieldUserNameTest extends PluginTestBase {
 
     return $view;
   }
+
 }

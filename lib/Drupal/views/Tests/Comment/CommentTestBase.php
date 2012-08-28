@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Definition of Drupal\views\Tests\Comment\ArgumentCommentUserUidTest.
+ * Definition of Drupal\views\Tests\Comment\CommentTestBase.
  */
 
 namespace Drupal\views\Tests\Comment;
@@ -13,64 +13,29 @@ use Drupal\views\View;
 /**
  * Tests the argument_comment_user_uid handler.
  */
-class ArgumentCommentUserUidTest extends ViewsSqlTest {
+class CommentTestBase extends ViewsSqlTest {
+
   protected $profile = 'standard';
-
-  public static function getInfo() {
-    return array(
-      'name' => 'Tests handler argument_comment_user_uid',
-      'description' => 'Tests the user posted or commented argument handler',
-      'group' => 'Views Modules',
-    );
-  }
-
-  /**
-   * Post comment.
-   *
-   * @param $node
-   *   Node to post comment on.
-   * @param $comment
-   *   Comment to save
-   */
-  function postComment($node, $comment = array()) {
-    $comment += array(
-      'uid' => $this->loggedInUser->uid,
-      'nid' => $node->nid,
-      'cid' => '',
-      'pid' => '',
-    );
-    return entity_create('comment', $comment)->save();
-  }
 
   function setUp() {
     parent::setUp();
 
-    // Add two users, create a node with the user1 as author and another node with user2 as author.
-    // For the second node add a comment from user1.
+    // Add two users, create a node with the user1 as author and another node
+    // with user2 as author. For the second node add a comment from user1.
     $this->account = $this->drupalCreateUser();
     $this->account2 = $this->drupalCreateUser();
     $this->drupalLogin($this->account);
+
     $this->node_user_posted = $this->drupalCreateNode();
     $this->node_user_commented = $this->drupalCreateNode(array('uid' => $this->account2->uid));
-    $this->postComment($this->node_user_commented);
-  }
 
-  function testCommentUserUidTest() {
-    $view = $this->view_comment_user_uid();
-
-
-    $this->executeView($view, array($this->account->uid));
-    $resultset = array(
-      array(
-        'nid' => $this->node_user_posted->nid,
-      ),
-      array(
-        'nid' => $this->node_user_commented->nid,
-      ),
+    $comment = array(
+      'uid' => $this->loggedInUser->uid,
+      'nid' => $this->node_user_commented->nid,
+      'cid' => '',
+      'pid' => '',
     );
-    $this->column_map = array('nid' => 'nid');
-    debug($view->result);
-    $this->assertIdenticalResultset($view, $resultset, $this->column_map);
+    entity_create('comment', $comment)->save();
   }
 
   function view_comment_user_uid() {
@@ -110,4 +75,5 @@ class ArgumentCommentUserUidTest extends ViewsSqlTest {
 
     return $view;
   }
+
 }

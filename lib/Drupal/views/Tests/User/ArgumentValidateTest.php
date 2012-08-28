@@ -2,21 +2,21 @@
 
 /**
  * @file
- * Definition of Drupal\views\Tests\Plugin\UserArgumentValidateTest.
+ * Definition of Drupal\views\Tests\User\ArgumentValidateTest.
  */
 
-namespace Drupal\views\Tests\Plugin;
+namespace Drupal\views\Tests\User;
 
 use Drupal\views\View;
 
 /**
  * Tests views user argument argument handler.
  */
-class UserArgumentValidateTest extends PluginTestBase {
+class ArgumentValidateTest extends UserTestBase {
 
   public static function getInfo() {
     return array(
-      'name' => 'Argument validator: User',
+      'name' => 'User: Argument validator',
       'description' => 'Tests user argument validator.',
       'group' => 'Views Plugins',
     );

@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Definition of Drupal\views\Test\Field\ApiTestHelper.
+ * Definition of Drupal\views\Test\Field\FieldTestBase.
  */
 
 /**
@@ -23,7 +23,8 @@ use Drupal\views\Tests\ViewsSqlTest;
 /**
  * Provides some helper methods for testing fieldapi integration into views.
  */
-abstract class ApiTestBase extends ViewsSqlTest {
+abstract class FieldTestBase extends ViewTestBase {
+
   protected $profile = 'standard';
 
   /**
@@ -71,4 +72,5 @@ abstract class ApiTestBase extends ViewsSqlTest {
     $cache = NULL;
     $recursion_protection = NULL;
   }
+
 }
