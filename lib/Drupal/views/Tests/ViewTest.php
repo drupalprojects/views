@@ -23,8 +23,8 @@ class ViewTest extends ViewsSqlTest {
 
   public static function getInfo() {
     return array(
-      'name' => 'Test the view class',
-      'description' => 'Tests some  functionality of the view class',
+      'name' => 'Views object',
+      'description' => 'Tests some functionality of the View class',
       'group' => 'Views',
     );
   }

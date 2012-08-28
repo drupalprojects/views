@@ -11,9 +11,10 @@ namespace Drupal\views\Tests;
  * Tests basic functions from the Views module.
  */
 class ModuleTest extends ViewsSchemaTestBase {
+
   public static function getInfo() {
     return array(
-      'name' => 'Tests views.module',
+      'name' => 'Views Module tests',
       'description' => 'Tests some basic functions of views.module',
       'group' => 'Views',
     );
@@ -158,4 +159,5 @@ class ModuleTest extends ViewsSchemaTestBase {
 
     $this->assertEqual($field_data['id'], $handler->getPluginId());
   }
+
 }

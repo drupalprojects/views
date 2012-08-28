@@ -46,4 +46,5 @@ class AnalyzeTest extends ViewsSqlTest {
     // This redirects the user back to the main views edit page.
     $this->drupalPost(NULL, array(), t('Ok'));
   }
+
 }

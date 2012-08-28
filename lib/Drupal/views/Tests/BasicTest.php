@@ -11,9 +11,10 @@ namespace Drupal\views\Tests;
  * Basic test class for Views query builder tests.
  */
 class BasicTest extends ViewsSchemaTestBase {
+
   public static function getInfo() {
     return array(
-      'name' => 'Basic query test',
+      'name' => 'Basic query tests',
       'description' => 'A basic query test for Views.',
       'group' => 'Views'
     );
@@ -177,4 +178,5 @@ class BasicTest extends ViewsSchemaTestBase {
       'views_test_age' => 'age',
     ));
   }
+
 }

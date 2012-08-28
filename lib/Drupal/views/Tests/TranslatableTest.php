@@ -13,6 +13,7 @@ use Drupal\views\View;
  * Tests Views pluggable translations.
  */
 class TranslatableTest extends ViewsSqlTest {
+
   /**
    * Stores the strings, which are tested by this test.
    *
@@ -22,7 +23,7 @@ class TranslatableTest extends ViewsSqlTest {
 
   public static function getInfo() {
     return array(
-      'name' => 'Views Translatable Test',
+      'name' => 'Translatable tests',
       'description' => 'Tests the pluggable translations',
       'group' => 'Views',
     );
@@ -207,4 +208,5 @@ class TranslatableTest extends ViewsSqlTest {
 
     return $view;
   }
+
 }
