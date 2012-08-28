@@ -7,13 +7,13 @@
 
 namespace Drupal\views\Tests\Comment;
 
-use Drupal\views\Tests\ViewsSqlTest;
+use Drupal\views\Tests\ViewTestBase;
 use Drupal\views\View;
 
 /**
  * Tests the argument_comment_user_uid handler.
  */
-class CommentTestBase extends ViewsSqlTest {
+abstract class CommentTestBase extends ViewTestBase {
 
   protected $profile = 'standard';
 

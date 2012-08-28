@@ -12,7 +12,7 @@ use Drupal\views\View;
 /**
  * Tests Views pluggable translations.
  */
-class TranslatableTest extends ViewsSqlTest {
+class TranslatableTest extends ViewTestBase {
 
   /**
    * Stores the strings, which are tested by this test.

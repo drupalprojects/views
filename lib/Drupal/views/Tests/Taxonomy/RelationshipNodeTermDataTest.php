@@ -7,13 +7,13 @@
 
 namespace Drupal\views\Tests\Taxonomy;
 
-use Drupal\views\Tests\ViewsSqlTest;
+use Drupal\views\Tests\ViewTestBase;
 use Drupal\views\View;
 
 /**
  * Tests the node_term_data relationship handler.
  */
-class RelationshipNodeTermDataTest extends ViewsSqlTest {
+class RelationshipNodeTermDataTest extends ViewTestBase {
 
   protected $profile = 'standard';
 

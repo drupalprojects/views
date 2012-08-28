@@ -12,7 +12,7 @@ use Drupal\views\View;
 /**
  * Views class tests.
  */
-class ViewTest extends ViewsSqlTest {
+class ViewTest extends ViewTestBase {
 
   /**
    * Modules to enable.

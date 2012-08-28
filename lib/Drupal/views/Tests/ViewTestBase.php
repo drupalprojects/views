@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Definition of Drupal\views\Tests\ViewsSqlTest.
+ * Definition of Drupal\views\Tests\ViewTestBase.
  */
 
 namespace Drupal\views\Tests;
@@ -11,7 +11,7 @@ use Drupal\views\View;
 /**
  * Abstract class for views testing.
  */
-abstract class ViewsSqlTest extends WebTestBase {
+abstract class ViewTestBase extends WebTestBase {
 
   /**
    * Modules to enable.

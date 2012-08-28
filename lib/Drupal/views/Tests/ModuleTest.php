@@ -10,7 +10,7 @@ namespace Drupal\views\Tests;
 /**
  * Tests basic functions from the Views module.
  */
-class ModuleTest extends ViewsSqlTest {
+class ModuleTest extends ViewTestBase {
 
   public static function getInfo() {
     return array(

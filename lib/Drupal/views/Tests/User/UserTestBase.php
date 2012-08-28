@@ -7,11 +7,11 @@
 
 namespace Drupal\views\Tests\User;
 
-use Drupal\views\Tests\ViewsSqlTest;
+use Drupal\views\Tests\ViewTestBase;
 
 /**
  * @todo.
  */
-abstract class UserTestBase extends ViewsSqlTest {
+abstract class UserTestBase extends ViewTestBase {
 
 }

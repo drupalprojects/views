@@ -7,12 +7,12 @@
 
 namespace Drupal\views\Tests\Wizard;
 
-use Drupal\views\Tests\ViewsSqlTest;
+use Drupal\views\Tests\ViewTestBase;
 
 /**
  * Views UI wizard tests.
  */
-abstract class WizardTestBase extends ViewsSqlTest {
+abstract class WizardTestBase extends ViewTestBase {
 
   protected $profile = 'standard';
 

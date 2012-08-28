@@ -7,11 +7,11 @@
 
 namespace Drupal\views\Tests\Handler;
 
-use Drupal\views\Tests\ViewsSqlTest;
+use Drupal\views\Tests\ViewTestBase;
 
 /**
  * @todo.
  */
-class HandlerTestBase extends ViewsSqlTest {
+abstract class HandlerTestBase extends ViewTestBase {
 
 }

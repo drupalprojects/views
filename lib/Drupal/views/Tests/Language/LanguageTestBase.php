@@ -7,13 +7,13 @@
 
 namespace Drupal\views\Tests\Language;
 
-use Drupal\views\Tests\ViewsSqlTest;
+use Drupal\views\Tests\ViewTestBase;
 use Drupal\Core\Language\Language;
 
 /**
  * Base class for all Language handler tests.
  */
-abstract class LanguageTestBase extends ViewsSqlTest {
+abstract class LanguageTestBase extends ViewTestBase {
 
   /**
    * Modules to enable.

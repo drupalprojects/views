@@ -8,11 +8,11 @@
 namespace Drupal\views\Tests\Plugin;
 
 use Drupal\views\View;
-use Drupal\views\Tests\ViewsSqlTest;
+use Drupal\views\Tests\ViewTestBase;
 
 /**
  * @todo.
  */
-class PluginTestBase extends ViewsSqlTest {
+abstract class PluginTestBase extends ViewTestBase {
 
 }

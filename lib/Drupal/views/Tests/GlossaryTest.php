@@ -10,7 +10,7 @@ namespace Drupal\views\Tests;
 /**
  * Tests glossary view ( summary of arguments ).
  */
-class GlossaryTest extends ViewsSqlTest {
+class GlossaryTest extends ViewTestBase {
 
   public static function getInfo() {
     return array(

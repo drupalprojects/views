@@ -12,7 +12,7 @@ use stdClass;
 /**
  * Tests abstract handlers of views.
  */
-class HandlersTest extends ViewsSqlTest {
+class HandlersTest extends ViewTestBase {
 
   public static function getInfo() {
     return array(

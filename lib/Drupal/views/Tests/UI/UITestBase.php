@@ -7,12 +7,12 @@
 
 namespace Drupal\views\Tests\UI;
 
-use Drupal\views\Tests\ViewsSqlTest;
+use Drupal\views\Tests\ViewTestBase;
 
 /**
  * Provides a base class for testing the Views UI.
  */
-abstract class UITestBase extends ViewsSqlTest {
+abstract class UITestBase extends ViewTestBase {
 
   protected $profile = 'standard';
 
