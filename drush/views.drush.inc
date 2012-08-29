@@ -254,7 +254,6 @@ function views_development_settings() {
   drush_log($message, 'success');
 }
 
-
 /**
  * Callback function for views-list command.
  */
