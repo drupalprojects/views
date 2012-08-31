@@ -1117,8 +1117,8 @@ abstract class DisplayPluginBase extends PluginBase {
     );
 
     $manager = new ViewsPluginManager('style');
-    $style_plugin = $manager->getDefinition($this->getOption('style_plugin'));
     $name = $this->getOption('style_plugin');
+    $style_plugin = $manager->getDefinition($name);
     $style_plugin_instance = $this->getPlugin('style', $name);
     $style_summary = empty($style_plugin['title']) ? t('Missing style plugin') : $style_plugin_instance->summaryTitle();
     $style_title = empty($style_plugin['title']) ? t('Missing style plugin') : $style_plugin_instance->pluginTitle();
@@ -1140,8 +1140,8 @@ abstract class DisplayPluginBase extends PluginBase {
 
     if ($style_plugin_instance->usesRowPlugin()) {
       $manager = new ViewsPluginManager('row');
-      $row_plugin = $manager->getDefinition($this->getOption('row_plugin'));
       $name = $this->getOption('row_plugin');
+      $row_plugin = $manager->getDefinition($name);
       $row_plugin_instance = $this->getPlugin('row', $name);
       $row_summary = empty($row_plugin['title']) ? t('Missing style plugin') : $row_plugin_instance->summaryTitle();
       $row_title = empty($row_plugin['title']) ? t('Missing style plugin') : $row_plugin_instance->pluginTitle();
