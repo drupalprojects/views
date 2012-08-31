@@ -614,7 +614,7 @@ abstract class WizardPluginBase implements WizardInterface {
   /**
    * Adds the array of display options to the view, with appropriate overrides.
    */
-  protected function add_displays($view, $display_options, $form, $form_state) {
+  protected function addDisplays($view, $display_options, $form, $form_state) {
     // Display: Master
     $default_display = $view->newDisplay('default', 'Master', 'default');
     foreach ($display_options['default'] as $option => $value) {
