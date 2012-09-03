@@ -7,6 +7,7 @@
 namespace Drupal\views\Tests;
 use Drupal\simpletest\WebTestBase;
 use Drupal\views\View;
+use Symfony\Component\Yaml\Yaml;
 
 /**
  * Abstract class for views testing.
@@ -382,51 +383,26 @@ abstract class ViewTestBase extends WebTestBase {
    * @return Drupal\views\View
    */
   protected function getBasicView() {
-    // Create the basic view.
-    $view = new View(array(), 'view');
-    $view->name = 'test_view';
-    $view->addDisplay('default');
-    $view->base_table = 'views_test';
+    return $this->createViewFromConfig('test_view');
+  }
 
-    // Set up the fields we need.
-    $display = $view->newDisplay('default', 'Master', 'default');
-    $display->overrideOption('fields', array(
-      'id' => array(
-        'id' => 'id',
-        'table' => 'views_test',
-        'field' => 'id',
-        'relationship' => 'none',
-      ),
-      'name' => array(
-        'id' => 'name',
-        'table' => 'views_test',
-        'field' => 'name',
-        'relationship' => 'none',
-      ),
-      'age' => array(
-        'id' => 'age',
-        'table' => 'views_test',
-        'field' => 'age',
-        'relationship' => 'none',
-      ),
-    ));
+  /**
+   * Creates a new View instance by creating directly from config data.
+   *
+   * @param string $view_name
+   *   The name of the test view to create.
+   *
+   * @return Drupal\views\View
+   *   A View instance.
+   */
+  protected function createViewFromConfig($view_name) {
+    $path = drupal_get_path('module', 'views') . '/tests/default_views/';
+    $file = "views.view.$view_name.yml";
+    $yaml = file_get_contents($path . $file);
+    $data = Yaml::parse($yaml);
 
-    // Set up the sort order.
-    $display->overrideOption('sorts', array(
-      'id' => array(
-        'order' => 'ASC',
-        'id' => 'id',
-        'table' => 'views_test',
-        'field' => 'id',
-        'relationship' => 'none',
-      ),
-    ));
-
-    // Set up the pager.
-    $display->overrideOption('pager', array(
-      'type' => 'none',
-      'options' => array('offset' => 0),
-    ));
+    $view = entity_create('view', $data);
+    $view->initDisplay();
 
     return $view;
   }

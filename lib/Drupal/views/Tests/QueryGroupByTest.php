@@ -65,51 +65,7 @@ class QueryGroupByTest extends ViewTestBase {
   //}
 
   public function viewsAggregateCountView() {
-    $view = new View(array(), 'view');
-    $view->name = 'aggregate_count';
-    $view->description = '';
-    $view->tag = '';
-    $view->base_table = 'node';
-    $view->human_name = '';
-    $view->core = 8;
-    $view->api_version = '3.0';
-    $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
-
-    /* Display: Master */
-    $handler = $view->newDisplay('default', 'Master', 'default');
-    $handler->display->display_options['group_by'] = TRUE;
-    $handler->display->display_options['access']['type'] = 'none';
-    $handler->display->display_options['cache']['type'] = 'none';
-    $handler->display->display_options['query']['type'] = 'views_query';
-    $handler->display->display_options['query']['options']['query_comment'] = FALSE;
-    $handler->display->display_options['exposed_form']['type'] = 'basic';
-    $handler->display->display_options['pager']['type'] = 'some';
-    $handler->display->display_options['style_plugin'] = 'default';
-    $handler->display->display_options['row_plugin'] = 'fields';
-    /* Field: Content: Title */
-    $handler->display->display_options['fields']['nid']['id'] = 'nid';
-    $handler->display->display_options['fields']['nid']['table'] = 'node';
-    $handler->display->display_options['fields']['nid']['field'] = 'title';
-    $handler->display->display_options['fields']['nid']['alter']['alter_text'] = 0;
-    $handler->display->display_options['fields']['nid']['alter']['make_link'] = 0;
-    $handler->display->display_options['fields']['nid']['alter']['word_boundary'] = 1;
-    $handler->display->display_options['fields']['nid']['alter']['ellipsis'] = 1;
-    $handler->display->display_options['fields']['nid']['alter']['strip_tags'] = 0;
-    $handler->display->display_options['fields']['nid']['alter']['trim'] = 0;
-    $handler->display->display_options['fields']['nid']['alter']['html'] = 0;
-    $handler->display->display_options['fields']['nid']['hide_empty'] = 0;
-    $handler->display->display_options['fields']['nid']['empty_zero'] = 0;
-    $handler->display->display_options['fields']['nid']['link_to_node'] = 0;
-    /* Contextual filter: Content: Type */
-    $handler->display->display_options['arguments']['type']['id'] = 'type';
-    $handler->display->display_options['arguments']['type']['table'] = 'node';
-    $handler->display->display_options['arguments']['type']['field'] = 'type';
-    $handler->display->display_options['arguments']['type']['default_action'] = 'summary';
-    $handler->display->display_options['arguments']['type']['default_argument_type'] = 'fixed';
-    $handler->display->display_options['arguments']['type']['summary']['format'] = 'default_summary';
-
-
-    return $view;
+    return $this->createViewFromConfig('test_aggregate_count');
   }
 
   /**
@@ -150,54 +106,8 @@ class QueryGroupByTest extends ViewTestBase {
   }
 
   function viewsGroupByViewHelper($group_by) {
-    $view = new View(array(), 'view');
-    $view->name = 'group_by_count';
-    $view->description = '';
-    $view->tag = '';
-    $view->view_php = '';
-    $view->base_table = 'node';
-    $view->is_cacheable = FALSE;
-    $view->api_version = '3.0';
-    $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
-
-    /* Display: Master */
-    $handler = $view->newDisplay('default', 'Master', 'default');
-    $handler->display->display_options['group_by'] = TRUE;
-    $handler->display->display_options['access']['type'] = 'none';
-    $handler->display->display_options['cache']['type'] = 'none';
-    $handler->display->display_options['exposed_form']['type'] = 'basic';
-    $handler->display->display_options['pager']['type'] = 'some';
-    $handler->display->display_options['style_plugin'] = 'default';
-    $handler->display->display_options['row_plugin'] = 'fields';
-    /* Field: Content: Nid */
-    $handler->display->display_options['fields']['nid']['id'] = 'nid';
-    $handler->display->display_options['fields']['nid']['table'] = 'node';
-    $handler->display->display_options['fields']['nid']['field'] = 'nid';
-    $handler->display->display_options['fields']['nid']['group_type'] = $group_by;
-    $handler->display->display_options['fields']['nid']['alter']['alter_text'] = 0;
-    $handler->display->display_options['fields']['nid']['alter']['make_link'] = 0;
-    $handler->display->display_options['fields']['nid']['alter']['trim'] = 0;
-    $handler->display->display_options['fields']['nid']['alter']['word_boundary'] = 1;
-    $handler->display->display_options['fields']['nid']['alter']['ellipsis'] = 1;
-    $handler->display->display_options['fields']['nid']['alter']['strip_tags'] = 0;
-    $handler->display->display_options['fields']['nid']['alter']['html'] = 0;
-    $handler->display->display_options['fields']['nid']['hide_empty'] = 0;
-    $handler->display->display_options['fields']['nid']['empty_zero'] = 0;
-    $handler->display->display_options['fields']['nid']['link_to_node'] = 0;
-    /* Field: Content: Type */
-    $handler->display->display_options['fields']['type']['id'] = 'type';
-    $handler->display->display_options['fields']['type']['table'] = 'node';
-    $handler->display->display_options['fields']['type']['field'] = 'type';
-    $handler->display->display_options['fields']['type']['alter']['alter_text'] = 0;
-    $handler->display->display_options['fields']['type']['alter']['make_link'] = 0;
-    $handler->display->display_options['fields']['type']['alter']['trim'] = 0;
-    $handler->display->display_options['fields']['type']['alter']['word_boundary'] = 1;
-    $handler->display->display_options['fields']['type']['alter']['ellipsis'] = 1;
-    $handler->display->display_options['fields']['type']['alter']['strip_tags'] = 0;
-    $handler->display->display_options['fields']['type']['alter']['html'] = 0;
-    $handler->display->display_options['fields']['type']['hide_empty'] = 0;
-    $handler->display->display_options['fields']['type']['empty_zero'] = 0;
-    $handler->display->display_options['fields']['type']['link_to_node'] = 0;
+    $view = $this->createViewFromConfig('test_group_by_count');
+    $view->display_handler->display->display_options['fields']['nid']['group_type'] = $group_by;
 
     return $view;
   }
@@ -244,48 +154,7 @@ class QueryGroupByTest extends ViewTestBase {
   }
 
   public function viewsGroupByCountViewOnlyFilters() {
-    $view = new View(array(), 'view');
-    $view->name = 'group_by_in_filters';
-    $view->description = '';
-    $view->tag = '';
-    $view->view_php = '';
-    $view->base_table = 'node';
-    $view->is_cacheable = FALSE;
-    $view->api_version = '3.0';
-    $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
-
-    /* Display: Master */
-    $handler = $view->newDisplay('default', 'Master', 'default');
-    $handler->display->display_options['group_by'] = TRUE;
-    $handler->display->display_options['access']['type'] = 'none';
-    $handler->display->display_options['cache']['type'] = 'none';
-    $handler->display->display_options['exposed_form']['type'] = 'basic';
-    $handler->display->display_options['pager']['type'] = 'some';
-    $handler->display->display_options['style_plugin'] = 'default';
-    $handler->display->display_options['row_plugin'] = 'fields';
-    /* Field: Node: Type */
-    $handler->display->display_options['fields']['type']['id'] = 'type';
-    $handler->display->display_options['fields']['type']['table'] = 'node';
-    $handler->display->display_options['fields']['type']['field'] = 'type';
-    $handler->display->display_options['fields']['type']['alter']['alter_text'] = 0;
-    $handler->display->display_options['fields']['type']['alter']['make_link'] = 0;
-    $handler->display->display_options['fields']['type']['alter']['trim'] = 0;
-    $handler->display->display_options['fields']['type']['alter']['word_boundary'] = 1;
-    $handler->display->display_options['fields']['type']['alter']['ellipsis'] = 1;
-    $handler->display->display_options['fields']['type']['alter']['strip_tags'] = 0;
-    $handler->display->display_options['fields']['type']['alter']['html'] = 0;
-    $handler->display->display_options['fields']['type']['hide_empty'] = 0;
-    $handler->display->display_options['fields']['type']['empty_zero'] = 0;
-    $handler->display->display_options['fields']['type']['link_to_node'] = 0;
-    /* Filter: Node: Nid */
-    $handler->display->display_options['filters']['nid']['id'] = 'nid';
-    $handler->display->display_options['filters']['nid']['table'] = 'node';
-    $handler->display->display_options['filters']['nid']['field'] = 'nid';
-    $handler->display->display_options['filters']['nid']['group_type'] = 'count';
-    $handler->display->display_options['filters']['nid']['operator'] = '>';
-    $handler->display->display_options['filters']['nid']['value']['value'] = '3';
-
-    return $view;
+    return $this->createViewFromConfig('test_group_by_in_filters');
   }
 
 }

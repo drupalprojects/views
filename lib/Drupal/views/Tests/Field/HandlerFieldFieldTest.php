@@ -202,34 +202,14 @@ class HandlerFieldFieldTest extends FieldTestBase {
   }
 
   protected function getFieldView() {
-    $view = new View(array(), 'view');
-    $view->name = 'view_fieldapi';
-    $view->description = '';
-    $view->tag = 'default';
-    $view->base_table = 'node';
-    $view->human_name = 'view_fieldapi';
-    $view->core = 8;
-    $view->api_version = '3.0';
-    $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+    $view = $this->createViewFromConfig('test_view_fieldapi');
 
-    /* Display: Master */
-    $handler = $view->newDisplay('default', 'Master', 'default');
-    $handler->display->display_options['access']['type'] = 'perm';
-    $handler->display->display_options['cache']['type'] = 'none';
-    $handler->display->display_options['query']['type'] = 'views_query';
-    $handler->display->display_options['exposed_form']['type'] = 'basic';
-    $handler->display->display_options['pager']['type'] = 'full';
-    $handler->display->display_options['style_plugin'] = 'default';
-    $handler->display->display_options['row_plugin'] = 'fields';
-
-    $handler->display->display_options['fields']['nid']['id'] = 'nid';
-    $handler->display->display_options['fields']['nid']['table'] = 'node';
-    $handler->display->display_options['fields']['nid']['field'] = 'nid';
     foreach ($this->fields as $key => $field) {
-      $handler->display->display_options['fields'][$field['field_name']]['id'] = $field['field_name'];
-      $handler->display->display_options['fields'][$field['field_name']]['table'] = 'field_data_' . $field['field_name'];
-      $handler->display->display_options['fields'][$field['field_name']]['field'] = $field['field_name'];
+      $view->display_handler->display->display_options['fields'][$field['field_name']]['id'] = $field['field_name'];
+      $view->display_handler->display->display_options['fields'][$field['field_name']]['table'] = 'field_data_' . $field['field_name'];
+      $view->display_handler->display->display_options['fields'][$field['field_name']]['field'] = $field['field_name'];
     }
+
     return $view;
   }
 

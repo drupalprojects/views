@@ -162,37 +162,7 @@ class FilterDateTest extends HandlerTestBase {
   }
 
   function views_test_between() {
-    $view = new View(array(), 'view');
-    $view->name = 'test_filter_date_between';
-    $view->description = '';
-    $view->tag = '';
-    $view->base_table = 'node';
-    $view->human_name = '';
-    $view->core = 8;
-    $view->api_version = '3.0';
-    $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
-    $view->uuid = NULL;
-
-    /* Display: Master */
-    $handler = $view->newDisplay('default', 'Master', 'default');
-    $handler->display->display_options['access']['type'] = 'none';
-    $handler->display->display_options['cache']['type'] = 'none';
-    $handler->display->display_options['query']['type'] = 'views_query';
-    $handler->display->display_options['query']['options']['query_comment'] = FALSE;
-    $handler->display->display_options['exposed_form']['type'] = 'basic';
-    $handler->display->display_options['pager']['type'] = 'full';
-    $handler->display->display_options['style_plugin'] = 'default';
-    $handler->display->display_options['row_plugin'] = 'fields';
-    /* Field: Content: Nid */
-    $handler->display->display_options['fields']['nid']['id'] = 'nid';
-    $handler->display->display_options['fields']['nid']['table'] = 'node';
-    $handler->display->display_options['fields']['nid']['field'] = 'nid';
-    /* Filter criterion: Content: Post date */
-    $handler->display->display_options['filters']['created']['id'] = 'created';
-    $handler->display->display_options['filters']['created']['table'] = 'node';
-    $handler->display->display_options['filters']['created']['field'] = 'created';
-
-    return $view;
+    return $this->createViewFromConfig('test_filter_date_between');
   }
 
   function views_test_offset() {

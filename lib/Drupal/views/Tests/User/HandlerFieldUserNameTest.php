@@ -58,45 +58,7 @@ class HandlerFieldUserNameTest extends UserTestBase {
 
   }
   function view_user_name() {
-    $view = new View(array(), 'view');
-    $view->name = 'test_views_handler_field_user_name';
-    $view->description = '';
-    $view->tag = 'default';
-    $view->base_table = 'users';
-    $view->human_name = 'test_views_handler_field_user_name';
-    $view->core = 8;
-    $view->api_version = '3.0';
-    $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
-
-    /* Display: Master */
-    $handler = $view->newDisplay('default', 'Master', 'default');
-    $handler->display->display_options['access']['type'] = 'none';
-    $handler->display->display_options['cache']['type'] = 'none';
-    $handler->display->display_options['query']['type'] = 'views_query';
-    $handler->display->display_options['query']['options']['query_comment'] = FALSE;
-    $handler->display->display_options['exposed_form']['type'] = 'basic';
-    $handler->display->display_options['pager']['type'] = 'full';
-    $handler->display->display_options['style_plugin'] = 'default';
-    $handler->display->display_options['row_plugin'] = 'fields';
-    /* Field: User: Name */
-    $handler->display->display_options['fields']['name']['id'] = 'name';
-    $handler->display->display_options['fields']['name']['table'] = 'users';
-    $handler->display->display_options['fields']['name']['field'] = 'name';
-    $handler->display->display_options['fields']['name']['label'] = '';
-    $handler->display->display_options['fields']['name']['alter']['alter_text'] = 0;
-    $handler->display->display_options['fields']['name']['alter']['make_link'] = 0;
-    $handler->display->display_options['fields']['name']['alter']['absolute'] = 0;
-    $handler->display->display_options['fields']['name']['alter']['word_boundary'] = 0;
-    $handler->display->display_options['fields']['name']['alter']['ellipsis'] = 0;
-    $handler->display->display_options['fields']['name']['alter']['strip_tags'] = 0;
-    $handler->display->display_options['fields']['name']['alter']['trim'] = 0;
-    $handler->display->display_options['fields']['name']['alter']['html'] = 0;
-    $handler->display->display_options['fields']['name']['hide_empty'] = 0;
-    $handler->display->display_options['fields']['name']['empty_zero'] = 0;
-    $handler->display->display_options['fields']['name']['link_to_user'] = 1;
-    $handler->display->display_options['fields']['name']['overwrite_anonymous'] = 0;
-
-    return $view;
+    return $this->createViewFromConfig('test_views_handler_field_user_name');
   }
 
 }

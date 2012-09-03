@@ -62,42 +62,7 @@ class ArgumentStringTest extends HandlerTestBase {
    * @return Drupal\views\View
    */
   function viewGlossary() {
-    $view = new View(array(), 'view');
-    $view->name = 'test_glossary';
-    $view->description = '';
-    $view->tag = 'default';
-    $view->base_table = 'node';
-    $view->human_name = 'test_glossary';
-    $view->core = 8;
-    $view->api_version = '3.0';
-    $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
-
-    /* Display: Master */
-    $handler = $view->newDisplay('default', 'Master', 'default');
-    $handler->display->display_options['access']['type'] = 'perm';
-    $handler->display->display_options['cache']['type'] = 'none';
-    $handler->display->display_options['query']['type'] = 'views_query';
-    $handler->display->display_options['exposed_form']['type'] = 'basic';
-    $handler->display->display_options['pager']['type'] = 'full';
-    $handler->display->display_options['style_plugin'] = 'default';
-    $handler->display->display_options['row_plugin'] = 'fields';
-    /* Field: Content: Title */
-    $handler->display->display_options['fields']['title']['id'] = 'title';
-    $handler->display->display_options['fields']['title']['table'] = 'node';
-    $handler->display->display_options['fields']['title']['field'] = 'title';
-    $handler->display->display_options['fields']['title']['label'] = '';
-    /* Contextual filter: Content: Title */
-    $handler->display->display_options['arguments']['title']['id'] = 'title';
-    $handler->display->display_options['arguments']['title']['table'] = 'node';
-    $handler->display->display_options['arguments']['title']['field'] = 'title';
-    $handler->display->display_options['arguments']['title']['default_argument_type'] = 'fixed';
-    $handler->display->display_options['arguments']['title']['summary']['number_of_records'] = '0';
-    $handler->display->display_options['arguments']['title']['summary']['format'] = 'default_summary';
-    $handler->display->display_options['arguments']['title']['summary_options']['items_per_page'] = '25';
-    $handler->display->display_options['arguments']['title']['glossary'] = TRUE;
-    $handler->display->display_options['arguments']['title']['limit'] = '1';
-
-    return $view;
+    return $this->createViewFromConfig('test_glossary');
   }
 
 }
