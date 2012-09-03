@@ -2,10 +2,10 @@
 
 /**
  * @file
- * Definition of Drupal\views_test\Plugin\views\access\DynamicTest.
+ * Definition of Drupal\views_test_data\Plugin\views\access\DynamicTest.
  */
 
-namespace Drupal\views_test\Plugin\views\access;
+namespace Drupal\views_test_data\Plugin\views\access;
 
 use Drupal\Core\Annotation\Plugin;
 use Drupal\Core\Annotation\Translation;
@@ -34,7 +34,7 @@ class DynamicTest extends AccessPluginBase {
   }
 
   function get_access_callback() {
-    return array('views_test_test_dynamic_access_callback', array(!empty($options['access']), 1, 2));
+    return array('views_test_data_test_dynamic_access_callback', array(!empty($options['access']), 1, 2));
   }
 
 }

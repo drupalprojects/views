@@ -2,10 +2,10 @@
 
 /**
  * @file
- * Definition of Drupal\views_test\Plugin\views\localization\LocalizationTest.
+ * Definition of Drupal\views_test_data\Plugin\views\localization\LocalizationTest.
  */
 
-namespace Drupal\views_test\Plugin\views\localization;
+namespace Drupal\views_test_data\Plugin\views\localization;
 
 use Drupal\Core\Annotation\Plugin;
 use Drupal\Core\Annotation\Translation;

@@ -97,13 +97,13 @@ class AccessTest extends PluginTestBase {
 
     // FALSE comes from hook_menu caching.
     $expected_hook_menu = array(
-      'views_test_test_static_access_callback', array(FALSE)
+      'views_test_data_test_static_access_callback', array(FALSE)
     );
     $hook_menu = $view->executeHookMenu('page_1');
     $this->assertEqual($expected_hook_menu, $hook_menu['test_access_static']['access arguments'][0]);
 
     $expected_hook_menu = array(
-      'views_test_test_static_access_callback', array(TRUE)
+      'views_test_data_test_static_access_callback', array(TRUE)
     );
     $this->assertTrue(views_access($expected_hook_menu));
   }
@@ -131,13 +131,13 @@ class AccessTest extends PluginTestBase {
 
     // FALSE comes from hook_menu caching.
     $expected_hook_menu = array(
-      'views_test_test_dynamic_access_callback', array(FALSE, 1, 2)
+      'views_test_data_test_dynamic_access_callback', array(FALSE, 1, 2)
     );
     $hook_menu = $view->executeHookMenu('page_1');
     $this->assertEqual($expected_hook_menu, $hook_menu['test_access_dynamic']['access arguments'][0]);
 
     $expected_hook_menu = array(
-      'views_test_test_dynamic_access_callback', array(TRUE, 1, 2)
+      'views_test_data_test_dynamic_access_callback', array(TRUE, 1, 2)
     );
     $this->assertTrue(views_access($expected_hook_menu, $argument1, $argument2));
   }

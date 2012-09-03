@@ -57,7 +57,7 @@ class TranslatableTest extends ViewTestBase {
     $view = $this->view_unpack_translatable();
     $view->initLocalization();
 
-    $this->assertEqual('Drupal\views_test\Plugin\views\localization\LocalizationTest', get_class($view->localization_plugin), 'Make sure that init_localization initializes the right translation plugin');
+    $this->assertEqual('Drupal\views_test_data\Plugin\views\localization\LocalizationTest', get_class($view->localization_plugin), 'Make sure that init_localization initializes the right translation plugin');
 
     $view->exportLocaleStrings();
 

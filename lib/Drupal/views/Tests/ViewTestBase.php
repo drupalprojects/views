@@ -6,7 +6,6 @@
 
 namespace Drupal\views\Tests;
 use Drupal\simpletest\WebTestBase;
-use Symfony\Component\Yaml\Yaml;
 
 /**
  * Abstract class for views testing.
@@ -41,7 +40,7 @@ abstract class ViewTestBase extends WebTestBase {
     variable_set('views_test_schema', $this->schemaDefinition());
     variable_set('views_test_views_data', $this->viewsData());
 
-    module_enable(array('views_test'));
+    module_enable(array('views_test_data'));
     $this->resetAll();
 
     // Load the test dataset.
@@ -395,10 +394,8 @@ abstract class ViewTestBase extends WebTestBase {
    *   A View instance.
    */
   protected function createViewFromConfig($view_name) {
-    $path = drupal_get_path('module', 'views') . '/tests/default_views/';
-    $file = "views.view.$view_name.yml";
-    $yaml = file_get_contents($path . $file);
-    $data = Yaml::parse($yaml);
+    module_enable(array('views_test_config'));
+    $data = config("views.view.$view_name")->get();
 
     $view = entity_create('view', $data);
     $view->initDisplay();

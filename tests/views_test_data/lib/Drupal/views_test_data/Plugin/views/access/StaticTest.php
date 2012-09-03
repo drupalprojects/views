@@ -2,10 +2,10 @@
 
 /**
  * @file
- * Definition of Drupal\views_test\Plugin\views\access\StaticTest.
+ * Definition of Drupal\views_test_data\Plugin\views\access\StaticTest.
  */
 
-namespace Drupal\views_test\Plugin\views\access;
+namespace Drupal\views_test_data\Plugin\views\access;
 
 use Drupal\Core\Annotation\Plugin;
 use Drupal\Core\Annotation\Translation;
@@ -34,7 +34,7 @@ class StaticTest extends AccessPluginBase {
   }
 
   function get_access_callback() {
-    return array('views_test_test_static_access_callback', array(!empty($options['access'])));
+    return array('views_test_data_test_static_access_callback', array(!empty($options['access'])));
   }
 
 }
