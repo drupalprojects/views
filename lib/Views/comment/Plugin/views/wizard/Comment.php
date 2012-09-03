@@ -64,7 +64,10 @@ class Comment extends WizardPluginBase {
     )
   );
 
-  protected function row_style_options($type) {
+  /**
+   * Overrides Drupal\views\Plugin\views\wizard\WizardPluginBase::row_style_options().
+   */
+  protected function row_style_options() {
     $options = array();
     $options['comment'] = t('comments');
     $options['fields'] = t('fields');
