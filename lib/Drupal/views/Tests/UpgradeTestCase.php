@@ -66,7 +66,7 @@ class UpgradeTestCase extends ViewTestBase {
    */
   public function testMovedTo() {
     // Test moving on field lavel.
-    $view = $this->viewsMovedToField();
+    $view = $this->createViewFromConfig('test_views_move_to_field');
     $view->update();
     $view->build();
 
@@ -77,7 +77,7 @@ class UpgradeTestCase extends ViewTestBase {
     $this->assertEqual('old_field_1', $view->field['old_field_1']->original_field, 'The field should have stored the original_field');
 
     // Test moving on handler lavel.
-    $view = $this->viewsMovedToHandler();
+    $view = $this->createViewFromConfig('test_views_move_to_handler');
     $view->update();
     $view->build();
 
@@ -90,7 +90,7 @@ class UpgradeTestCase extends ViewTestBase {
     $this->assertEqual('views_test', $view->filter['old_field_3']->table);
 
     // Test moving on table level.
-    $view = $this->viewsMovedToTable();
+    $view = $this->createViewFromConfig('test_views_move_to_table');
     $view->update();
     $view->build();
 
@@ -115,18 +115,6 @@ class UpgradeTestCase extends ViewTestBase {
     $this->drupalPost('admin/structure/views/import', $edit, t('Import'));
 
     $this->assertText('Recent comments');
-  }
-
-  public function viewsMovedToField() {
-    return $this->createViewFromConfig('test_views_move_to_field');
-  }
-
-  public function viewsMovedToHandler() {
-    return $this->createViewFromConfig('test_views_move_to_handler');
-  }
-
-  public function viewsMovedToTable() {
-    return $this->createViewFromConfig('test_views_move_to_table');
   }
 
   /**

@@ -42,7 +42,7 @@ class FilterNumericTest extends HandlerTestBase {
   }
 
   public function testFilterNumericSimple() {
-    $view = $this->getBasicView();
+    $view = $this->getView();
 
     // Change the filtering
     $view->display['default']->handler->overrideOption('filters', array(
@@ -86,7 +86,7 @@ class FilterNumericTest extends HandlerTestBase {
   }
 
   public function testFilterNumericBetween() {
-    $view = $this->getBasicView();
+    $view = $this->getView();
 
     // Change the filtering
     $view->display['default']->handler->overrideOption('filters', array(
@@ -122,7 +122,7 @@ class FilterNumericTest extends HandlerTestBase {
 
     // test not between
     $view->destroy();
-    $view = $this->getBasicView();
+    $view = $this->getView();
 
       // Change the filtering
     $view->display['default']->handler->overrideOption('filters', array(
@@ -215,7 +215,7 @@ class FilterNumericTest extends HandlerTestBase {
 
 
   public function testFilterNumericEmpty() {
-    $view = $this->getBasicView();
+    $view = $this->getView();
 
     // Change the filtering
     $view->display['default']->handler->overrideOption('filters', array(
@@ -234,7 +234,7 @@ class FilterNumericTest extends HandlerTestBase {
     $this->assertIdenticalResultset($view, $resultset, $this->column_map);
 
     $view->destroy();
-    $view = $this->getBasicView();
+    $view = $this->getView();
 
     // Change the filtering
     $view->display['default']->handler->overrideOption('filters', array(
@@ -328,7 +328,7 @@ class FilterNumericTest extends HandlerTestBase {
 
 
   public function testAllowEmpty() {
-    $view = $this->getBasicView();
+    $view = $this->getView();
 
     $view->display['default']->handler->overrideOption('filters', array(
       'id' => array(

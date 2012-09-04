@@ -70,16 +70,14 @@ class ArgumentDefaultTest extends PluginTestBase {
    * Tests fixed default argument.
    */
   function testArgumentDefaultFixed() {
-    $view = $this->view_argument_default_fixed();
-
-    $view->setDisplay();
+    $view = $this->getView();
     $view->preExecute();
     $view->initHandlers();
 
     $this->assertEqual($view->argument['null']->get_default_argument(), $this->random, 'Fixed argument should be used by default.');
 
     // Make sure that a normal argument provided is used
-    $view = $this->view_argument_default_fixed();
+    $view = $this->getView();
 
     $random_string = $this->randomString();
     $view->executeDisplay('default', array($random_string));
@@ -97,7 +95,10 @@ class ArgumentDefaultTest extends PluginTestBase {
    */
   //function testArgumentDefaultNode() {}
 
-  function view_argument_default_fixed() {
+  /**
+   * Overrides Drupal\views\Tests\ViewTestBase::getBasicView().
+   */
+  protected function getBasicView() {
     $view = $this->createViewFromConfig('test_argument_default_fixed');
     $view->display['default']->display_options['arguments']['null']['default_argument_options']['argument'] = $this->random;
     return $view;

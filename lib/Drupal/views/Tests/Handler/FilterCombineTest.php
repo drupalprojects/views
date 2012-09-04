@@ -45,7 +45,7 @@ class FilterCombineTest extends HandlerTestBase {
   }
 
   public function testFilterCombineContains() {
-    $view = $this->getBasicView();
+    $view = $this->getView();
 
     // Change the filtering.
     $view->display['default']->handler->overrideOption('filters', array(

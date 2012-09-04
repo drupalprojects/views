@@ -40,7 +40,7 @@ class AccessTest extends PluginTestBase {
    * Tests none access plugin.
    */
   function testAccessNone() {
-    $view = $this->view_access_none();
+    $view = $this->createViewFromConfig('test_access_none');
 
     $this->assertTrue($view->display_handler->access($this->admin_user), t('Admin-Account should be able to access the view everytime'));
     $this->assertTrue($view->display_handler->access($this->web_user));
@@ -51,7 +51,7 @@ class AccessTest extends PluginTestBase {
    * Tests perm access plugin.
    */
   function testAccessPerm() {
-    $view = $this->view_access_perm();
+    $view = $this->createViewFromConfig('test_access_perm');
 
     $access_plugin = $view->display_handler->getPlugin('access');
 
@@ -64,7 +64,11 @@ class AccessTest extends PluginTestBase {
    * Tests role access plugin.
    */
   function testAccessRole() {
-    $view = $this->view_access_role();
+    $view = $this->createViewFromConfig('test_access_role');
+
+    $view->display['default']->handler->options['access']['role'] = array(
+      $this->normal_role => $this->normal_role,
+    );
 
     $access_plugin = $view->display_handler->getPlugin('access');
 
@@ -81,7 +85,7 @@ class AccessTest extends PluginTestBase {
    * Tests static access check.
    */
   function testStaticAccessPlugin() {
-    $view = $this->view_access_static();
+    $view = $this->createViewFromConfig('test_access_static');
 
     $access_plugin = $view->display_handler->getPlugin('access');
 
@@ -107,7 +111,7 @@ class AccessTest extends PluginTestBase {
    * Tests dynamic access plugin.
    */
   function testDynamicAccessPlugin() {
-    $view = $this->view_access_dynamic();
+    $view = $this->createViewFromConfig('test_access_dynamic');
     $argument1 = $this->randomName();
     $argument2 = $this->randomName();
     variable_set('test_dynamic_access_argument1', $argument1);
@@ -134,32 +138,6 @@ class AccessTest extends PluginTestBase {
       'views_test_data_test_dynamic_access_callback', array(TRUE, 1, 2)
     );
     $this->assertTrue(views_access($expected_hook_menu, $argument1, $argument2));
-  }
-
-  function view_access_none() {
-    return $this->createViewFromConfig('test_access_none');
-  }
-
-  function view_access_perm() {
-    return $this->createViewFromConfig('test_access_perm');
-  }
-
-  function view_access_role() {
-    $view = $this->createViewFromConfig('test_access_role');
-
-    $view->display['default']->handler->options['access']['role'] = array(
-      $this->normal_role => $this->normal_role,
-    );
-
-    return $view;
-  }
-
-  function view_access_dynamic() {
-    return $this->createViewFromConfig('test_access_dynamic');
-  }
-
-  function view_access_static() {
-    return $this->createViewFromConfig('test_access_static');
   }
 
 }

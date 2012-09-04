@@ -30,7 +30,7 @@ class BasicTest extends ViewTestBase {
    * Tests a trivial result set.
    */
   public function testSimpleResultSet() {
-    $view = $this->getBasicView();
+    $view = $this->getView();
 
     // Execute the view.
     $this->executeView($view);
@@ -47,7 +47,7 @@ class BasicTest extends ViewTestBase {
    * Tests filtering of the result set.
    */
   public function testSimpleFiltering() {
-    $view = $this->getBasicView();
+    $view = $this->getView();
 
     // Add a filter.
     $view->display['default']->handler->overrideOption('filters', array(
@@ -105,7 +105,7 @@ class BasicTest extends ViewTestBase {
    * Tests simple argument.
    */
   public function testSimpleArgument() {
-    $view = $this->getBasicView();
+    $view = $this->getView();
 
     // Add a argument.
     $view->display['default']->handler->overrideOption('arguments', array(

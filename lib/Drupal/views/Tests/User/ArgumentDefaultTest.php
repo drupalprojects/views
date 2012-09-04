@@ -31,21 +31,19 @@ class ArgumentDefaultTest extends UserTestBase {
     drupal_save_session(FALSE);
     $user = $account;
 
-    $view = $this->view_plugin_argument_default_current_user();
     $this->view->preExecute();
     $this->view->initHandlers();
 
-    $view->setDisplay();
-    $view->preExecute();
-    $view->initHandlers();
-
-    $this->assertEqual($view->argument['null']->get_default_argument(), $account->uid, 'Uid of the current user is used.');
+    $this->assertEqual($this->view->argument['null']->get_default_argument(), $account->uid, 'Uid of the current user is used.');
     // Switch back.
     $user = $admin;
     drupal_save_session(TRUE);
   }
 
-  function view_plugin_argument_default_current_user() {
+  /**
+   * Overrides Drupal\views\Tests\ViewTestBase::getBasicView().
+   */
+  protected function getBasicView() {
     return $this->createViewFromConfig('test_plugin_argument_default_current_user');
   }
 

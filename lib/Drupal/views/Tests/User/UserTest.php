@@ -50,7 +50,7 @@ class UserTest extends UserTestBase {
    * One day a view will require the relationship so it should still work
    */
   public function testRelationship() {
-    $view = $this->test_view_user_relationship();
+    $view = $this->createViewFromConfig('test_user_relationship');
 
     $this->executeView($view);
     $expected = array();
@@ -62,10 +62,6 @@ class UserTest extends UserTestBase {
       );
     }
     $this->assertIdenticalResultset($view, $expected);
-  }
-
-  function test_view_user_relationship() {
-    return $this->createViewFromConfig('test_user_relationship');
   }
 
 }

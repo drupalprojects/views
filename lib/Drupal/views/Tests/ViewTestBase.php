@@ -19,6 +19,13 @@ abstract class ViewTestBase extends WebTestBase {
    */
   public static $modules = array('views');
 
+  /**
+   * The view to use for the test.
+   *
+   * @var Drupal\views\View
+   */
+  protected $view;
+
   protected function setUp() {
     parent::setUp();
 
@@ -26,6 +33,8 @@ abstract class ViewTestBase extends WebTestBase {
     views_init();
     views_get_all_views(TRUE);
     menu_router_rebuild();
+
+    $this->view = $this->getBasicView();
   }
 
 
@@ -173,7 +182,7 @@ abstract class ViewTestBase extends WebTestBase {
    * @return view
    */
   protected function getBasicPageView() {
-    $view = $this->getBasicView();
+    $view = $this->getView();
 
     // In order to test exposed filters, we have to disable
     // the exposed forms cache.
@@ -398,8 +407,29 @@ abstract class ViewTestBase extends WebTestBase {
     $data = config("views.view.$view_name")->get();
 
     $view = entity_create('view', $data);
-    $view->initDisplay();
+    $view->setDisplay();
 
+    return $view;
+  }
+
+  /**
+   * Clones the view used in this test and sets the default display.
+   *
+   * @param Drupal\views\View $original_view
+   *   (optional) The view to clone. If not specified, the default view for the
+   *   test will be used.
+   *
+   * @return Drupal\views\View
+   *   A clone of the view.
+   */
+  protected function getView($original_view = NULL) {
+    if (isset($original_view)) {
+      $view = $original_view->cloneView();
+    }
+    else {
+      $view = $this->view->cloneView();
+    }
+    $view->setDisplay();
     return $view;
   }
 

@@ -31,7 +31,7 @@ class ViewTest extends ViewTestBase {
    * Tests the deconstructor to be sure that every kind of heavy objects are removed.
    */
   function testDestroy() {
-    $view = $this->view_test_destroy();
+    $view = $this->getView();
 
     $view->preview();
     $view->destroy();
@@ -39,7 +39,7 @@ class ViewTest extends ViewTestBase {
     $this->assertViewDestroy($view);
 
     // Manipulate the display variable to test a previous bug.
-    $view = $this->view_test_destroy();
+    $view = $this->getView();
     $view->preview();
 
     $view->destroy();
@@ -72,12 +72,11 @@ class ViewTest extends ViewTestBase {
     // Test a view with multiple displays.
     // Validating a view shouldn't change the active display.
     // @todo: Create an extra validation view.
-    $view = $this->view_test_destroy();
-    $view->setDisplay('page_1');
+    $this->view->setDisplay('page_1');
 
-    $view->validate();
+    $this->view->validate();
 
-    $this->assertEqual('page_1', $view->current_display, "The display should be constant while validating");
+    $this->assertEqual('page_1', $this->view->current_display, "The display should be constant while validating");
 
     // @todo: Write real tests for the validation.
     // In general the following things could be tested:
@@ -86,14 +85,10 @@ class ViewTest extends ViewTestBase {
   }
 
   /**
-   * This view provides some filters, fields, arguments, relationships, sorts, areas and attachments.
+   * Overrides Drupal\views\Tests\ViewTestBase::getBasicView().
    */
-  function view_test_destroy() {
+  protected function getBasicView() {
     return $this->createViewFromConfig('test_destroy');
-  }
-
-  function view_test_delete() {
-    return $this->createViewFromConfig('test_view_delete');
   }
 
 }

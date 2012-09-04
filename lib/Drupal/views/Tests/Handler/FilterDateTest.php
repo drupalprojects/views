@@ -48,8 +48,7 @@ class FilterDateTest extends HandlerTestBase {
     $saved_view = $this->createViewFromConfig('test_filter_date_between');
 
     // Test offset for simple operator.
-    $view = $saved_view->cloneView();
-    $view->setDisplay();
+    $view = $this->getView($saved_view);
     $view->initHandlers();
     $view->filter['created']->operator = '>';
     $view->filter['created']->value['type'] = 'offset';
@@ -61,8 +60,7 @@ class FilterDateTest extends HandlerTestBase {
     $this->assertIdenticalResultset($view, $expected_result, $this->map);
 
     // Test offset for between operator.
-    $view = $saved_view->cloneView();
-    $view->setDisplay();
+    $view = $this->getView($saved_view);
     $view->initHandlers();
     $view->filter['created']->operator = 'between';
     $view->filter['created']->value['type'] = 'offset';
@@ -82,8 +80,7 @@ class FilterDateTest extends HandlerTestBase {
     $saved_view = $this->createViewFromConfig('test_filter_date_between');
 
     // Test between with min and max.
-    $view = $saved_view->cloneView();
-    $view->setDisplay();
+    $view = $this->getView($saved_view);
     $view->initHandlers();
     $view->filter['created']->operator = 'between';
     $view->filter['created']->value['min'] = format_date(150000, 'custom', 'Y-m-d H:s');
@@ -95,8 +92,7 @@ class FilterDateTest extends HandlerTestBase {
     $this->assertIdenticalResultset($view, $expected_result, $this->map);
 
     // Test between with just max.
-    $view = $saved_view->cloneView();
-    $view->setDisplay();
+    $view = $this->getView($saved_view);
     $view->initHandlers();
     $view->filter['created']->operator = 'between';
     $view->filter['created']->value['max'] = format_date(250000, 'custom', 'Y-m-d H:s');
@@ -108,8 +104,7 @@ class FilterDateTest extends HandlerTestBase {
     $this->assertIdenticalResultset($view, $expected_result, $this->map);
 
     // Test not between with min and max.
-    $view = $saved_view->cloneView();
-    $view->setDisplay();
+    $view = $this->getView($saved_view);
     $view->initHandlers();
     $view->filter['created']->operator = 'not between';
     $view->filter['created']->value['min'] = format_date(150000, 'custom', 'Y-m-d H:s');
@@ -123,8 +118,7 @@ class FilterDateTest extends HandlerTestBase {
     $this->assertIdenticalResultset($view, $expected_result, $this->map);
 
     // Test not between with just max.
-    $view = $saved_view->cloneView();
-    $view->setDisplay();
+    $view = $this->getView($saved_view);
     $view->initHandlers();
     $view->filter['created']->operator = 'not between';
     $view->filter['created']->value['max'] = format_date(150000, 'custom', 'Y-m-d H:s');

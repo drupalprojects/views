@@ -19,8 +19,6 @@ class HandlerFieldFieldTest extends FieldTestBase {
 
   public $nodes;
 
-  protected $view;
-
   public static function getInfo() {
     return array(
       'name' => 'Field: Field handler',
@@ -62,13 +60,18 @@ class HandlerFieldFieldTest extends FieldTestBase {
       $this->nodes[$i] = $this->drupalCreateNode($edit);
     }
 
-    $view = $this->createViewFromConfig('test_view_fieldapi');
     foreach ($this->fields as $key => $field) {
-      $view->display_handler->display->display_options['fields'][$field['field_name']]['id'] = $field['field_name'];
-      $view->display_handler->display->display_options['fields'][$field['field_name']]['table'] = 'field_data_' . $field['field_name'];
-      $view->display_handler->display->display_options['fields'][$field['field_name']]['field'] = $field['field_name'];
+      $this->view->display_handler->display->display_options['fields'][$field['field_name']]['id'] = $field['field_name'];
+      $this->view->display_handler->display->display_options['fields'][$field['field_name']]['table'] = 'field_data_' . $field['field_name'];
+      $this->view->display_handler->display->display_options['fields'][$field['field_name']]['field'] = $field['field_name'];
     }
-    $this->view = $view;
+  }
+
+  /**
+   * Overrides Drupal\views\Tests\ViewTestBase::getBasicView().
+   */
+  protected function getBasicView() {
+    return $this->createViewFromConfig('test_view_fieldapi');
   }
 
   public function testFieldRender() {
@@ -78,7 +81,7 @@ class HandlerFieldFieldTest extends FieldTestBase {
   }
 
   public function _testSimpleFieldRender() {
-    $view = $this->view->cloneView();
+    $view = $this->getView();
     $this->executeView($view);
 
     // Tests that the rendered fields match the actual value of the fields.
@@ -96,7 +99,7 @@ class HandlerFieldFieldTest extends FieldTestBase {
    * Tests that fields with formatters runs as expected.
    */
   public function _testFormatterSimpleFieldRender() {
-    $view = $this->view->cloneView();
+    $view = $this->getView();
     $view->display['default']->handler->options['fields'][$this->fields[0]['field_name']]['type'] = 'text_trimmed';
     $view->display['default']->handler->options['fields'][$this->fields[0]['field_name']]['settings'] = array(
       'trim_length' => 3,
@@ -112,7 +115,7 @@ class HandlerFieldFieldTest extends FieldTestBase {
   }
 
   public function _testMultipleFieldRender() {
-    $view = $this->view->cloneView();
+    $view = $this->getView();
 
     // Test delta limit.
     $view->display['default']->handler->options['fields'][$this->fields[3]['field_name']]['group_rows'] = TRUE;

@@ -62,19 +62,20 @@ class RelationshipNodeTermDataTest extends ViewTestBase {
   }
 
   function testViewsHandlerRelationshipNodeTermData() {
-    $view = $this->view_taxonomy_node_term_data();
-
-    $this->executeView($view, array($this->term_1->tid, $this->term_2->tid));
+    $this->executeView($this->view, array($this->term_1->tid, $this->term_2->tid));
     $resultset = array(
       array(
         'nid' => $this->node->nid,
       ),
     );
     $this->column_map = array('nid' => 'nid');
-    $this->assertIdenticalResultset($view, $resultset, $this->column_map);
+    $this->assertIdenticalResultset($this->view, $resultset, $this->column_map);
   }
 
-  function view_taxonomy_node_term_data() {
+  /**
+   * Overrides Drupal\views\Tests\ViewTestBase::getBasicView().
+   */
+  protected function getBasicView() {
     return $this->createViewFromConfig('test_taxonomy_node_term_data');
   }
 

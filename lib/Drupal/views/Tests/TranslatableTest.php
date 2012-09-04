@@ -19,8 +19,6 @@ class TranslatableTest extends ViewTestBase {
    */
   protected $strings;
 
-  protected $view;
-
   public static function getInfo() {
     return array(
       'name' => 'Translatable tests',
@@ -51,14 +49,21 @@ class TranslatableTest extends ViewTestBase {
       'filterlabel1'
     );
 
-    $this->view = $this->createViewFromConfig('test_view_unpack_translatable');
+    $this->view = $this->getBasicView();
+  }
+
+  /**
+   * Overrides Drupal\views\Tests\ViewTestBase::getBasicView().
+   */
+  protected function getBasicView() {
+    return $this->createViewFromConfig('test_view_unpack_translatable');
   }
 
   /**
    * Tests the unpack translation funtionality.
    */
   public function testUnpackTranslatable() {
-    $view = $this->view->cloneView();
+    $view = $this->getView();
     $view->initLocalization();
 
     $this->assertEqual('Drupal\views_test_data\Plugin\views\localization\LocalizationTest', get_class($view->localization_plugin), 'Make sure that init_localization initializes the right translation plugin');
@@ -72,7 +77,7 @@ class TranslatableTest extends ViewTestBase {
 
   public function testUi() {
     // Make sure that the string is not translated in the UI.
-    $view = $this->view->cloneView();
+    $view = $this->getView();
     $view->save();
     views_invalidate_cache();
 
@@ -107,7 +112,7 @@ class TranslatableTest extends ViewTestBase {
    * Make sure that the different things have the right translation keys.
    */
   public function testTranslationKey() {
-    $view = $this->view->cloneView();
+    $view = $this->getView();
     $view->editing = TRUE;
     $view->initDisplay();
 

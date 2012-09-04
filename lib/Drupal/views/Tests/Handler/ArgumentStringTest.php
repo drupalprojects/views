@@ -35,8 +35,7 @@ class ArgumentStringTest extends HandlerTestBase {
       }
     }
 
-    $view = $this->viewGlossary();
-    $view->initDisplay();
+    $view = $this->createViewFromConfig('test_glossary');
     $this->executeView($view);
 
     $count_field = 'nid';
@@ -51,16 +50,6 @@ class ArgumentStringTest extends HandlerTestBase {
         $this->assertEqual(3, $row->{$count_field});
       }
     }
-  }
-
-  /**
-   * Provide a test view for testGlossary.
-   *
-   * @see testGlossary
-   * @return Drupal\views\View
-   */
-  function viewGlossary() {
-    return $this->createViewFromConfig('test_glossary');
   }
 
 }

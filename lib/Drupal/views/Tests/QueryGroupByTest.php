@@ -43,7 +43,7 @@ class QueryGroupByTest extends ViewTestBase {
     $this->drupalCreateNode($node_2);
     $this->drupalCreateNode($node_2);
 
-    $view = $this->viewsAggregateCountView();
+    $view = $this->createViewFromConfig('test_aggregate_count');
     $this->executeView($view);
 
     $this->assertEqual(count($view->result), 2, 'Make sure the count of items is right.');
@@ -60,10 +60,6 @@ class QueryGroupByTest extends ViewTestBase {
 
   //public function testAggregateSum() {
   //}
-
-  public function viewsAggregateCountView() {
-    return $this->createViewFromConfig('test_aggregate_count');
-  }
 
   /**
    * @param $group_by
@@ -90,7 +86,8 @@ class QueryGroupByTest extends ViewTestBase {
     $this->drupalCreateNode($node_2);
     $this->drupalCreateNode($node_2);
 
-    $view = $this->viewsGroupByViewHelper($group_by);
+    $view = $this->createViewFromConfig('test_group_by_count');
+    $view->display['default']->handler->options['fields']['nid']['group_type'] = $group_by;
     $this->executeView($view);
 
     $this->assertEqual(count($view->result), 2, 'Make sure the count of items is right.');
@@ -100,13 +97,6 @@ class QueryGroupByTest extends ViewTestBase {
     }
     $this->assertEqual($results[$type1->type], $values[0]);
     $this->assertEqual($results[$type2->type], $values[1]);
-  }
-
-  function viewsGroupByViewHelper($group_by) {
-    $view = $this->createViewFromConfig('test_group_by_count');
-    $view->display['default']->handler->options['fields']['nid']['group_type'] = $group_by;
-
-    return $view;
   }
 
   public function testGroupByCount() {
@@ -143,14 +133,16 @@ class QueryGroupByTest extends ViewTestBase {
       $this->drupalCreateNode($node_1);
     }
 
-    $view = $this->viewsGroupByCountViewOnlyFilters();
-    $this->executeView($view);
+    $this->executeView($this->view);
 
-    $this->assertTrue(strpos($view->build_info['query'], 'GROUP BY'), t('Make sure that GROUP BY is in the query'));
-    $this->assertTrue(strpos($view->build_info['query'], 'HAVING'), t('Make sure that HAVING is in the query'));
+    $this->assertTrue(strpos($this->view->build_info['query'], 'GROUP BY'), t('Make sure that GROUP BY is in the query'));
+    $this->assertTrue(strpos($this->view->build_info['query'], 'HAVING'), t('Make sure that HAVING is in the query'));
   }
 
-  public function viewsGroupByCountViewOnlyFilters() {
+  /**
+   * Overrides Drupal\views\Tests\ViewTestBase::getBasicView().
+   */
+  protected function getBasicView() {
     return $this->createViewFromConfig('test_group_by_in_filters');
   }
 
