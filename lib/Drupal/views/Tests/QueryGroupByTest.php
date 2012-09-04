@@ -7,8 +7,6 @@
 
 namespace Drupal\views\Tests;
 
-use Drupal\views\View;
-
 /**
  * Tests aggregate functionality of views, for example count.
  */
@@ -20,7 +18,6 @@ class QueryGroupByTest extends ViewTestBase {
       'description' => 'Tests aggregate functionality of views, for example count.',
       'group' => 'Views',
     );
-
   }
 
   /**

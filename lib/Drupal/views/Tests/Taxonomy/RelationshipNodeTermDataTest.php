@@ -8,7 +8,6 @@
 namespace Drupal\views\Tests\Taxonomy;
 
 use Drupal\views\Tests\ViewTestBase;
-use Drupal\views\View;
 
 /**
  * Tests the node_term_data relationship handler.

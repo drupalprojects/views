@@ -7,8 +7,6 @@
 
 namespace Drupal\views\Tests\User;
 
-use Drupal\views\View;
-
 /**
  * Tests views user argument argument handler.
  */

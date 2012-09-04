@@ -5,6 +5,8 @@
  * Helper module for Views tests.
  */
 
+use Drupal\views\View;
+
 /**
  * Implements hook_permission().
  */
@@ -56,7 +58,7 @@ function views_test_views_pre_render(&$view) {
 /**
  * Implements hook_views_post_build().
  */
-function views_test_views_post_build(Drupal\views\View &$view) {
+function views_test_views_post_build(View &$view) {
   debug($view->current_display);
   if ($view->name == 'test_page_display') {
     if ($view->current_display == 'page_1') {

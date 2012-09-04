@@ -7,8 +7,6 @@
 
 namespace Drupal\views\Tests\Comment;
 
-use Drupal\views\View;
-
 /**
  * Tests the filter_comment_user_uid handler.
  *

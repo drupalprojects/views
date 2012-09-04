@@ -7,8 +7,6 @@
 
 namespace Drupal\views\Tests\Handler;
 
-use Drupal\views\View;
-
 /**
  * Tests the core Drupal\views\Plugin\views\filter\Date handler.
  */
@@ -75,7 +73,6 @@ class FilterDateTest extends HandlerTestBase {
     $this->assertIdenticalResultset($view, $expected_result, $this->map);
     $view->destroy();
   }
-
 
   /**
    * Tests the filter operator between/not between.

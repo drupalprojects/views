@@ -7,8 +7,6 @@
 
 namespace Drupal\views\Tests\Plugin;
 
-use Drupal\views\View;
-
 /**
  * Tests Views argument validators.
  */

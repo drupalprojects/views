@@ -7,8 +7,6 @@
 
 namespace Drupal\views\Tests\Plugin;
 
-use Drupal\views\View;
-
 /**
  * Tests the pluggable pager system.
  */
@@ -351,7 +349,6 @@ class PagerTest extends PluginTestBase {
     $rand_number = rand(6, 11);
     $view->pager->set_current_page($rand_number);
     $this->assertEqual($view->getCurrentPage(), $rand_number, 'Make sure get_current_page uses the settings of set_current_page.');
-
   }
 
 }

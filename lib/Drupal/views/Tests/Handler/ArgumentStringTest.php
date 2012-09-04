@@ -7,8 +7,6 @@
 
 namespace Drupal\views\Tests\Handler;
 
-use Drupal\views\View;
-
 /**
  * Tests the core Drupal\views\Plugin\views\argument\String handler.
  */

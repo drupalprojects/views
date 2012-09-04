@@ -7,8 +7,6 @@
 
 namespace Drupal\views\Tests\User;
 
-use Drupal\views\View;
-
 /**
  * Tests the field username handler.
  *

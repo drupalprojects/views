@@ -6,7 +6,6 @@
 
 namespace Drupal\views\Tests;
 use Drupal\simpletest\WebTestBase;
-use Drupal\views\View;
 use Symfony\Component\Yaml\Yaml;
 
 /**

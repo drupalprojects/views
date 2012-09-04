@@ -8,7 +8,6 @@
 namespace Drupal\views\Tests\Comment;
 
 use Drupal\views\Tests\ViewTestBase;
-use Drupal\views\View;
 
 /**
  * Tests the argument_comment_user_uid handler.

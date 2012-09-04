@@ -7,8 +7,6 @@
 
 namespace Drupal\views\Tests;
 
-use Drupal\views\View;
-
 /**
  * Tests the upgrade path of all conversions.
  *

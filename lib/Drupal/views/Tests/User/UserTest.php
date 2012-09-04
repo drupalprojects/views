@@ -7,8 +7,6 @@
 
 namespace Drupal\views\Tests\User;
 
-use Drupal\views\View;
-
 /**
  * Tests basic user module integration into views.
  */

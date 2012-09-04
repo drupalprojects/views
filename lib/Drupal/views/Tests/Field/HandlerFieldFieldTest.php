@@ -7,8 +7,6 @@
 
 namespace Drupal\views\Tests\Field;
 
-use Drupal\views\View;
-
 /**
  * Tests the field_field handler.
  * @TODO
