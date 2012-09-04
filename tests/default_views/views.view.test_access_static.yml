@@ -1,6 +1,6 @@
 api_version: '3.0'
 base_table: node
-core: {  }
+core: '8'
 description: ''
 disabled: '0'
 display:
@@ -27,6 +27,6 @@ display:
         display_title: Page
         id: page_1
         position: '0'
-human_name: {  }
+human_name: ''
 name: test_access_static
 tag: ''

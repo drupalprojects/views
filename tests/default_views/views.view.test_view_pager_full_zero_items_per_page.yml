@@ -1,6 +1,6 @@
 api_version: '3.0'
 base_table: node
-core: {  }
+core: '8'
 description: ''
 disabled: '0'
 display:
@@ -40,6 +40,6 @@ display:
         display_title: Master
         id: default
         position: '0'
-human_name: {  }
+human_name: ''
 name: test_view_pager_full_zero_items_per_page
 tag: ''
