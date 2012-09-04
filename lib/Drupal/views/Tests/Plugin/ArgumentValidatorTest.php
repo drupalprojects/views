@@ -45,8 +45,8 @@ class ArgumentValidatorTest extends PluginTestBase {
 
   function view_test_argument_validate_php($string) {
     $code = 'return $argument == \''. $string .'\';';
-    $this->createViewFromConfig('test_view_argument_validate_numeric');
-    $view->display_handler->display->display_options['arguments']['null']['validate_options']['code'] = $code;
+    $view = $this->createViewFromConfig('test_view_argument_validate_numeric');
+    $view->display['default']->handler->options['arguments']['null']['validate_options']['code'] = $code;
 
     return $view;
   }

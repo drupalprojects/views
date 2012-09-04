@@ -85,7 +85,7 @@ class ArgumentValidateTest extends UserTestBase {
   }
 
   function view_argument_validate_user($argtype) {
-    $view = $this->createViewFromConfig('');
+    $view = $this->createViewFromConfig('test_view_argument_validate_user');
     $view->display_handler->display->display_options['arguments']['null']['validate_options']['type'] = $argtype;
 
     return $view;

@@ -163,8 +163,7 @@ class FilterDateTest extends HandlerTestBase {
   }
 
   function views_test_offset() {
-    $view = $this->views_test_between();
-    return $view;
+    return $this->createViewFromConfig('test_filter_date_between');
   }
 
 }
