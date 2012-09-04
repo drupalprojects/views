@@ -16,7 +16,7 @@ class ArgumentDefaultTest extends UserTestBase {
     return array(
       'name' => 'User: Argument default',
       'description' => 'Tests user argument default plugin.',
-      'group' => 'Views Plugins',
+      'group' => 'Views Modules',
     );
   }
 
@@ -32,8 +32,10 @@ class ArgumentDefaultTest extends UserTestBase {
     $user = $account;
 
     $view = $this->view_plugin_argument_default_current_user();
+    $this->view->preExecute();
+    $this->view->initHandlers();
 
-    $view->setDisplay('default');
+    $view->setDisplay();
     $view->preExecute();
     $view->initHandlers();
 

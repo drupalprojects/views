@@ -84,7 +84,6 @@ class TranslatableTest extends ViewTestBase {
    */
   public function testTranslation() {
     $view = $this->view_unpack_translatable();
-    $view->setDisplay('default');
     $this->executeView($view);
 
     $expected_strings = array();

@@ -121,7 +121,7 @@ class FilterNumericTest extends HandlerTestBase {
     $this->assertIdenticalResultset($view, $resultset, $this->column_map);
 
     // test not between
-    $view->delete();
+    $view->destroy();
     $view = $this->getBasicView();
 
       // Change the filtering
@@ -233,7 +233,7 @@ class FilterNumericTest extends HandlerTestBase {
     );
     $this->assertIdenticalResultset($view, $resultset, $this->column_map);
 
-    $view->delete();
+    $view->destroy();
     $view = $this->getBasicView();
 
     // Change the filtering
@@ -345,7 +345,6 @@ class FilterNumericTest extends HandlerTestBase {
       ),
     ));
 
-    $view->setDisplay('default');
     $view->initHandlers();
 
     $id_operators = $view->filter['id']->operators();

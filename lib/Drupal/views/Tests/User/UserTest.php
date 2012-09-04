@@ -52,7 +52,7 @@ class UserTest extends UserTestBase {
   public function testRelationship() {
     $view = $this->test_view_user_relationship();
 
-    $view->executeDisplay();
+    $this->executeView($view);
     $expected = array();
     for ($i = 0; $i <= 1; $i++) {
       $expected[$i] = array(

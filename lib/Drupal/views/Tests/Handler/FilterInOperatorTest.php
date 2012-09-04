@@ -66,7 +66,7 @@ class FilterInOperatorTest extends HandlerTestBase {
       'views_test_age' => 'age',
     ));
 
-    $view->delete();
+    $view->destroy();
     $view = $this->getBasicView();
 
     // Add a in_operator ordering.

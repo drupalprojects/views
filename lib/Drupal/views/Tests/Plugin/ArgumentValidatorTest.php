@@ -23,7 +23,7 @@ class ArgumentValidatorTest extends PluginTestBase {
   function testArgumentValidatePhp() {
     $string = $this->randomName();
     $view = $this->view_test_argument_validate_php($string);
-    $view->setDisplay('default');
+    $view->setDisplay();
     $view->preExecute();
     $view->initHandlers();
     $this->assertTrue($view->argument['null']->validateArgument($string));
@@ -34,7 +34,6 @@ class ArgumentValidatorTest extends PluginTestBase {
 
   function testArgumentValidateNumeric() {
     $view = $this->view_argument_validate_numeric();
-    $view->setDisplay('default');
     $view->preExecute();
     $view->initHandlers();
     $this->assertFalse($view->argument['null']->validateArgument($this->randomString()));

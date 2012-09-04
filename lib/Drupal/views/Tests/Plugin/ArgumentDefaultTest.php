@@ -35,11 +35,11 @@ class ArgumentDefaultTest extends PluginTestBase {
   }
 
   protected function setUp() {
+    $this->random = $this->randomString();
+
     parent::setUp();
 
     $this->enableViewsTestModule();
-
-    $this->random = $this->randomString();
   }
 
   /**
@@ -72,18 +72,15 @@ class ArgumentDefaultTest extends PluginTestBase {
   function testArgumentDefaultFixed() {
     $view = $this->view_argument_default_fixed();
 
-    $view->setDisplay('default');
+    $view->setDisplay();
     $view->preExecute();
     $view->initHandlers();
 
     $this->assertEqual($view->argument['null']->get_default_argument(), $this->random, 'Fixed argument should be used by default.');
 
-    $view->destroy();
-
     // Make sure that a normal argument provided is used
     $view = $this->view_argument_default_fixed();
 
-    $view->setDisplay('default');
     $random_string = $this->randomString();
     $view->executeDisplay('default', array($random_string));
 
@@ -101,9 +98,8 @@ class ArgumentDefaultTest extends PluginTestBase {
   //function testArgumentDefaultNode() {}
 
   function view_argument_default_fixed() {
-    $view =  $this->createViewFromConfig('test_argument_default_fixed');
-    $view->display_handler->display->display_options['arguments']['null']['default_argument_options']['argument'] = $this->random;
-
+    $view = $this->createViewFromConfig('test_argument_default_fixed');
+    $view->display['default']->display_options['arguments']['null']['default_argument_options']['argument'] = $this->random;
     return $view;
   }
 

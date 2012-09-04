@@ -16,7 +16,7 @@ class ArgumentValidateTest extends UserTestBase {
     return array(
       'name' => 'User: Argument validator',
       'description' => 'Tests user argument validator.',
-      'group' => 'Views Plugins',
+      'group' => 'Views Modules',
     );
   }
 
@@ -30,9 +30,6 @@ class ArgumentValidateTest extends UserTestBase {
     $account = $this->account;
     // test 'uid' case
     $view = $this->view_argument_validate_user('uid');
-    $view->setDisplay('default');
-    $view->preExecute();
-    $view->initHandlers();
     $this->assertTrue($view->argument['null']->validateArgument($account->uid));
     // Reset safed argument validation.
     $view->argument['null']->argument_validated = NULL;
@@ -48,9 +45,6 @@ class ArgumentValidateTest extends UserTestBase {
     $account = $this->account;
     // test 'name' case
     $view = $this->view_argument_validate_user('name');
-    $view->setDisplay('default');
-    $view->preExecute();
-    $view->initHandlers();
     $this->assertTrue($view->argument['null']->validateArgument($account->name));
     // Reset safed argument validation.
     $view->argument['null']->argument_validated = NULL;
@@ -66,9 +60,6 @@ class ArgumentValidateTest extends UserTestBase {
     $account = $this->account;
     // test 'either' case
     $view = $this->view_argument_validate_user('either');
-    $view->setDisplay('default');
-    $view->preExecute();
-    $view->initHandlers();
     $this->assertTrue($view->argument['null']->validateArgument($account->name));
     // Reset safed argument validation.
     $view->argument['null']->argument_validated = NULL;
@@ -86,7 +77,9 @@ class ArgumentValidateTest extends UserTestBase {
 
   function view_argument_validate_user($argtype) {
     $view = $this->createViewFromConfig('test_view_argument_validate_user');
-    $view->display_handler->display->display_options['arguments']['null']['validate_options']['type'] = $argtype;
+    $view->display['default']->handler->options['arguments']['null']['validate_options']['type'] = $argtype;
+    $view->preExecute();
+    $view->initHandlers();
 
     return $view;
   }

@@ -50,7 +50,7 @@ class FieldUrlTest extends HandlerTestBase {
     $this->assertEqual('John', $view->field['name']->advanced_render($view->result[0]));
 
     // Make the url a link.
-    $view->delete();
+    $view->destroy();
     $view = $this->getBasicView();
 
     $view->display['default']->handler->overrideOption('fields', array(

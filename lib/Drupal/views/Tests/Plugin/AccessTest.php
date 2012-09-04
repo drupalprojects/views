@@ -42,8 +42,6 @@ class AccessTest extends PluginTestBase {
   function testAccessNone() {
     $view = $this->view_access_none();
 
-    $view->setDisplay('default');
-
     $this->assertTrue($view->display_handler->access($this->admin_user), t('Admin-Account should be able to access the view everytime'));
     $this->assertTrue($view->display_handler->access($this->web_user));
     $this->assertTrue($view->display_handler->access($this->normal_user));
@@ -55,7 +53,6 @@ class AccessTest extends PluginTestBase {
   function testAccessPerm() {
     $view = $this->view_access_perm();
 
-    $view->setDisplay('default');
     $access_plugin = $view->display_handler->getPlugin('access');
 
     $this->assertTrue($view->display_handler->access($this->admin_user), t('Admin-Account should be able to access the view everytime'));
@@ -69,7 +66,6 @@ class AccessTest extends PluginTestBase {
   function testAccessRole() {
     $view = $this->view_access_role();
 
-    $view->setDisplay('default');
     $access_plugin = $view->display_handler->getPlugin('access');
 
     $this->assertTrue($view->display_handler->access($this->admin_user), t('Admin-Account should be able to access the view everytime'));
@@ -87,7 +83,6 @@ class AccessTest extends PluginTestBase {
   function testStaticAccessPlugin() {
     $view = $this->view_access_static();
 
-    $view->setDisplay('default');
     $access_plugin = $view->display_handler->getPlugin('access');
 
     $this->assertFalse($access_plugin->access($this->normal_user));
@@ -118,7 +113,6 @@ class AccessTest extends PluginTestBase {
     variable_set('test_dynamic_access_argument1', $argument1);
     variable_set('test_dynamic_access_argument2', $argument2);
 
-    $view->setDisplay('default');
     $access_plugin = $view->display_handler->getPlugin('access');
 
     $this->assertFalse($access_plugin->access($this->normal_user));
@@ -153,7 +147,7 @@ class AccessTest extends PluginTestBase {
   function view_access_role() {
     $view = $this->createViewFromConfig('test_access_role');
 
-    $view->display_handler->display->display_options['access']['role'] = array(
+    $view->display['default']->handler->options['access']['role'] = array(
       $this->normal_role => $this->normal_role,
     );
 

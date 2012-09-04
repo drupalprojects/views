@@ -87,8 +87,8 @@ class HandlerFieldFieldTest extends FieldTestBase {
    */
   public function _testFormatterSimpleFieldRender() {
     $view = $this->getFieldView();
-    $view->display['default']->display_options['fields'][$this->fields[0]['field_name']]['type'] = 'text_trimmed';
-    $view->display['default']->display_options['fields'][$this->fields[0]['field_name']]['settings'] = array(
+    $view->display['default']->handler->options['fields'][$this->fields[0]['field_name']]['type'] = 'text_trimmed';
+    $view->display['default']->handler->options['fields'][$this->fields[0]['field_name']]['settings'] = array(
       'trim_length' => 3,
     );
     $this->executeView($view);
@@ -105,8 +105,8 @@ class HandlerFieldFieldTest extends FieldTestBase {
     $view = $this->getFieldView();
 
     // Test delta limit.
-    $view->display['default']->display_options['fields'][$this->fields[3]['field_name']]['group_rows'] = TRUE;
-    $view->display['default']->display_options['fields'][$this->fields[3]['field_name']]['delta_limit'] = 3;
+    $view->display['default']->handler->options['fields'][$this->fields[3]['field_name']]['group_rows'] = TRUE;
+    $view->display['default']->handler->options['fields'][$this->fields[3]['field_name']]['delta_limit'] = 3;
     $this->executeView($view);
 
     for ($i = 0; $i < 3; $i++) {

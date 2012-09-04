@@ -114,7 +114,6 @@ class PagerTest extends PluginTestBase {
       $this->drupalCreateNode();
     }
     $view = $this->viewsPagerNoLimit();
-    $view->setDisplay('default');
     $this->executeView($view);
     $this->assertEqual(count($view->result), 11, 'Make sure that every item is returned in the result');
 
@@ -122,7 +121,7 @@ class PagerTest extends PluginTestBase {
 
     // Setup and test a offset.
     $view = $this->viewsPagerNoLimit();
-    $view->setDisplay('default');
+    $view->setDisplay();
 
     $pager = array(
       'type' => 'none',
@@ -150,7 +149,6 @@ class PagerTest extends PluginTestBase {
 
     $view = $this->viewsPagerNoLimit();
     $view->get_total_rows = TRUE;
-    $view->setDisplay('default');
     $this->executeView($view);
 
     $this->assertEqual($view->total_rows, 23, "'total_rows' is calculated when pager type is 'none' and 'get_total_rows' is TRUE.");
@@ -174,14 +172,13 @@ class PagerTest extends PluginTestBase {
       $this->drupalCreateNode();
     }
     $view = $this->viewsPagerLimit();
-    $view->setDisplay('default');
     $this->executeView($view);
     $this->assertEqual(count($view->result), 5, 'Make sure that only a certain count of items is returned');
     $view->destroy();
 
     // Setup and test a offset.
     $view = $this->viewsPagerLimit();
-    $view->setDisplay('default');
+    $view->setDisplay();
 
     $pager = array(
       'type' => 'none',
@@ -213,14 +210,13 @@ class PagerTest extends PluginTestBase {
       $this->drupalCreateNode();
     }
     $view = $this->viewsPagerFull();
-    $view->setDisplay('default');
     $this->executeView($view);
     $this->assertEqual(count($view->result), 5, 'Make sure that only a certain count of items is returned');
     $view->destroy();
 
     // Setup and test a offset.
     $view = $this->viewsPagerFull();
-    $view->setDisplay('default');
+    $view->setDisplay();
 
     $pager = array(
       'type' => 'full',
@@ -235,7 +231,6 @@ class PagerTest extends PluginTestBase {
 
     // Test items per page = 0
     $view = $this->viewPagerFullZeroItemsPerPage();
-    $view->setDisplay('default');
     $this->executeView($view);
 
     $this->assertEqual(count($view->result), 11, 'All items are return');
@@ -247,7 +242,7 @@ class PagerTest extends PluginTestBase {
 
     // Setup and test a offset.
     $view = $this->viewsPagerFull();
-    $view->setDisplay('default');
+    $view->setDisplay();
 
     $pager = array(
       'type' => 'full',
@@ -292,7 +287,6 @@ class PagerTest extends PluginTestBase {
       $this->drupalCreateNode();
     }
     $view = $this->viewsPagerFullFields();
-    $view->setDisplay('default');
     $this->executeView($view);
     $view->use_ajax = TRUE; // force the value again here
     $view->pager = NULL;
