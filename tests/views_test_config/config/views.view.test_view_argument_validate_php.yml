@@ -17,7 +17,7 @@ display:
                     style_plugin: default_summary
                     table: views
                     validate:
-                        type: numeric
+                        type: php
             cache:
                 type: none
             exposed_form:

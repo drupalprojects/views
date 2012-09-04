@@ -19,6 +19,8 @@ class TranslatableTest extends ViewTestBase {
    */
   protected $strings;
 
+  protected $view;
+
   public static function getInfo() {
     return array(
       'name' => 'Translatable tests',
@@ -48,13 +50,15 @@ class TranslatableTest extends ViewTestBase {
       'fieldlabel1',
       'filterlabel1'
     );
+
+    $this->view = $this->createViewFromConfig('test_view_unpack_translatable');
   }
 
   /**
    * Tests the unpack translation funtionality.
    */
   public function testUnpackTranslatable() {
-    $view = $this->view_unpack_translatable();
+    $view = $this->view->cloneView();
     $view->initLocalization();
 
     $this->assertEqual('Drupal\views_test_data\Plugin\views\localization\LocalizationTest', get_class($view->localization_plugin), 'Make sure that init_localization initializes the right translation plugin');
@@ -68,7 +72,7 @@ class TranslatableTest extends ViewTestBase {
 
   public function testUi() {
     // Make sure that the string is not translated in the UI.
-    $view = $this->view_unpack_translatable();
+    $view = $this->view->cloneView();
     $view->save();
     views_invalidate_cache();
 
@@ -83,7 +87,7 @@ class TranslatableTest extends ViewTestBase {
    * Make sure that the translations get into the loaded view.
    */
   public function testTranslation() {
-    $view = $this->view_unpack_translatable();
+    $view = $this->getView();
     $this->executeView($view);
 
     $expected_strings = array();
@@ -103,7 +107,7 @@ class TranslatableTest extends ViewTestBase {
    * Make sure that the different things have the right translation keys.
    */
   public function testTranslationKey() {
-    $view = $this->view_unpack_translatable();
+    $view = $this->view->cloneView();
     $view->editing = TRUE;
     $view->initDisplay();
 
@@ -137,10 +141,6 @@ class TranslatableTest extends ViewTestBase {
         $this->assertEqual($translatable['keys'], $this->string_keys[$translatable['value']]);
       }
     }
-  }
-
-  public function view_unpack_translatable() {
-    return $this->createViewFromConfig('test_view_unpack_translatable');
   }
 
 }

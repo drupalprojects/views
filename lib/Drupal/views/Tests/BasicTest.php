@@ -174,7 +174,7 @@ class BasicTest extends ViewTestBase {
     ));
 
     // Test "show all" if no argument is present.
-    $view = $saved_view;
+    $view = $saved_view->cloneView();
     $this->executeView($view);
 
     // Build the expected result.

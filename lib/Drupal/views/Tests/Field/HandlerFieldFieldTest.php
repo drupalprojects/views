@@ -19,6 +19,8 @@ class HandlerFieldFieldTest extends FieldTestBase {
 
   public $nodes;
 
+  protected $view;
+
   public static function getInfo() {
     return array(
       'name' => 'Field: Field handler',
@@ -59,6 +61,14 @@ class HandlerFieldFieldTest extends FieldTestBase {
 
       $this->nodes[$i] = $this->drupalCreateNode($edit);
     }
+
+    $view = $this->createViewFromConfig('test_view_fieldapi');
+    foreach ($this->fields as $key => $field) {
+      $view->display_handler->display->display_options['fields'][$field['field_name']]['id'] = $field['field_name'];
+      $view->display_handler->display->display_options['fields'][$field['field_name']]['table'] = 'field_data_' . $field['field_name'];
+      $view->display_handler->display->display_options['fields'][$field['field_name']]['field'] = $field['field_name'];
+    }
+    $this->view = $view;
   }
 
   public function testFieldRender() {
@@ -68,7 +78,7 @@ class HandlerFieldFieldTest extends FieldTestBase {
   }
 
   public function _testSimpleFieldRender() {
-    $view = $this->getFieldView();
+    $view = $this->view->cloneView();
     $this->executeView($view);
 
     // Tests that the rendered fields match the actual value of the fields.
@@ -86,7 +96,7 @@ class HandlerFieldFieldTest extends FieldTestBase {
    * Tests that fields with formatters runs as expected.
    */
   public function _testFormatterSimpleFieldRender() {
-    $view = $this->getFieldView();
+    $view = $this->view->cloneView();
     $view->display['default']->handler->options['fields'][$this->fields[0]['field_name']]['type'] = 'text_trimmed';
     $view->display['default']->handler->options['fields'][$this->fields[0]['field_name']]['settings'] = array(
       'trim_length' => 3,
@@ -102,7 +112,7 @@ class HandlerFieldFieldTest extends FieldTestBase {
   }
 
   public function _testMultipleFieldRender() {
-    $view = $this->getFieldView();
+    $view = $this->view->cloneView();
 
     // Test delta limit.
     $view->display['default']->handler->options['fields'][$this->fields[3]['field_name']]['group_rows'] = TRUE;
@@ -197,18 +207,6 @@ class HandlerFieldFieldTest extends FieldTestBase {
       }
       $this->assertEqual($rendered_field, implode(':', $items), 'Take sure that the amount of items are limited.');
     }
-  }
-
-  protected function getFieldView() {
-    $view = $this->createViewFromConfig('test_view_fieldapi');
-
-    foreach ($this->fields as $key => $field) {
-      $view->display_handler->display->display_options['fields'][$field['field_name']]['id'] = $field['field_name'];
-      $view->display_handler->display->display_options['fields'][$field['field_name']]['table'] = 'field_data_' . $field['field_name'];
-      $view->display_handler->display->display_options['fields'][$field['field_name']]['field'] = $field['field_name'];
-    }
-
-    return $view;
   }
 
 }
