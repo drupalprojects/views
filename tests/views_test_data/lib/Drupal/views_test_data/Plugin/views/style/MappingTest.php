@@ -13,7 +13,7 @@ use Drupal\Core\Annotation\Translation;
 use Drupal\views\Plugin\views\field\Numeric;
 
 /**
- * @todo.
+ * Provides a test plugin for the mapping style.
  *
  * @ingroup views_style_plugins
  *
