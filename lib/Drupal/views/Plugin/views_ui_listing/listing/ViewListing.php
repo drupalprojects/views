@@ -64,7 +64,7 @@ class ViewListing extends ConfigEntityListingBase {
         'view_name' => theme('views_ui_view_info', array('view' => $view)),
         'description' => $view->description,
         'tag' => $view->tag,
-        'path' => implode(', ', _views_ui_get_paths($view)),
+        'path' => implode(', ', $view->getPaths()),
         'operations' => drupal_render($operations),
       ),
       'title' => t('Machine name: ') . $view->id(),

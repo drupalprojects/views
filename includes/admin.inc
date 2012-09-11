@@ -771,36 +771,22 @@ function views_ui_taxonomy_autocomplete_validate($element, &$form_state) {
 }
 
 /**
- * Theme function; returns basic administrative information about a view.
- *
- * TODO: template + preprocess
+ * Implements hook_preprocess_HOOK() for theme_views_ui_view_info().
+ */
+function template_preprocess_views_ui_view_info(&$variables) {
+  $variables['title'] = $variables['view']->getHumanName();
+
+  $displays = $variables['view']->getDisplaysList();
+  $variables['displays'] = empty($displays) ? t('None') : format_plural(count($displays), 'Display', 'Displays') . ': ' . '<em>' . implode(', ', $displays) . '</em>';
+}
+
+/**
+ * Returns basic administrative information about a view.
  */
 function theme_views_ui_view_info($variables) {
-  $view = $variables['view'];
-  $title = $view->getHumanName();
-
-  $displays = _views_ui_get_displays_list($view);
-  $displays = empty($displays) ? t('None') : format_plural(count($displays), 'Display', 'Displays') . ': ' . '<em>' . implode(', ', $displays) . '</em>';
-
-  switch ($view->type) {
-    case t('Default'):
-    default:
-      $type = t('In code');
-      break;
-
-    case t('Normal'):
-      $type = t('In database');
-      break;
-
-    case t('Overridden'):
-      $type = t('Database overriding code');
-  }
-
   $output = '';
-  $output .= '<div class="views-ui-view-title">' . $title . "</div>\n";
-  $output .= '<div class="views-ui-view-displays">' . $displays . "</div>\n";
-  $output .= '<div class="views-ui-view-storage">' . $type . "</div>\n";
-  $output .= '<div class="views-ui-view-base">' . t('Type') . ': ' . $variables['base'] . "</div>\n";
+  $output .= '<div class="views-ui-view-title">' . $variables['title'] . "</div>\n";
+  $output .= '<div class="views-ui-view-displays">' . $variables['displays'] . "</div>\n";
   return $output;
 }
 

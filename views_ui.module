@@ -708,66 +708,6 @@ function views_ui_ajax_get_form($form_id) {
     return $callback($form, $form_state);
   }
 }
-// @todo move these when we can
-
-/**
- * Helper function to get a list of paths assigned to a view.
- *
- * @param $view
- *   The view.
- *
- * @return
- *   An array of links to this view's display paths.
- */
-function _views_ui_get_paths($view) {
-  $all_paths = array();
-  if (empty($view->display)) {
-    $all_paths[] = t('Edit this view to add a display.');
-  }
-  else {
-    $view->initDisplay();   // Make sure all the handlers are set up
-    foreach ($view->display as $display) {
-      if (!empty($display->handler) && $display->handler->hasPath()) {
-        $one_path = $display->handler->getOption('path');
-        if (empty($path_sort)) {
-          $path_sort = strtolower($one_path);
-        }
-        if (empty($view->disabled) && strpos($one_path, '%') === FALSE) {
-          $all_paths[] = l('/' . $one_path, $one_path);
-        }
-        else {
-          $all_paths[] = check_plain('/' . $one_path);
-        }
-      }
-    }
-  }
-
-  return array_unique($all_paths);
-}
-
-/**
- * Helper function to get a list of displays included in a view.
- *
- * @param $view
- *   The view.
- *
- * @return
- *   An array of display types that this view includes.
- */
-function _views_ui_get_displays_list($view) {
-  $displays = array();
-  foreach ($view->display as $display) {
-    if (!empty($display->handler->definition['admin'])) {
-      $displays[$display->handler->definition['admin']] = TRUE;
-    }
-  }
-
-  if ($displays) {
-    ksort($displays);
-    $displays = array_keys($displays);
-  }
-  return $displays;
-}
 
 /**
  * This is part of a patch to address a jQueryUI bug.  The bug is responsible
