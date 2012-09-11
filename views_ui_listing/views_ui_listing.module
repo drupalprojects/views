@@ -1,0 +1,33 @@
+<?php
+
+use Drupal\views_ui_listing\Plugin\Type\ConfigEntityListingManager;
+
+/**
+ * Implements hook_menu().
+ */
+function views_ui_listing_menu() {
+  $items = array();
+  $listing_manager = new ConfigEntityListingManager();
+
+  // Get the hook_menu item for each plugin.
+  foreach ($listing_manager->getDefinitions() as $definition) {
+    $listing = $listing_manager->createInstance($definition['id']);
+    $items += $listing->hookMenu();
+  }
+
+  return $items;
+}
+
+/**
+ * Generic page callback for config listing pages.
+ * @param string $plugin_id
+ *   The config entity plugin id.
+ * @return string
+ *   The page markup for the page.
+ */
+function views_ui_listing_entity_listing_page($plugin_id) {
+  $listing_manager = new ConfigEntityListingManager();
+  // @todo Add some error handling here, or in the manager class.
+  $listing = $listing_manager->createInstance($plugin_id);
+  return $listing->renderList();
+}
