@@ -8,8 +8,6 @@
 namespace Drupal\views_ui_listing\Tests;
 
 use Drupal\simpletest\WebTestBase;
-use Drupal\views_ui_listing\Plugin\Type\ConfigEntityListingManager;
-use Drupal\views_ui_listing_test\Plugin\views_ui_listing\listing\ConfigTestConfigEntityListing;
 use Drupal\config\ConfigEntityBase;
 
 /**
@@ -36,30 +34,10 @@ class ConfigEntityListingTest extends WebTestBase {
    * Tests basic listing plugin functionilty.
    */
   function testListingPlugin() {
-    // Test we can get a new manager instance.
-    $listing_manager = new ConfigEntityListingManager();
-    $this->assertTrue($listing_manager instanceof ConfigEntityListingManager, 'ConfigEntityListingManager class created.');
-
-    // Test the definition data.
-    $definitions = $listing_manager->getDefinitions();
-
-    $this->assertTrue(array_key_exists('config_test', $definitions), 'Config test definition exists.');
-
-    $expected = array(
-      'id' => 'config_test',
-      'entity_type' => 'config_test',
-      'path' => 'config-listing-test',
-      'page_title' => 'Config test',
-      'page_description' => 'Config test listing page',
-      'class' => 'Drupal\\views_ui_listing_test\\Plugin\\views_ui_listing\\listing\\ConfigTestConfigEntityListing',
-    );
-    $this->assertEqual($definitions['config_test'], $expected, 'Plugin definition matches the expected definition.');
-
-    $instance = $listing_manager->createInstance('config_test');
-    $this->assertTrue($instance instanceof ConfigTestConfigEntityListing, 'ConfigTestConfigEntityListing plugin instance created.');
+    $controller = views_ui_listing_get_list_controller('config_test');
 
     // Get a list of Config entities.
-    $list = $instance->getList();
+    $list = $controller->getList();
     $this->assertEqual(count($list), 1, 'Correct number of plugins found.');
     $this->assertTrue(!empty($list['default']), '"Default" config entity key found in list.');
     $this->assertTrue($list['default'] instanceof ConfigEntityBase, '"Default" config entity is an instance of ConfigEntityBase');

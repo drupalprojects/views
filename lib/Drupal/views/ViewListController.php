@@ -2,40 +2,36 @@
 
 /**
  * @file
- * Definition of Drupal\views\Plugin\views_ui_listing\listing\ViewListing;
+ * Definition of Drupal\views\ViewListController.
  */
 
-namespace Drupal\views\Plugin\views_ui_listing\listing;
+namespace Drupal\views;
 
-use Drupal\views_ui_listing\Plugin\ConfigEntityListingBase;
-use Drupal\Core\Annotation\Plugin;
-use Drupal\Core\Annotation\Translation;
+use Drupal\views_ui_listing\EntityListControllerBase;
 use Drupal\entity\EntityInterface;
 
 /**
  * Provides a listing of Views.
- *
- * @Plugin(
- *   id = "view",
- *   entity_type = "view",
- *   path = "admin/structure/views",
- *   page_title = @Translation("Views"),
- *   page_description = @Translation("Manage customized lists of content.")
- * )
  */
-class ViewListing extends ConfigEntityListingBase {
+class ViewListController extends EntityListControllerBase {
+
+  public function __construct($entity_type, $entity_info = FALSE) {
+    parent::__construct($entity_type, $entity_info);
+  }
 
   /**
-   * Overrides Drupal\config\Plugin\ConfigEntityListingBase::hookMenu();
+   * Overrides Drupal\views_ui_listing\EntityListControllerBase::hookMenu();
    */
   public function hookMenu() {
     // Find the path and the number of path arguments.
-    $path = $this->definition['path'];
+    $path = $this->entityInfo['list path'];
     $path_count = count(explode('/', $path));
 
     $items = parent::hookMenu();
     // Override the access callback.
     // @todo Probably won't need to specify user access.
+    $items[$path]['title'] = 'Views';
+    $items[$path]['description'] = 'Manage customized lists of content.';
     $items[$path]['access callback'] = 'user_access';
     $items[$path]['access arguments'] = array('administer views');
 
@@ -61,7 +57,7 @@ class ViewListing extends ConfigEntityListingBase {
   }
 
   /**
-   * Overrides Drupal\config\Plugin\ConfigEntityListingBase::getList();
+   * Overrides Drupal\views_ui_listing\EntityListControllerBase::getList();
    */
   public function getList() {
     $list = parent::getList();
@@ -77,7 +73,7 @@ class ViewListing extends ConfigEntityListingBase {
   }
 
   /**
-   * Overrides Drupal\config\Plugin\ConfigEntityListingBase::getRowData();
+   * Overrides Drupal\views_ui_listing\EntityListControllerBase::getRowData();
    */
   public function getRowData(EntityInterface $view) {
     $operations = $this->buildActionLinks($view);
@@ -96,7 +92,7 @@ class ViewListing extends ConfigEntityListingBase {
   }
 
   /**
-   * Overrides Drupal\config\Plugin\ConfigEntityListingBase::getRowData();
+   * Overrides Drupal\views_ui_listing\EntityListControllerBase::getRowData();
    */
   public function getHeaderData() {
     return array(
@@ -124,10 +120,10 @@ class ViewListing extends ConfigEntityListingBase {
   }
 
   /**
-   * Implements Drupal\config\Plugin\ConfigEntityListingInterface::defineActionLinks();
+   * Implements Drupal\views_ui_listing\EntityListControllerInterface::defineActionLinks();
    */
   public function defineActionLinks(EntityInterface $view) {
-    $path = $this->definition['path'] . '/view/' . $view->id();
+    $path = $this->entityInfo['list path'] . '/view/' . $view->id();
     $enabled = $view->isEnabled();
 
     if (!$enabled) {
@@ -167,7 +163,7 @@ class ViewListing extends ConfigEntityListingBase {
   }
 
   /**
-   * Overrides Drupal\config\Plugin\ConfigEntityListingBase::renderList();
+   * Overrides Drupal\views_ui_listing\EntityListControllerBase::renderList();
    */
   public function renderList() {
     $list = parent::renderList();

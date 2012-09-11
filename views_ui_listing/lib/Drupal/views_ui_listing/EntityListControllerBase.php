@@ -1,28 +1,39 @@
 <?php
 
 /**
- * Definition of Drupal\views_ui_listing\Plugin\ConfigEntityListingBase.
+ * Definition of Drupal\views_ui_listing\EntityListControllerBase.
  */
 
-namespace Drupal\views_ui_listing\Plugin;
+namespace Drupal\views_ui_listing;
 
-use Drupal\Component\Plugin\PluginBase as ComponentPluginBase;
-use Drupal\Component\Plugin\Discovery\DiscoveryInterface;
-use Drupal\config\ConfigStorageController;
 use Drupal\entity\EntityInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Abstract base class for config entity listing plugins.
  */
-abstract class ConfigEntityListingBase extends ComponentPluginBase implements ConfigEntityListingInterface {
+abstract class EntityListControllerBase implements EntityListControllerInterface {
 
   /**
    * The Config storage controller class.
    *
    * @var Drupal\config\ConfigStorageController
    */
-  protected $controller;
+  protected $storage;
+
+  /**
+   * The Config entity type.
+   *
+   * @var string
+   */
+  protected $entityType;
+
+  /**
+   * The Config entity info.
+   *
+   * @var array
+   */
+  protected $entityInfo;
 
   /**
    * If ajax links are used on the listing page.
@@ -31,57 +42,49 @@ abstract class ConfigEntityListingBase extends ComponentPluginBase implements Co
    */
   protected $usesAJAX;
 
-  /**
-   * The plugins's definition.
-   *
-   * @var array
-   */
-  public $definition;
-
-  public function __construct(array $configuration, $plugin_id, DiscoveryInterface $discovery) {
-    parent::__construct($configuration, $plugin_id, $discovery);
-    $this->definition = $this->getDefinition();
-    $this->controller = entity_get_controller($this->definition['entity_type']);
+  public function __construct($entity_type, $entity_info = FALSE) {
+    $this->entityType = $entity_type;
+    $this->storage = entity_get_controller($entity_type);
+    if (!$entity_info) {
+      $entity_info = entity_get_info($entity_type);
+    }
+    $this->entityInfo = $entity_info;
   }
 
   /**
-   * Implements Drupal\views_ui_listing\Plugin\ConfigEntityListingInterface::getList();
+   * Implements Drupal\views_ui_listing\EntityListControllerInterface::getList();
    */
   public function getList() {
-    return $this->controller->load();
+    return $this->storage->load();
   }
 
   /**
-   * Implements Drupal\views_ui_listing\Plugin\ConfigEntityListingInterface::getController();
+   * Implements Drupal\views_ui_listing\EntityListControllerInterface::getStorageController();
    */
-  public function getController() {
-    return $this->controller;
+  public function getStorageController() {
+    return $this->storage;
   }
 
   public function getPath() {
-    return $this->definition['path'];
+    return $this->entityInfo['list path'];
   }
 
   /**
-   * Implements Drupal\views_ui_listing\Plugin\ConfigEntityListingInterface::hookMenu();
+   * Implements Drupal\views_ui_listing\EntityListControllerInterface::hookMenu();
    */
   public function hookMenu() {
-    $definition = $this->definition;
-
-    return array(
-      $definition['path'] => array(
-        'title' => $definition['page_title'],
-        'description' => $definition['page_description'],
-        'page callback' => 'views_ui_listing_entity_listing_page',
-        'page arguments' => array($definition['id']),
-        // @todo Add a proper access callback here.
-        'access callback' => TRUE,
-      ),
+    $items = array();
+    $items[$this->entityInfo['list path']] = array(
+      'page callback' => 'views_ui_listing_entity_listing_page',
+      'page arguments' => array($this->entityType),
+      // @todo Add a proper access callback here.
+      'access callback' => TRUE,
     );
+    return $items;
   }
 
   /**
-   * Implements Drupal\views_ui_listing\Plugin\ConfigEntityListingInterface::getRowData();
+   * Implements Drupal\views_ui_listing\EntityListControllerInterface::getRowData();
    */
   public function getRowData(EntityInterface $entity) {
     $row = array();
@@ -95,7 +98,7 @@ abstract class ConfigEntityListingBase extends ComponentPluginBase implements Co
   }
 
   /**
-   * Implements Drupal\views_ui_listing\Plugin\ConfigEntityListingInterface::getHeaderData();
+   * Implements Drupal\views_ui_listing\EntityListControllerInterface::getHeaderData();
    */
   public function getHeaderData() {
     $row = array();
@@ -106,7 +109,7 @@ abstract class ConfigEntityListingBase extends ComponentPluginBase implements Co
   }
 
   /**
-   * Implements Drupal\views_ui_listing\Plugin\ConfigEntityListingInterface::buildActionLinks();
+   * Implements Drupal\views_ui_listing\EntityListControllerInterface::buildActionLinks();
    */
   public function buildActionLinks(EntityInterface $entity) {
     $links = array();
@@ -136,7 +139,7 @@ abstract class ConfigEntityListingBase extends ComponentPluginBase implements Co
   }
 
   /**
-   * Implements Drupal\views_ui_listing\Plugin\ConfigEntityListingInterface::renderList();
+   * Implements Drupal\views_ui_listing\EntityListControllerInterface::renderList();
    */
   public function renderList() {
     $rows = array();
@@ -161,7 +164,7 @@ abstract class ConfigEntityListingBase extends ComponentPluginBase implements Co
   }
 
   /**
-   * Implements Drupal\config\Plugin\ConfigEntityListingInterface::renderList();
+   * Implements Drupal\views_ui_listing\EntityListControllerInterface::renderList();
    */
   public function renderListAJAX() {
     $list = $this->renderList();

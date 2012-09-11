@@ -2,17 +2,17 @@
 
 /**
  * @file
- * Definition of Drupal\views_ui_listing\Plugin\ConfigEntityListingInterface.
+ * Definition of Drupal\views_ui_listing\EntityListControllerInterface.
  */
 
-namespace Drupal\views_ui_listing\Plugin;
+namespace Drupal\views_ui_listing;
 
 use Drupal\entity\EntityInterface;
 
 /**
  * Defines an interface for Configuration entity listing plugins.
  */
-interface ConfigEntityListingInterface {
+interface EntityListControllerInterface {
 
   /*
    * Returns a list of all available config entites of this type.
@@ -24,7 +24,7 @@ interface ConfigEntityListingInterface {
    *
    * @todo Put in correct namespace and docs here.
    */
-  public function getController();
+  public function getStorageController();
 
   /**
    * Gets the hook_menu array item.
