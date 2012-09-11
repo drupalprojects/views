@@ -946,7 +946,7 @@ function views_ui_edit_form($form, &$form_state, $view, $display_id = NULL) {
     $view->fixMissingRelationships();
   }
 
-  $form['#attached']['js'][] = ctools_attach_js('collapsible-div');
+  $form['#attached']['js'][] = drupal_get_path('module', 'ctools') . '/js/collapsible-div.js';
 
   $form['#tree'] = TRUE;
   // @todo When more functionality is added to this form, cloning here may be

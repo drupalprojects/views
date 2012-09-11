@@ -27,6 +27,7 @@ function views_ui_menu() {
     'type' => MENU_LOCAL_ACTION,
   ) + $base;
 
+  /*
   // Top-level Views module pages (not tied to a particular View).
   $items['admin/structure/views/add-template'] = array(
     'title' => 'Add view from template',
@@ -34,6 +35,7 @@ function views_ui_menu() {
     // Don't show a local action link if there aren't any templates.
     'type' => views_get_all_templates() ? MENU_LOCAL_ACTION : MENU_VISIBLE_IN_BREADCRUMB,
   ) + $base;
+  */
 
   $items['admin/structure/views/import'] = array(
     'title' => 'Import',
@@ -349,19 +351,6 @@ function views_ui_cache_set(&$view) {
 }
 
 /**
- * Specialized menu callback to load a view that is only a default
- * view.
- */
-function views_ui_default_load($name) {
-  $view = views_get_view($name);
-  if ($view->type == t('Default')) {
-    return $view;
-  }
-
-  return FALSE;
-}
-
-/**
  * Theme preprocess for views-view.tpl.php.
  */
 function views_ui_preprocess_views_view(&$vars) {
@@ -532,17 +521,6 @@ function views_ui_view_preview_section_rows_links($view) {
 }
 
 /**
- * Implments hook_ctools_plugin_directory().
- *
- * Views UI provides wizard plugins on behalf of core base tables.
- */
-function views_ui_ctools_plugin_directory($module, $plugin) {
-  if ($module == 'views_ui' || ($module == 'ctools' && $plugin == 'export_ui')) {
-    return 'plugins/' . $plugin;
-  }
-}
-
-/**
  * Fetch metadata on a specific views ui wizard plugin.
  *
  * @param $wizard_type
@@ -608,18 +586,6 @@ function views_ui_views_wizard_defaults() {
     // so they are documented.
     'title' => '',
     'base_table' => NULL,
-  );
-}
-
-/**
- * Inform CTools that the Views wizard plugin can have child plugins.
- */
-function views_ui_ctools_plugin_type() {
-  return array(
-    'views_wizard' => array(
-      'child plugins' => TRUE,
-      'defaults' => views_ui_views_wizard_defaults(),
-    ),
   );
 }
 
