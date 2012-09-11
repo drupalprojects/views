@@ -60,6 +60,14 @@ interface ConfigEntityListingInterface {
   public function renderList();
 
   /**
+   * Returns the list page as JSON.
+   *
+   * @return Symfony\Component\HttpFoundation\JsonResponse
+   *   AJAX commands to render the list.
+   */
+  public function renderListAJAX();
+
+  /**
    * Renders a list of action links.
    *
    * @return array

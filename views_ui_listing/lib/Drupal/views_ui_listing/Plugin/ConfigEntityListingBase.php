@@ -10,6 +10,7 @@ use Drupal\Component\Plugin\PluginBase as ComponentPluginBase;
 use Drupal\Component\Plugin\Discovery\DiscoveryInterface;
 use Drupal\config\ConfigStorageController;
 use Drupal\entity\EntityInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Abstract base class for config entity listing plugins.
@@ -55,6 +56,10 @@ abstract class ConfigEntityListingBase extends ComponentPluginBase implements Co
    */
   public function getController() {
     return $this->controller;
+  }
+
+  public function getPath() {
+    return $this->definition['path'];
   }
 
   /**
@@ -149,7 +154,21 @@ abstract class ConfigEntityListingBase extends ComponentPluginBase implements Co
       '#theme' => 'table',
       '#header' => $this->getHeaderData(),
       '#rows' => $rows,
+      '#attributes' => array(
+        'id' => 'config-entity-listing',
+      ),
     );
+  }
+
+  /**
+   * Implements Drupal\config\Plugin\ConfigEntityListingInterface::renderList();
+   */
+  public function renderListAJAX() {
+    $list = $this->renderList();
+    $commands = array();
+    $commands[] = ajax_command_replace('#config-entity-listing', drupal_render($list));
+
+    return new JsonResponse(ajax_render($commands));
   }
 
 }

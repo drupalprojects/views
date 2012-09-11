@@ -5,11 +5,11 @@
  * Definition of Drupal\views_ui_listing\Tests\ConfigEntityListingTest.
  */
 
-namespace Drupal\config\Tests;
+namespace Drupal\views_ui_listing\Tests;
 
 use Drupal\simpletest\WebTestBase;
 use Drupal\views_ui_listing\Plugin\Type\ConfigEntityListingManager;
-use Drupal\views_ui_listing\Plugin\views_ui_listing\listing\ConfigTestConfigEntityListing;
+use Drupal\views_ui_listing_test\Plugin\views_ui_listing\listing\ConfigTestConfigEntityListing;
 use Drupal\config\ConfigEntityBase;
 
 /**
@@ -51,7 +51,7 @@ class ConfigEntityListingTest extends WebTestBase {
       'path' => 'config-listing-test',
       'page_title' => 'Config test',
       'page_description' => 'Config test listing page',
-      'class' => 'Drupal\\config_test\\Plugin\\config\\listing\\ConfigTestConfigEntityListing',
+      'class' => 'Drupal\\views_ui_listing_test\\Plugin\\views_ui_listing\\listing\\ConfigTestConfigEntityListing',
     );
     $this->assertEqual($definitions['config_test'], $expected, 'Plugin definition matches the expected definition.');
 

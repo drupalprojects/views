@@ -1,6 +1,8 @@
 <?php
 
 use Drupal\views_ui_listing\Plugin\Type\ConfigEntityListingManager;
+use Drupal\views_ui_listing\Plugin\ConfigEntityListingInterface;
+use Drupal\config\ConfigEntityInterface;
 
 /**
  * Implements hook_menu().
@@ -19,15 +21,58 @@ function views_ui_listing_menu() {
 }
 
 /**
- * Generic page callback for config listing pages.
+ * Page callback: Displays a config listing page.
+ *
  * @param string $plugin_id
- *   The config entity plugin id.
+ *   The config entity plugin ID.
+ *
  * @return string
  *   The page markup for the page.
  */
 function views_ui_listing_entity_listing_page($plugin_id) {
-  $listing_manager = new ConfigEntityListingManager();
-  // @todo Add some error handling here, or in the manager class.
-  $listing = $listing_manager->createInstance($plugin_id);
+  $listing = views_ui_listing_get_plugin($plugin_id);
   return $listing->renderList();
+}
+
+/**
+ * Gets an instance of a listing plugin.
+ *
+ * @param string $plugin_id
+ *   The config entity plugin ID.
+ *
+ * @return Drupal\config\Plugin\ConfigEntityListingInterface
+ *   @
+ */
+function views_ui_listing_get_plugin($plugin_id) {
+  // @todo Add some error handling here, or in the manager class.
+  $listing_manager = new ConfigEntityListingManager();
+  return $listing_manager->createInstance($plugin_id);
+}
+
+/**
+ * Page callback: Calls a method on a config entity and reloads the listing page.
+ *
+ * @param Drupal\views_ui_listing\Plugin\ConfigEntityListingInterface $listing
+ *   The listing plugin instance for this entity.
+ * @param Drupal\config\ConfigEntityInterface $entity
+ *   The config entity being acted upon.
+ * @param string $op
+ *   The action to perform, e.g., 'enable' or 'disable'.
+ *
+ * @return mixed
+ *   Either returns the listing page as JSON, or calls drupal_goto() to
+ *   redirect back to the listing page.
+ */
+function views_ui_listing_ajax_callback(ConfigEntityListingInterface $listing, ConfigEntityInterface $entity, $op) {
+  // Perform the operation.
+  $entity->$op();
+
+  // If the request is via AJAX, return the rendered list as JSON.
+  if (drupal_container()->get('request')->request->get('js')) {
+    return $listing->renderListAJAX();
+  }
+  // Otherwise, redirect back to the page.
+  else {
+    drupal_goto($listing->getPath());
+  }
 }

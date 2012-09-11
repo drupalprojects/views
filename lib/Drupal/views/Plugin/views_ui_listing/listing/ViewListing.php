@@ -29,11 +29,34 @@ class ViewListing extends ConfigEntityListingBase {
    * Overrides Drupal\config\Plugin\ConfigEntityListingBase::hookMenu();
    */
   public function hookMenu() {
+    // Find the path and the number of path arguments.
+    $path = $this->definition['path'];
+    $path_count = count(explode('/', $path));
+
     $items = parent::hookMenu();
     // Override the access callback.
     // @todo Probably won't need to specify user access.
-    $items[$this->definition['path']]['access callback'] = 'user_access';
-    $items[$this->definition['path']]['access arguments'] = array('administer views');
+    $items[$path]['access callback'] = 'user_access';
+    $items[$path]['access arguments'] = array('administer views');
+
+    // Set up the base for AJAX callbacks.
+    $ajax_base = array(
+      'page callback' => 'views_ui_listing_ajax_callback',
+      'page arguments' => array($this, $path_count + 1, $path_count + 2),
+      'access callback' => 'user_access',
+      'access arguments' => array('administer views'),
+      'type' => MENU_CALLBACK,
+    );
+
+    // Add an enable link.
+    $items["$path/view/%views_ui_view/enable"] = array(
+      'title' => 'Enable a view',
+    ) + $ajax_base;
+    // Add a disable link.
+    $items["$path/view/%views_ui_view/disable"] = array(
+      'title' => 'Disable a view',
+    ) + $ajax_base;
+
     return $items;
   }
 
