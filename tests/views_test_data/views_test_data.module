@@ -45,6 +45,28 @@ function views_test_data_test_dynamic_access_callback($access, $argument1, $argu
 }
 
 /**
+ * Access callback for the generic handler test.
+ *
+ * @param bool $argument
+ *   A parameter to test against
+ *
+ *
+ * @return bool
+ *
+ * @see Drupal\views\Tests\Handler\HandlerTest
+ */
+function views_test_data_handler_test_access_callback($argument = FALSE) {
+  if ($argument) {
+    $access = variable_get('views_test_data_handler_test_access_callback_argument', FALSE);
+  }
+  else {
+    $access = variable_get('views_test_data_handler_test_access_callback', FALSE);
+  }
+
+  return $access;
+}
+
+/**
  * Implements hook_views_pre_render().
  */
 function views_test_data_views_pre_render(&$view) {
