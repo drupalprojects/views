@@ -3939,12 +3939,18 @@ function views_ui_add_item_form($form, &$form_state) {
       '#title' => t('Search'),
     );
 
+    // @todo Replace dependent.js with #states: http://drupal.org/node/1789824.
     $groups = array('all' => t('- All -'));
     $form['options']['controls']['group'] = array(
       '#type' => 'select',
       '#title' => t('Filter'),
       '#options' => array(),
       '#attributes' => array('class' => array('ctools-master-dependent')),
+      '#attached' => array(
+        'js' => array(
+          drupal_get_path('module', 'ctools') . '/js/dependent.js',
+        ),
+      ),
     );
 
     $form['options']['name'] = array(
