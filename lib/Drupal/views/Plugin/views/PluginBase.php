@@ -176,7 +176,7 @@ abstract class PluginBase extends ComponentPluginBase {
    * Provide a full list of possible theme templates used by this style.
    */
   public function themeFunctions() {
-    return views_theme_functions($this->definition['theme'], $this->view, $this->view->display_handler);
+    return views_theme_functions($this->definition['theme'], $this->view, $this->view->display_handler->display);
   }
 
   /**
@@ -186,7 +186,7 @@ abstract class PluginBase extends ComponentPluginBase {
     $funcs = array();
     if (!empty($this->definition['additional themes'])) {
       foreach ($this->definition['additional themes'] as $theme => $type) {
-        $funcs[] = views_theme_functions($theme, $this->view, $this->view->display_handler);
+        $funcs[] = views_theme_functions($theme, $this->view, $this->view->display_handler->display);
       }
     }
     return $funcs;
