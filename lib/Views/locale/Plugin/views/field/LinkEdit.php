@@ -7,6 +7,7 @@
 
 namespace Views\locale\Plugin\views\field;
 
+use Drupal\views\ViewExecutable;
 use Drupal\views\Plugin\views\field\FieldPluginBase;
 use Drupal\Core\Annotation\Plugin;
 
