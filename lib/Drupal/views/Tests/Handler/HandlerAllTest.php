@@ -16,31 +16,6 @@ use Drupal\views\Plugin\views\filter\InOperator;
  */
 class HandlerAllTest extends HandlerTestBase {
 
-  /**
-   * Modules to enable.
-   *
-   * @var array
-   */
-  public static $modules = array(
-    'aggregator',
-    'book',
-    'block',
-    'comment',
-    'contact',
-    'field',
-    'filter',
-    'file',
-    'language',
-    'locale',
-    'node',
-    'search',
-    'statistics',
-    'system',
-    'taxonomy',
-    'translation',
-    'user'
-  );
-
   public static function getInfo() {
     return array(
       'name' => 'Handlers: All',
