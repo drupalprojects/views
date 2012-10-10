@@ -161,98 +161,16 @@
  *   horizontally. This means that you can add options and do stuff on all
  *   views displays. One theoretical example is metatags for views.
  *
- * Plugins are registered by implementing hook_views_plugins() in your
- * modulename.views.inc file and returning an array of data.
- * For examples please look at views_views_plugins() in
- * views/includes/plugins.inc as it has examples for all of them.
+ * Plugins are registered by extending one of the Views base plugin classes
+ * and defining settings in the plugin annotation.
  *
- * Similar to handlers, make sure that you add your plugin files to the
- * module.info file.
+ * @todo Document how to use annotations and what goes in them.
+ * @todo Add @ingroup to all the base plugins for this group.
+ * @todo Add a separate @ingroup for all plugins?
+ * @todo Document specific options on the appropriate plugin base classes.
+ * @todo Add examples.
  *
- * The array defining plugins will look something like this:
- * @code
- * return array(
- *   'display' => array(
- *     // ... list of display plugins,
- *    ),
- *   'style' => array(
- *     // ... list of style plugins,
- *    ),
- *   'row' => array(
- *     // ... list of row style plugins,
- *    ),
- *   'argument default' => array(
- *     // ... list of argument default plugins,
- *    ),
- *   'argument validator' => array(
- *     // ... list of argument validator plugins,
- *    ),
- *    'access' => array(
- *     // ... list of access plugins,
- *    ),
- *    'query' => array(
- *      // ... list of query plugins,
- *     ),,
- *    'cache' => array(
- *      // ... list of cache plugins,
- *     ),,
- *    'pager' => array(
- *      // ... list of pager plugins,
- *     ),,
- *    'exposed_form' => array(
- *      // ... list of exposed_form plugins,
- *     ),,
- *    'localization' => array(
- *      // ... list of localization plugins,
- *     ),
- *    'display_extender' => array(
- *      // ... list of display extender plugins,
- *     ),
- * );
- * @endcode
- *
- * Each plugin will be registered with an identifier for the plugin, plus a
- * fairly lengthy list of items that can define how and where the plugin is
- * used. Here is an example of a row style plugin from Views core:
- * @code
- *     'node' => array(
- *       'title' => t('Node'),
- *       'help' => t('Display the node with standard node view.'),
- *       'handler' => 'views_plugin_row_node_view',
- *       'path' => drupal_get_path('module', 'views') . '/modules/node', // not necessary for most modules
- *       'theme' => 'views_view_row_node',
- *       'base' => array('node'), // only works with 'node' as base.
- *       'type' => 'normal',
- *     ),
- * @endcode
- *
- * Of particular interest is the *path* directive, which works a little
- * differently from handler registration; each plugin must define its own path,
- * rather than relying on a global info for the paths. For example:
- * @code
- *    'feed' => array(
- *      'title' => t('Feed'),
- *      'help' => t('Display the view as a feed, such as an RSS feed.'),
- *      'handler' => 'views_plugin_display_feed',
- *      'uses_hook_menu' => TRUE,
- *      'use_ajax' => FALSE,
- *      'use_pager' => FALSE,
- *      'accept_attachments' => FALSE,
- *      'admin' => t('Feed'),
- *     ),
- * @endcode
- *
- * Please be sure to prefix your plugin identifiers with your module name to
- * ensure namespace safety; after all, two different modules could try to
- * implement the 'grid2' plugin, and that would cause one plugin to completely
- * fail.
- *
- * @todo Finish this document.
- *
- * See also:
- * - @link views_display_plugins Views display plugins @endlink
- * - @link views_style_plugins Views style plugins @endlink
- * - @link views_row_plugins Views row plugins @endlink
+ * @see Drupal\views\Plugin\views\PluginBase
  */
 
 /**
@@ -478,122 +396,6 @@ function hook_views_data_alter(&$data) {
   );
 
   // Note that the $data array is not returned – it is modified by reference.
-}
-
-/**
- * Describes plugins defined by the module.
- *
- * This hook should be placed in MODULENAME.views.inc and it will be
- * auto-loaded. MODULENAME.views.inc must be in the directory specified by the
- * 'path' key returned by MODULENAME_views_api(), or the same directory as the
- * .module file, if 'path' is unspecified.
- *
- * @return
- *   An array on the form $plugins['PLUGIN TYPE']['PLUGIN NAME']. The plugin
- *   must be one of row, display, display_extender, style, argument default,
- *   argument validator, access, query, cache, pager, exposed_form or
- *   localization. The plugin name should be prefixed with your module name.
- *   The value for each entry is an associateive array that may contain the
- *   following entries:
- *   - Used by all plugin types:
- *     - title (required): The name of the plugin, as shown in Views. Wrap in
- *       t().
- *     - handler (required): The name of the file containing the class
- *       describing the handler, which must also be the name of the handler's
- *       class.
- *     - path: Path to the handler. Only required if the handler is not placed
- *       in the same folder as the .module file or in the subfolder 'views'.
- *     - parent: The name of the plugin this plugin extends. Since Drupal 7 this
- *       is no longer required, but may still be useful from a code readability
- *       perspective.
- *     - no_ui: Set to TRUE to denote that the plugin doesn't appear to be
- *       selectable in the ui, though on the api side they still exists.
- *     - help: A short help text, wrapped in t() used as description on the plugin settings form.
- *     - theme: The name of a theme suggestion to use for the display.
- *     - js: An array with paths to js files that should be included for the
- *       display. Note that the path should be relative Drupal root, not module
- *       root.
- *     - type: Each plugin can specify a type parameter to group certain
- *       plugins together. For example all row plugins related to feeds are
- *       grouped together, because a rss style plugin only accepts feed row
- *       plugins.
- *
- *   - Used by display plugins:
- *     - admin: The administrative name of the display, as displayed on the
- *       Views overview and also used as default name for new displays. Wrap in
- *       t().
- *     - no remove: Set to TRUE to make the display non-removable. (Basically
- *       only used for the master/default display.)
- *     - use_ajax: Set to TRUE to allow AJAX loads in the display. If it's
- *       disabled there will be no ajax option in the ui.
- *     - use_pager: Set to TRUE to allow paging in the display.
- *     - use_more: Set to TRUE to allow the 'use_more' setting in the display.
- *     - accept_attachments: Set to TRUE to allow attachment displays to be
- *       attached to this display type.
- *     - contextual_links_locations: An array with places where contextual links
- *       should be added. Can for example be 'page' or 'block'. If you don't
- *       specify it there will be contextual links around the rendered view.
- *     - uses_hook_menu: Set to TRUE to have the display included by
- *       views_menu_alter(). views_menu_alter executes then execute_hook_menu
- *       on the display object.
- *     - uses_hook_block: Set to TRUE to have the display included by
- *       views_block_info().
- *     - theme: The name of a theme suggestion to use for the display.
- *     - js: An array with paths to js files that should be included for the
- *       display. Note that the path should be relative Drupal root, not module
- *       root.
- *
- *   - Used by style plugins:
- *     - uses_row_plugin: Set to TRUE to allow row plugins for this style.
- *     - uses_row_class: Set to TRUE to allow the CSS class settings for rows.
- *     - uses_fields: Set to TRUE to have the style plugin accept field
- *       handlers.
- *     - uses grouping: Set to TRUE to allow the grouping settings for rows.
- *     - even empty: May have the value 'even empty' to tell Views that the style
- *       should be rendered even if there are no results.
- *
- *   - Used by row plugins:
- *     - uses_fields: Set to TRUE to have the row plugin accept field handlers.
- */
-function hook_views_plugins() {
-  $plugins = array();
-  $plugins['argument validator'] = array(
-    'taxonomy_term' => array(
-      'title' => t('Taxonomy term'),
-      'handler' => 'views_plugin_argument_validate_taxonomy_term',
-      // Declaring path explicitly not necessary for most modules.
-      'path' => drupal_get_path('module', 'views') . '/modules/taxonomy',
-    ),
-  );
-
-  return array(
-    'module' => 'views', // This just tells our themes are elsewhere.
-    'argument validator' => array(
-      'taxonomy_term' => array(
-        'title' => t('Taxonomy term'),
-        'handler' => 'views_plugin_argument_validate_taxonomy_term',
-        'path' => drupal_get_path('module', 'views') . '/modules/taxonomy', // not necessary for most modules
-      ),
-    ),
-    'argument default' => array(
-      'taxonomy_tid' => array(
-        'title' => t('Taxonomy term ID from URL'),
-        'handler' => 'views_plugin_argument_default_taxonomy_tid',
-        'path' => drupal_get_path('module', 'views') . '/modules/taxonomy',
-        'parent' => 'fixed',
-      ),
-    ),
-  );
-}
-
-/**
- * Alter existing plugins data, defined by modules.
- *
- * @see hook_views_plugins()
- */
-function hook_views_plugins_alter(&$plugins) {
-  // Add apachesolr to the base of the node row plugin.
-  $plugins['row']['node']['base'][] = 'apachesolr';
 }
 
 /**
