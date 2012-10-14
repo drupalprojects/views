@@ -65,10 +65,10 @@
  *   Access plugins are responsible for controlling access to the view. Views
  *   includes plugins for checking user roles and individual permissions.
  * - Query (extends Drupal\views\Plugin\views\query\QueryPluginBase): Query
- *   plugins generate and execute a query, so they can be seen as a data
- *   backend. The default implementation is using SQL. There are contributed
- *   modules reading data from other sources, see for example the Views XML
- *   Backend module.
+ *   plugins generate and execute a built query object against a particular
+ *   storage backend, converting the Views query object into an actual query.
+ *   The only default implementation is SQL. Note that most handler plugins
+ *   curerntly rely on the SQL query plugin.
  * - Cache (extends Drupal\views\Plugin\views\cache\CachePluginBase): Cache
  *   plugins control the storage and loading of caches. Currently they can do
  *   both result and render caching, but maybe one day cache the generated
