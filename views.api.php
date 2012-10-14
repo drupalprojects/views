@@ -6,33 +6,11 @@
  */
 
 /**
- * @defgroup views_handlers Views handlers
- * @{
- * Views handlers are objects that are part of the query buidling flow.
- * Handlers are registered by extending the HandlerBase class.
- *
- * See also:
- * - @link views_field_handlers Views field handlers @endlink
- * - @link views_sort_handlers Views sort handlers @endlink
- * - @link views_filter_handlers Views filter handlers @endlink
- * - @link views_argument_handlers Views argument handlers @endlink
- * - @link views_relationship_handlers Views relationship handlers @endlink
- * - @link views_area_handlers Views area handlers @endlink
- *
- * @todo Add examples.
- * @todo Update documentation.
- *
- * @see Drupal\views\Plugin\views\HandlerBase
- * @}
- */
-
-/**
  * @defgroup views_plugins Views plugins
  *
- * Views plugins are objects that are used to display the view or make other
- * modifications. Unlike handlers, they are not involved with building the
- * view query. Plugins are registered by extending one of the Views base plugin
- * classes and defining settings in the plugin annotation.
+ * Views plugins are objects that are used to build and render the view.
+ * Plugins are registered by extending one of the Views base plugin classes
+ * and defining settings in the plugin annotation.
  *
  * Views has the following types of plugins:
  * - Access: Access plugins are responsible for controlling access to the
@@ -72,6 +50,18 @@
  * - Exposed form: Exposed form plugins are responsible for building,
  *   rendering, and controlling exposed forms. Exposed form plugins extend
  *   Drupal\views\Plugin\views\display\DisplayPluginBase.
+ * - Handlers: Handler plugins help build the view query object that the query
+ *   plugin then executes to retrieve the data from the storage backend (see
+ *   below). There are several types of handlers:
+ *   - Area handlers: Extend Drupal\views\Plugin\views\area\AreaHandlerBase
+ *   - Argument handlers: Extend
+ *     Drupal\views\Plugin\views\argument\ArgumentHandlerBase
+ *   - Field handlers: Extend Drupal\views\Plugin\views\field\FieldHandlerBase
+ *   - Filter handlers: Extend
+ *     Drupal\views\Plugin\views\filter\FilterHandlerBase
+ *   - Relationship handlers:
+ *     Extend Drupal\views\Plugin\views\relationship\RelationshipHandlerBase
+ *   - Sort handlers: Extend Drupal\views\Plugin\views\sort:SortHandlerBase
  * - Pager: Pager plugins take care of everything regarding pagers, including
  *   getting setting the total number of items to render the pager and
  *   setting the global pager arrays. Pager plugins extend
@@ -90,6 +80,7 @@
  *   include HTML lists, tables, etc. Style plugins extend
  *   Drupal\views\Plugin\views\style\StylePluginBase.
  *
+ * @todo Add an explanation for each type of handler.
  * @todo Document how to use annotations and what goes in them.
  * @todo Add @ingroup to all the base plugins for this group.
  * @todo Add a separate @ingroup for all plugins?
@@ -97,6 +88,7 @@
  * @todo Add examples.
  *
  * @see Drupal\views\Plugin\views\PluginBase
+ * @see Drupal\views\Plugin\views\HandlerBase
  */
 
 /**
