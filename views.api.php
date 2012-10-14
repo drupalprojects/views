@@ -48,14 +48,14 @@
  *   styles handle each individual record from the main view table. The two
  *   included by default render the entire entity (nodes only), or selected
  *   fields.
- * - Argument default
- *   (extends Drupal\views\Plugin\views\argument_default\ArgumentDefaultPluginBase):
+ * - Argument default (extends
+ *   Drupal\views\Plugin\views\argument_default\ArgumentDefaultPluginBase):
  *   Argument default plugins allow pluggable ways of providing default
- *   values for contextual filters (previously 'arguments'). This is useful
- *   for blocks and other display types lacking a natural argument input.
- *   Examples are plugins to extract node and user IDs from the URL.
- * - Argument validator
- *   (extends Drupal\views\Plugin\views\argument_validator\ArgumentValidatorPluginBase):
+ *   values for contextual filters. This is useful for blocks and other
+ *   display types lacking a natural argument input. Examples are plugins to
+ *   extract node and user IDs from the URL.
+ * - Argument validator (extends
+ *   Drupal\views\Plugin\views\argument_validator\ArgumentValidatorPluginBase):
  *   Validator plugins can ensure arguments are valid, and even do
  *   transformations on the arguments. They can also provide replacement
  *   patterns for the view title. For example, the 'content' validator
