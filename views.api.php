@@ -35,19 +35,9 @@
  * classes and defining settings in the plugin annotation.
  *
  * Views has the following types of plugins:
- * - Display (extends Drupal\views\Plugin\views\display\DisplayPluginBase):
- *   Display plugins are responsible for controlling where a view lives; that
- *   is, how they are being exposed to other parts of Drupal. Page and block
- *   are the most common displays, as well as the ubiquitous 'master' (or
- *   'default') display.
- * - Style (extends Drupal\views\Plugin\views\style\StylePluginBase): Style
- *   plugins control how a view is displayed. For the most part they are
- *   object wrappers around theme templates. Styles could for example be HTML
- *   lists or tables.
- * - Row style (extends Drupal\views\Plugin\views\row\RowPluginBase): Row
- *   styles handle each individual record from the main view table. The two
- *   included by default render the entire entity (nodes only), or selected
- *   fields.
+ * - Access (extends Drupal\views\Plugin\views\access\AccessPluginBase):
+ *   Access plugins are responsible for controlling access to the view. Views
+ *   includes plugins for checking user roles and individual permissions.
  * - Argument default (extends
  *   Drupal\views\Plugin\views\argument_default\ArgumentDefaultPluginBase):
  *   Argument default plugins allow pluggable ways of providing default
@@ -61,31 +51,41 @@
  *   patterns for the view title. For example, the 'content' validator
  *   verifies verifies that the argument value corresponds to a node, loads
  *   that node and provides the node title as a replacement pattern.
- * - Access (extends Drupal\views\Plugin\views\access\AccessPluginBase):
- *   Access plugins are responsible for controlling access to the view. Views
- *   includes plugins for checking user roles and individual permissions.
- * - Query (extends Drupal\views\Plugin\views\query\QueryPluginBase): Query
- *   plugins generate and execute a built query object against a particular
- *   storage backend, converting the Views query object into an actual query.
- *   The only default implementation is SQL. Note that most handler plugins
- *   curerntly rely on the SQL query plugin.
  * - Cache (extends Drupal\views\Plugin\views\cache\CachePluginBase): Cache
  *   plugins control the storage and loading of caches. Currently they can do
  *   both result and render caching, but maybe one day cache the generated
  *   query.
- * - Pager (extends Drupal\views\Plugin\views\pager\PagerPluginBase): Pager
- *   plugins take care of everything regarding pagers. From getting and
- *   setting the total amount of items to render the pager and setting the
- *   global pager arrays.
- * - Exposed form (extends Drupal\views\Plugin\views\display\DisplayPluginBase):
- *   Exposed form plugins are responsible for building, rendering and
- *   controlling exposed forms. They can expose new parts of the view to the
- *   user and more.
+ * - Display (extends Drupal\views\Plugin\views\display\DisplayPluginBase):
+ *   Display plugins are responsible for controlling where a view lives; that
+ *   is, how they are being exposed to other parts of Drupal. Page and block
+ *   are the most common displays, as well as the ubiquitous 'master' (or
+ *   'default') display.
  * - Display extender (extends
  *   Drupal\views\Plugin\views\display_extender\DisplayExtenderPluginBase):
  *   Display extender plugins allow scaling of views options horizontally.
  *   This means that you can add options and do stuff on all views displays.
  *   One theoretical example is metatags for views.
+ * - Exposed form (extends Drupal\views\Plugin\views\display\DisplayPluginBase):
+ *   Exposed form plugins are responsible for building, rendering and
+ *   controlling exposed forms. They can expose new parts of the view to the
+ *   user and more.
+ * - Pager (extends Drupal\views\Plugin\views\pager\PagerPluginBase): Pager
+ *   plugins take care of everything regarding pagers. From getting and
+ *   setting the total amount of items to render the pager and setting the
+ *   global pager arrays.
+ * - Query (extends Drupal\views\Plugin\views\query\QueryPluginBase): Query
+ *   plugins generate and execute a built query object against a particular
+ *   storage backend, converting the Views query object into an actual query.
+ *   The only default implementation is SQL. Note that most handler plugins
+ *   curerntly rely on the SQL query plugin.
+ * - Row style (extends Drupal\views\Plugin\views\row\RowPluginBase): Row
+ *   styles handle each individual record from the main view table. The two
+ *   included by default render the entire entity (nodes only), or selected
+ *   fields.
+ * - Style (extends Drupal\views\Plugin\views\style\StylePluginBase): Style
+ *   plugins control how a view is displayed. For the most part they are
+ *   object wrappers around theme templates. Styles could for example be HTML
+ *   lists or tables.
  *
  * @todo Document how to use annotations and what goes in them.
  * @todo Add @ingroup to all the base plugins for this group.
