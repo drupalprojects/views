@@ -317,30 +317,6 @@ function hook_views_data_alter(&$data) {
 }
 
 /**
- * Register View API information.
- *
- * This is required for your module to have its include files loaded; for
- * example, when implementing hook_views_default_views().
- *
- * @return
- *   An array with the following possible keys:
- *   - api: (required) The version of the Views API the module implements.
- *   - path: (optional) If includes are stored somewhere other than within the
- *     root module directory, specify its path here.
- *   - template path: (optional) A path where the module has stored it's views
- *     template files. When you have specificed this key views automatically
- *     uses the template files for the views. You can use the same naming
- *     conventions like for normal views template files.
- */
-function hook_views_api() {
-  return array(
-    'api' => 3,
-    'path' => drupal_get_path('module', 'example') . '/includes/views',
-    'template path' => drupal_get_path('module', 'example') . '/themes',
-  );
-}
-
-/**
  * Replace special strings in the query before it is executed.
  *
  * @param \Drupal\views\ViewExecutable $view
