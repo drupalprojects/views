@@ -138,6 +138,10 @@ function template_preprocess_views_view(&$vars) {
           ),
         ),
       ),
+      // Support for AJAX path validation in core 7.39.
+      'urlIsAjaxTrusted' => array(
+        url('views/ajax') => TRUE,
+      ),
     );
 
     drupal_add_js($settings, 'setting');
