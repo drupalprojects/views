@@ -1282,7 +1282,7 @@ class view extends views_db_object {
     foreach ($GLOBALS['base_theme_info'] as $base) {
       $function = $base->name . '_views_post_render';
       if (function_exists($function)) {
-        $function($this);
+        $function($this, $this->display_handler->output, $cache);
       }
     }
     $function = $GLOBALS['theme'] . '_views_post_render';
