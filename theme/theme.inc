@@ -86,7 +86,7 @@ function template_preprocess_views_view(&$vars) {
   $vars['title'] = !empty($view->views_ui_context) ? filter_xss_admin($view->get_title()) : '';
 
   if ($view->display_handler->render_pager()) {
-    $exposed_input = isset($view->exposed_raw_input) ? $view->exposed_raw_input : NULL;
+    $exposed_input = $view->get_exposed_input();
     $vars['pager']      = $view->query->render_pager($exposed_input);
   }
 
