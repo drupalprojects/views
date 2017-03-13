@@ -685,6 +685,10 @@ class view extends views_db_object {
    */
   function init_pager() {
     if (empty($this->query->pager)) {
+      // If the query doesn't exist, initialize it.
+      if (empty($this->query)) {
+        $this->init_query();
+      }
       $this->query->pager = $this->display_handler->get_plugin('pager');
 
       if ($this->query->pager->use_pager()) {
