@@ -1061,6 +1061,11 @@ class views_plugin_display extends views_plugin {
       $title = $text;
     }
 
+    // Truncate the path as it is displayed as a link.
+    if ($section == 'path') {
+      $text = views_ui_truncate($text, 24);
+    }
+
     return l($text, 'admin/structure/views/nojs/display/' . $this->view->name . '/' . $this->display->id . '/' . $section, array('attributes' => array('class' => 'views-ajax-link ' . $class, 'title' => $title, 'id' => drupal_html_id('views-' . $this->display->id . '-' . $section)), 'html' => TRUE));
   }
 
