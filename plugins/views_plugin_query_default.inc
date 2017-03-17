@@ -1367,7 +1367,7 @@ class views_plugin_query_default extends views_plugin_query {
     }
 
     // Add all query substitutions as metadata.
-    $query->addMetaData('views_substitutions', module_invoke_all('views_query_substitutions', $this));
+    $query->addMetaData('views_substitutions', module_invoke_all('views_query_substitutions', $this->view));
 
     if (!$get_count) {
       if (!empty($this->limit) || !empty($this->offset)) {
