@@ -411,18 +411,8 @@ class view extends views_db_object {
    * Figure out what the exposed input for this view is.
    */
   function get_exposed_input() {
-    // Fill our input either from $_GET or from something previously set on the
-    // view.
     if (empty($this->exposed_input)) {
-      $this->exposed_input = $_GET;
-      // unset items that are definitely not our input:
-      foreach (array('page', 'q') as $key) {
-        if (isset($this->exposed_input[$key])) {
-          unset($this->exposed_input[$key]);
-        }
-      }
-
-      // If we have no input at all, check for remembered input via session.
+      $this->exposed_input = array();
 
       // If filters are not overridden, store the 'remember' settings on the
       // default display. If they are, store them on this display. This way,
@@ -430,8 +420,16 @@ class view extends views_db_object {
       // remember settings.
       $display_id = ($this->display_handler->is_defaulted('filters')) ? 'default' : $this->current_display;
 
-      if (empty($this->exposed_input) && !empty($_SESSION['views'][$this->name][$display_id])) {
+      // Start with remembered input via session.
+      if (!empty($_SESSION['views'][$this->name][$display_id])) {
         $this->exposed_input = $_SESSION['views'][$this->name][$display_id];
+      }
+
+      // Fetch exposed input values from $_GET. Overwrite if clashing.
+      foreach ($_GET as $key => $value) {
+        if (!in_array($key, array('page', 'q'))) {
+          $this->exposed_input[$key] = $value;
+        }
       }
     }
 
