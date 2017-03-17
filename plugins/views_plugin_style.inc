@@ -237,6 +237,7 @@ class views_plugin_style extends views_plugin {
             '#type' => 'checkbox',
             '#title' => t('Remove tags from rendered output'),
             '#default_value' => $grouping['rendered_strip'],
+            '#description' => t('Some modules add HTML to the rendered output and prevent the rows from grouping correctly. Stripping the HTML tags should correct this.'),
             '#dependency' => array(
               'edit-style-options-grouping-' . $i . '-field' => array_keys($field_labels),
             )
