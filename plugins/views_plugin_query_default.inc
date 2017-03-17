@@ -1244,6 +1244,9 @@ class views_plugin_query_default extends views_plugin_query {
    *
    * @param $get_count
    *   Provide a countquery if this is true, otherwise provide a normal query.
+   *
+   * @return SelectQuery
+   *   A SelectQuery object.
    */
   function query($get_count = FALSE) {
     // Check query distinct value.
