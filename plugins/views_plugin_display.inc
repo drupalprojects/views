@@ -1473,7 +1473,7 @@ class views_plugin_display extends views_plugin {
         $form['#title'] .= t('The title of this view');
         $form['title'] = array(
           '#type' => 'textfield',
-          '#description' => t('This title will be displayed with the view, wherever titles are normally displayed; i.e, as the page title, block title, etc.'),
+          '#description' => t('This title will be displayed with the view, wherever titles are normally displayed; i.e, as the page title, block title, etc. Use &lt;none&gt; to not assign a title; this can allow other modules to control the page title.'),
           '#default_value' => $this->get_option('title'),
         );
         break;
