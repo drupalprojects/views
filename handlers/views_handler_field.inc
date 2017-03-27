@@ -540,7 +540,7 @@ class views_handler_field extends views_handler {
 
     $form['element_class_enable'] = array(
       '#type' => 'checkbox',
-      '#title' => t('Create a CSS class'),
+      '#title' => t('Add CSS class'),
       '#dependency' => array(
         'edit-options-element-type-enable' => array(1),
       ),
@@ -579,7 +579,7 @@ class views_handler_field extends views_handler {
     );
     $form['element_label_class_enable'] = array(
       '#type' => 'checkbox',
-      '#title' => t('Create a CSS class'),
+      '#title' => t('Add CSS class'),
       '#dependency' => array(
         'edit-options-element-label-type-enable' => array(1)
       ),
@@ -619,7 +619,7 @@ class views_handler_field extends views_handler {
 
     $form['element_wrapper_class_enable'] = array(
       '#type' => 'checkbox',
-      '#title' => t('Create a CSS class'),
+      '#title' => t('Add CSS class'),
       '#dependency' => array(
         'edit-options-element-wrapper-type-enable' => array(1),
       ),
