@@ -130,7 +130,7 @@ class views_plugin_style extends views_plugin {
         // Explode the value by whitespace, this allows the function to handle
         // a single class name and multiple class names that are then tokenized.
         foreach(explode(' ', $class) as $token_class) {
-          $classes[] = strip_tags($this->tokenize_value($token_class, $row_index));
+          $classes = array_merge($classes, explode(' ', strip_tags($this->tokenize_value($token_class, $row_index))));
         }
       }
       else {
