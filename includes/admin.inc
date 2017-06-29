@@ -4899,6 +4899,18 @@ function views_ui_admin_settings_basic() {
 /**
  * Form builder for the advanced admin settings page.
  */
+function views_ui_clear_views_cache($destination) {
+
+  $redirect = !empty($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '<front>';
+
+  views_ui_tools_clear_cache();
+
+  drupal_goto($redirect);
+}
+
+/**
+ * Form builder for the advanced admin settings page.
+ */
 function views_ui_admin_settings_advanced() {
   $form = array();
   $form['#attached']['css'] = views_ui_get_admin_css();
