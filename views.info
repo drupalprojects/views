@@ -301,6 +301,7 @@ files[] = tests/styles/views_plugin_style_unformatted.test
 files[] = tests/views_access.test
 files[] = tests/views_analyze.test
 files[] = tests/views_basic.test
+files[] = tests/views_ajax.test
 files[] = tests/views_argument_default.test
 files[] = tests/views_argument_validator.test
 files[] = tests/views_exposed_form.test
