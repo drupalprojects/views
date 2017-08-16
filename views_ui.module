@@ -82,12 +82,6 @@ function views_ui_menu() {
     'weight' => 1,
   ) + $base;
 
-  $items['admin/structure/views/settings/advanced/clear-views-cache'] = array(
-    'title' => "Clear Views' cache",
-    'page arguments' => array('views_ui_clear_views_cache'),
-    'type' => MENU_LOCAL_TASK,
-  ) + $base;
-
   // The primary Edit View page. Secondary tabs for each Display are added in
   // views_ui_menu_local_tasks_alter().
   $items['admin/structure/views/view/%views_ui_cache'] = array(
@@ -834,7 +828,10 @@ function views_ui_ajax_get_form($form_id) {
   }
 }
 
-// @todo move these when we can.
+/**
+ * @todo move these when we can
+ */
+
 /**
  * Helper function to get a list of paths assigned to a view.
  *
@@ -843,11 +840,8 @@ function views_ui_ajax_get_form($form_id) {
  *
  * @return array
  *   An array of links to this view's display paths.
- *
- * @codingStandardsIgnoreStart
  */
 function _views_ui_get_paths($view) {
-  // @codingStandardsIgnoreEnd
   $all_paths = array();
   if (empty($view->display)) {
     $all_paths[] = t('Edit this view to add a display.');
