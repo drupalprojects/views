@@ -6,19 +6,26 @@
  */
 
 /**
- * Field handler to provide simple renderer that allows using a themed user link.
+ * Field handler for a simple renderer that allows using a themed user link.
  *
  * @ingroup views_field_handlers
  */
 class views_handler_field_user_picture extends views_handler_field {
-  function construct() {
+
+  /**
+   * {@inheritdoc}
+   */
+  public function construct() {
     parent::construct();
     $this->additional_fields['uid'] = 'uid';
     $this->additional_fields['name'] = 'name';
     $this->additional_fields['mail'] = 'mail';
   }
 
-  function element_type($none_supported = FALSE, $default_empty = FALSE, $inline = FALSE) {
+  /**
+   * {@inheritdoc}
+   */
+  public function element_type($none_supported = FALSE, $default_empty = FALSE, $inline = FALSE) {
     if ($inline) {
       return 'span';
     }
@@ -40,14 +47,20 @@ class views_handler_field_user_picture extends views_handler_field {
     return 'div';
   }
 
-  function option_definition() {
+  /**
+   * {@inheritdoc}
+   */
+  public function option_definition() {
     $options = parent::option_definition();
     $options['link_photo_to_profile'] = array('default' => TRUE, 'bool' => TRUE);
     $options['image_style'] = array('default' => '');
     return $options;
   }
 
-  function options_form(&$form, &$form_state) {
+  /**
+   * {@inheritdoc}
+   */
+  public function options_form(&$form, &$form_state) {
     parent::options_form($form, $form_state);
     $form['link_photo_to_profile'] = array(
       '#title' => t("Link to user's profile"),
@@ -73,9 +86,12 @@ class views_handler_field_user_picture extends views_handler_field {
     }
   }
 
-  function render($values) {
+  /**
+   * {@inheritdoc}
+   */
+  public function render($values) {
     if ($this->options['image_style'] && module_exists('image')) {
-      // @todo: Switch to always using theme('user_picture') when it starts
+      // @todo Switch to always using theme('user_picture') when it starts
       // supporting image styles. See http://drupal.org/node/1021564
       if ($picture_fid = $this->get_value($values)) {
         $picture = file_load($picture_fid);
@@ -111,4 +127,5 @@ class views_handler_field_user_picture extends views_handler_field {
 
     return $output;
   }
+
 }

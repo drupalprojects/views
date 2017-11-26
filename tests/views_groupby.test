@@ -2,20 +2,23 @@
 
 /**
  * @file
- * Tests aggregate functionality of Views.
+ * Definitions of ViewsQueryGroupByTest and ViewsUiGroupbyTestCase.
  */
 
 /**
  * Tests aggregate functionality of views, for example count.
  */
 class ViewsQueryGroupByTest extends ViewsSqlTest {
+
+  /**
+   * Test meta data.
+   */
   public static function getInfo() {
     return array(
       'name' => 'Groupby',
       'description' => 'Tests aggregate functionality of views, for example count.',
       'group' => 'Views',
     );
-
   }
 
   /**
@@ -48,7 +51,7 @@ class ViewsQueryGroupByTest extends ViewsSqlTest {
 
     $types = array();
     foreach ($view->result as $item) {
-      // num_records is a alias for nid.
+      // 'num_records' is a alias for nid.
       $types[$item->node_type] = $item->num_records;
     }
 
@@ -56,9 +59,15 @@ class ViewsQueryGroupByTest extends ViewsSqlTest {
     $this->assertEqual($types[$type2->type], 3);
   }
 
-  //public function testAggregateSum() {
-  //}
+  /**
+   *
+   */
+  // public function testAggregateSum() {
+  // }
 
+  /**
+   *
+   */
   public function viewsAggregateCountView() {
     $view = new view;
     $view->name = 'aggregate_count';
@@ -103,7 +112,6 @@ class ViewsQueryGroupByTest extends ViewsSqlTest {
     $handler->display->display_options['arguments']['type']['default_argument_type'] = 'fixed';
     $handler->display->display_options['arguments']['type']['summary']['format'] = 'default_summary';
 
-
     return $view;
   }
 
@@ -144,7 +152,9 @@ class ViewsQueryGroupByTest extends ViewsSqlTest {
     // There's no need for a function in order to have aggregation.
     if (empty($group_by)) {
       $types = array($type1->type, $type2->type);
-      $results = array_map(function ($item) { return $item->node_type; }, $view->result);
+      $results = array_map(function ($item) {
+        return $item->node_type;
+      }, $view->result);
       sort($types);
       sort($results);
       $this->assertIdentical($results, $types);
@@ -160,6 +170,9 @@ class ViewsQueryGroupByTest extends ViewsSqlTest {
     $this->assertEqual($results[$type2->type], $values[1]);
   }
 
+  /**
+   *
+   */
   function viewsGroupByViewHelper($group_by = NULL) {
     $view = new view;
     $view->name = 'group_by_count';
@@ -219,31 +232,51 @@ class ViewsQueryGroupByTest extends ViewsSqlTest {
     return $view;
   }
 
+  /**
+   *
+   */
   public function testGroupByCount() {
     $this->GroupByTestHelper('count', array(4, 3));
   }
 
-  function testGroupBySum() {
+  /**
+   *
+   */
+  public function testGroupBySum() {
     $this->GroupByTestHelper('sum', array(10, 18));
   }
 
-
-  function testGroupByAverage() {
+  /**
+   *
+   */
+  public function testGroupByAverage() {
     $this->GroupByTestHelper('avg', array(2.5, 6));
   }
 
-  function testGroupByMin() {
+  /**
+   *
+   */
+  public function testGroupByMin() {
     $this->GroupByTestHelper('min', array(1, 5));
   }
 
-  function testGroupByMax() {
+  /**
+   * {@inheritdoc}
+   */
+  public function testGroupByMax() {
     $this->GroupByTestHelper('max', array(4, 7));
   }
 
-  function testGroupByNone() {
+  /**
+   *
+   */
+  public function testGroupByNone() {
     $this->GroupByTestHelper();
   }
 
+  /**
+   *
+   */
   public function testGroupByCountOnlyFilters() {
     // Check if GROUP BY and HAVING are included when a view
     // Doesn't display SUM, COUNT, MAX... functions in SELECT statment
@@ -264,6 +297,9 @@ class ViewsQueryGroupByTest extends ViewsSqlTest {
     $this->assertTrue(strpos($view->build_info['query'], 'HAVING'), t('Make sure that HAVING is in the query'));
   }
 
+  /**
+   *
+   */
   function viewsGroupByCountViewOnlyFilters() {
     $view = new view;
     $view->name = 'group_by_in_filters';
@@ -308,12 +344,17 @@ class ViewsQueryGroupByTest extends ViewsSqlTest {
 
     return $view;
   }
+
 }
 
 /**
- * Tests UI of aggregate functionality..
+ * Tests UI of aggregate functionality.
  */
-class viewsUiGroupbyTestCase extends DrupalWebTestCase {
+class ViewsUiGroupbyTestCase extends DrupalWebTestCase {
+
+  /**
+   * {@inheritdoc}
+   */
   function setUp() {
     // Enable views_ui.
     parent::setUp('views_ui', 'views_test');
@@ -323,6 +364,9 @@ class viewsUiGroupbyTestCase extends DrupalWebTestCase {
     $this->drupalLogin($views_admin);
   }
 
+  /**
+   * Test meta data.
+   */
   public static function getInfo() {
     return array(
       'name' => 'Groupby UI',
@@ -349,4 +393,5 @@ class viewsUiGroupbyTestCase extends DrupalWebTestCase {
 
     $this->drupalGet('admin/structure/views/nojs/display/test_views_groupby_save/default/group_by');
   }
+
 }

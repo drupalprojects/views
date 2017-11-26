@@ -192,7 +192,7 @@ function field_views_field_default_views_data($field) {
       'group' => $group,
       'title' => $label,
       'title short' => $label,
-      'help' =>  t('Appears in: @bundles.', array('@bundles' => implode(', ', $bundles_names))),
+      'help' => t('Appears in: @bundles.', array('@bundles' => implode(', ', $bundles_names))),
     );
 
     // Go through and create a list of aliases for all possible combinations of
@@ -250,7 +250,8 @@ function field_views_field_default_views_data($field) {
   foreach ($field['columns'] as $column => $attributes) {
     $allow_sort = TRUE;
 
-    // Identify likely filters and arguments for each column based on field type.
+    // Identify likely filters and arguments for each column based on field
+    // type.
     switch ($attributes['type']) {
       case 'int':
       case 'mediumint':
@@ -263,6 +264,7 @@ function field_views_field_default_views_data($field) {
         $argument = 'views_handler_argument_numeric';
         $sort = 'views_handler_sort';
         break;
+
       case 'text':
       case 'blob':
         // It does not make sense to sort by blob or text.
@@ -273,7 +275,6 @@ function field_views_field_default_views_data($field) {
         $sort = 'views_handler_sort';
         break;
     }
-
 
     if (count($field['columns']) == 1 || $column == 'value') {
       $title = t('@label (!name)', array('@label' => $label, '!name' => $field['field_name']));
@@ -301,19 +302,20 @@ function field_views_field_default_views_data($field) {
         'group' => $group,
         'title' => $title,
         'title short' => $title_short,
-        'help' =>  t('Appears in: @bundles.', array('@bundles' => implode(', ', $bundles_names))),
+        'help' => t('Appears in: @bundles.', array('@bundles' => implode(', ', $bundles_names))),
       );
 
-      // Go through and create a list of aliases for all possible combinations of
-      // entity type + name.
+      // Go through and create a list of aliases for all possible combinations
+      // of entity type + name.
       $aliases = array();
       $also_known = array();
       foreach ($all_labels as $entity_name => $labels) {
         foreach ($labels as $label_name => $true) {
           if ($group_name != $groups[$entity_name] || $label != $label_name) {
             if (count($field['columns']) == 1 || $column == 'value') {
+              // CCK used the first 10 characters of $label. Probably doesn't
+              // matter.
               $alias_title = t('@label (!name)', array('@label' => $label_name, '!name' => $field['field_name']));
-              // CCK used the first 10 characters of $label. Probably doesn't matter.
             }
             else {
               $alias_title = t('@label (!name:!column)', array('@label' => $label_name, '!name' => $field['field_name'], '!column' => $column));
@@ -442,7 +444,9 @@ function field_views_field_default_views_data($field) {
 }
 
 /**
- * Have a different filter handler for lists. This should allow to select values of the list.
+ * Have a different filter handler for lists.
+ *
+ * This should allow to select values of the list.
  */
 function list_field_views_data($field) {
   $data = field_views_field_default_views_data($field);
