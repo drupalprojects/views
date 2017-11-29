@@ -5237,7 +5237,6 @@ function views_fetch_fields($base, $type, $grouping = FALSE) {
   static $fields = array();
   if (empty($fields)) {
     $data = views_fetch_data();
-    $start = microtime(TRUE);
     // This constructs this ginormous multi dimensional array to
     // collect the important data about fields. In the end,
     // the structure looks a bit like this (using nid as an example)
@@ -5247,6 +5246,12 @@ function views_fetch_fields($base, $type, $grouping = FALSE) {
     // can appear in different places in the actual data structure so that
     // the data doesn't have to be repeated a lot. This essentially lets
     // each field have a cheap kind of inheritance.
+    $components = array('title', 'group', 'help', 'base', 'aliases');
+    $components_errors = array();
+    // Fixed number of calls to t() to produce error components.
+    foreach ($components as $string) {
+      $components_errors[$string] = t("Error: missing @component", array('@component' => $string));
+    }
     foreach ($data as $table => $table_data) {
       $bases = array();
       $strings = array();
@@ -5281,7 +5286,7 @@ function views_fetch_fields($base, $type, $grouping = FALSE) {
             if (isset($info[$key]['moved to'])) {
               continue;
             }
-            foreach (array('title', 'group', 'help', 'base', 'aliases') as $string) {
+            foreach ($components as $string) {
               // First, try the lowest possible level.
               if (!empty($info[$key][$string])) {
                 $strings[$field][$key][$string] = $info[$key][$string];
@@ -5295,8 +5300,8 @@ function views_fetch_fields($base, $type, $grouping = FALSE) {
                 $strings[$field][$key][$string] = $table_data['table'][$string];
               }
               else {
-                if ($string != 'base' && $string != 'base') {
-                  $strings[$field][$key][$string] = t("Error: missing @component", array('@component' => $string));
+                if ($string != 'base') {
+                  $strings[$field][$key][$string] = $components_errors[$string];
                 }
               }
             }
@@ -5313,7 +5318,6 @@ function views_fetch_fields($base, $type, $grouping = FALSE) {
         }
       }
     }
-    // vsm('Views UI data build time: ' . (views_microtime() - $start) * 1000 . ' ms');
   }
 
   // If we have an array of base tables available, go through them all and add
