@@ -5,7 +5,7 @@
 (function ($) {
 
   /**
-   * Attaches the AJAX behavior to Views exposed filter forms and key View links.
+   * Attaches the AJAX behavior to exposed filter forms and key views links.
    */
   Drupal.behaviors.ViewsAjaxView = {};
   Drupal.behaviors.ViewsAjaxView.attach = function() {
@@ -20,8 +20,8 @@
   Drupal.views.instances = {};
 
   /**
- * Javascript object for a certain view.
- */
+   * Javascript object for a certain view.
+   */
   Drupal.views.ajaxView = function(settings) {
     var selector = '.view-dom-id-' + settings.view_dom_id;
     this.$view = $(selector);
@@ -29,7 +29,8 @@
     // Retrieve the path to use for views' ajax.
     var ajax_path = Drupal.settings.views.ajax_path;
 
-    // If there are multiple views this might've ended up showing up multiple times.
+    // If there are multiple views this might've ended up showing up multiple
+    // times.
     if (ajax_path.constructor.toString().indexOf("Array") != -1) {
       ajax_path = ajax_path[0];
     }
@@ -40,7 +41,8 @@
       // Remove the question mark and Drupal path component if any.
       var queryString = queryString.slice(1).replace(/q=[^&]+&?|&?render=[^&]+/, '');
       if (queryString !== '') {
-        // If there is a '?' in ajax_path, clean url are on and & should be used to add parameters.
+        // If there is a '?' in ajax_path, clean url are on and & should be
+        // used to add parameters.
         queryString = ((/\?/.test(ajax_path)) ? '&' : '?') + queryString;
       }
     }
@@ -94,7 +96,7 @@
   Drupal.views.ajaxView.prototype.filterNestedViews = function() {
     // If there is at least one parent with a view class, this view
     // is nested (e.g., an attachment). Bail.
-    return !this.$view.parents('.view').size();
+    return !this.$view.parents('.view').length;
   };
 
   /**

@@ -936,7 +936,7 @@ Drupal.viewsUi.resizeModal = function (e, no_shrink) {
   var $ = jQuery;
   var $modal = $('.views-ui-dialog');
   var $scroll = $('.scroll', $modal);
-  if ($modal.size() == 0 || $modal.css('display') == 'none') {
+  if ($modal.length == 0 || $modal.css('display') == 'none') {
     return;
   }
 
