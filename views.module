@@ -756,7 +756,6 @@ function views_block_info() {
  * Implements hook_block_view().
  */
 function views_block_view($delta) {
-  $start = microtime(TRUE);
   // If this is 32, this should be an md5 hash.
   if (strlen($delta) == 32) {
     $hashes = variable_get('views_block_hashes', array());
