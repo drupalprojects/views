@@ -874,7 +874,7 @@ class views_plugin_display extends views_plugin {
       return $this->default_display->get_option($option);
     }
 
-    if (array_key_exists($option, $this->options)) {
+    if (isset($this->options[$option]) || array_key_exists($option, $this->options)) {
       return $this->options[$option];
     }
   }
