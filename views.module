@@ -1178,7 +1178,11 @@ function &views_get_current_view() {
  * Include views .inc files as necessary.
  */
 function views_include($file) {
-  ctools_include($file, 'views');
+  static $views_path;
+  if (!isset($views_path)) {
+    $views_path = DRUPAL_ROOT . '/' . drupal_get_path('module', 'views');
+  }
+  include_once $views_path . '/includes/' . $file . '.inc';
 }
 
 /**
