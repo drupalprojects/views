@@ -1721,7 +1721,7 @@ class views_join {
 
       if ($extras) {
         if (count($extras) == 1) {
-          $condition .= ' AND ' . array_shift($extras);
+          $condition .= ' AND (' . array_shift($extras) . ')';
         }
         else {
           $condition .= ' AND (' . implode(' ' . $this->extra_type . ' ', $extras) . ')';
@@ -1824,7 +1824,7 @@ class views_join_subquery extends views_join {
 
       if ($extras) {
         if (count($extras) == 1) {
-          $condition .= ' AND ' . array_shift($extras);
+          $condition .= ' AND (' . array_shift($extras) . ')';
         }
         else {
           $condition .= ' AND (' . implode(' ' . $this->extra_type . ' ', $extras) . ')';
