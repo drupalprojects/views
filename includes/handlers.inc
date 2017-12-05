@@ -884,7 +884,7 @@ class views_many_to_one_helper {
     // Cycle through the joins. This isn't as error-safe as the normal
     // ensure_path logic. Perhaps it should be.
     $r_join = clone $join;
-    while ($r_join->left_table != $base_table) {
+    while (!empty($r_join) && $r_join->left_table != $base_table) {
       $r_join = views_get_table_join($r_join->left_table, $base_table);
     }
     // If we found that there are tables in between, add the relationship.
