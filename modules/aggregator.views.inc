@@ -26,26 +26,6 @@ function aggregator_views_data() {
 
   // ----------------------------------------------------------------
   // Fields
-  // Item ID.
-  $data['aggregator_item']['iid'] = array(
-    'title' => t('Feed Item ID'),
-    'help' => t('The unique ID of the aggregator item.'),
-    'field' => array(
-      'handler' => 'views_handler_field_numeric',
-      'click sortable' => TRUE,
-    ),
-    'argument' => array(
-      'handler' => 'views_handler_argument_numeric',
-      'numeric' => TRUE,
-    ),
-    'filter' => array(
-      'handler' => 'views_handler_filter_numeric',
-    ),
-    'sort' => array(
-      'handler' => 'views_handler_sort',
-    ),
-  );
-
   // Item ID / 'iid'.
   $data['aggregator_item']['iid'] = array(
     // The item it appears as on the UI,
