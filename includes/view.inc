@@ -1778,7 +1778,7 @@ class view extends views_db_object {
     // Scroll through the queries until we get to our last query key.
     // Unset anything in our temp array.
     if (isset($this->last_query_key)) {
-      while (list($id, $query) = each($queries)) {
+      foreach ($queries as $id => $query) {
         if ($id == $this->last_query_key) {
           break;
         }
