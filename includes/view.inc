@@ -1136,7 +1136,7 @@ class view extends views_db_object {
               }
             }
             $rc = $handlers[$id]->accept_exposed_input($this->exposed_data);
-            $handlers[$id]->store_exposed_input($this->exposed_data, $rc);
+            $handlers[$id]->store_exposed_input($this->exposed_input, $rc);
             if (!$rc) {
               continue;
             }
