@@ -95,7 +95,12 @@ class views_handler_field_user_picture extends views_handler_field {
       // supporting image styles. See http://drupal.org/node/1021564
       if ($picture_fid = $this->get_value($values)) {
         $picture = file_load($picture_fid);
-        $picture_filepath = $picture->uri;
+        if (!empty($picture)) {
+          $picture_filepath = $picture->uri;
+        }
+        else {
+          $picture_filepath = variable_get('user_picture_default', '');
+        }
       }
       else {
         $picture_filepath = variable_get('user_picture_default', '');
