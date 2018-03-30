@@ -90,6 +90,13 @@
     var button = $('input[type=submit], button[type=submit], input[type=image]', this.$exposed_form);
     button = button[0];
 
+    // Call the autocomplete submit before doing AJAX.
+    $(button).click(function () {
+      if (Drupal.autocompleteSubmit) {
+        Drupal.autocompleteSubmit();
+      }
+    });
+
     this.exposedFormAjax = new Drupal.ajax($(button).attr('id'), button, this.element_settings);
   };
 
