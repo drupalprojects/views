@@ -721,6 +721,62 @@ function hook_views_plugins_alter(&$plugins) {
 }
 
 /**
+ * Alter existing plugin option definitions.
+ *
+ * This can be used to edit default or add new option definitions to existing
+ * plugins. The reason for doing this is that only overriding the relevent form
+ * with hook_form_alter() is insufficent because submitted form values will be
+ * ignored if they haven't been declared as an available option.
+ *
+ * An alternative approach you could also take is to extend each plugin
+ * individually. However if your goal is to override many, or even all plugins,
+ * this results in a lot of additional code and files. This makes it a lot more
+ * troublesome to maintain the codebase, as well as interoperability with other
+ * modules.
+ *
+ * @param array $options
+ *  The option definitions to be altered.
+ * @param $plugin
+ *  A views object of the plugin where the default options are defined.
+ *
+ * @see views_object::option_definition()
+ * @see hook_views_handler_option_definition_alter()
+ * @see hook_form_alter()
+ */
+function hook_views_plugin_option_definition_alter(&$options, $plugin) {
+  // Add a new option definition.
+  $options['option_name'] = array('default' => '');
+}
+
+/**
+ * Alter existing handler option definitions.
+ *
+ * This can be used to edit default or add new option definitions to existing
+ * handers. The reason for doing this is that only overriding the relevent form
+ * with hook_form_alter() is insufficent because submitted form values will be
+ * ignored if they haven't been declared as an available option.
+ *
+ * An alternative approach you could also take is to extend each handler
+ * individually. However if your goal is to override many, or even all handlers,
+ * this results in a lot of additional code and files. This makes it a lot more
+ * troublesome to maintain the codebase, as well as interoperability with other
+ * modules.
+ *
+ * @param array $options
+ *  The option definitions to be altered.
+ * @param $handler
+ *  A views object of the handler where the default options are defined.
+ *
+ * @see views_handler::option_definition()
+ * @see hook_views_plugin_option_definition_alter()
+ * @see hook_form_alter()
+ */
+function hook_views_handler_option_definition_alter(&$options, $handler) {
+  // Add a new option definition.
+  $options['option_name'] = array('default' => '');
+}
+
+/**
  * Register View API information.
  *
  * This is required for your module to have its include files loaded; for

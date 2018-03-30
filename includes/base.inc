@@ -59,6 +59,28 @@ class views_object {
   }
 
   /**
+   * Collect this handler's option definition and alter them, ready for use.
+   *
+   * @return array
+   *   Returns the options of this handler/plugin after allowing for alters.
+   *
+   * @see hook_views_plugin_option_definition_alter()
+   * @see hook_views_handler_option_definition_alter()
+   */
+  function altered_option_definition() {
+    $definition = $this->option_definition();
+    if (!empty($this->is_plugin)) {
+      // Trigger hook_views_plugin_option_definition_alter().
+      drupal_alter('views_plugin_option_definition', $definition, $this);
+    }
+    else {
+      // Trigger hook_views_handler_option_definition_alter().
+      drupal_alter('views_handler_option_definition', $definition, $this);
+    }
+    return $definition;
+  }
+
+  /**
    * Views handlers use a special construct function.
    *
    * Allows it to more easily construct them with variable arguments.
@@ -85,7 +107,7 @@ class views_object {
    * that will likely disappear at some point.
    */
   public function set_default_options() {
-    $this->_set_option_defaults($this->options, $this->option_definition());
+    $this->_set_option_defaults($this->options, $this->altered_option_definition());
 
     // Retained for complex defaults plus backward compatibility.
     $this->options($this->options);
@@ -119,7 +141,7 @@ class views_object {
     }
 
     if (!isset($definition)) {
-      $definition = $this->option_definition();
+      $definition = $this->altered_option_definition();
     }
 
     if (!empty($this->view)) {
@@ -222,7 +244,7 @@ class views_object {
    */
   public function export_options($indent, $prefix) {
     $output = '';
-    foreach ($this->option_definition() as $option => $definition) {
+    foreach ($this->altered_option_definition() as $option => $definition) {
       $output .= $this->export_option($indent, $prefix, $this->options, $option, $definition, array());
     }
 
@@ -297,7 +319,7 @@ class views_object {
    * Unpacks each handler to store translatable texts.
    */
   public function unpack_translatables(&$translatable, $parents = array()) {
-    foreach ($this->option_definition() as $option => $definition) {
+    foreach ($this->altered_option_definition() as $option => $definition) {
       $this->unpack_translatable($translatable, $this->options, $option, $definition, $parents, array());
     }
   }
