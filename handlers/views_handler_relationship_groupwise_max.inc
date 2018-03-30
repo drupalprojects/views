@@ -288,13 +288,25 @@ class views_handler_relationship_groupwise_max extends views_handler_relationshi
     // Extract the SQL the temporary view built.
     $subquery_sql = $subquery->__toString();
 
-    // Replace the placeholder with the outer, correlated field.
-    // Eg, change the placeholder ':users_uid' into the outer field 'users.uid'.
-    // We have to work directly with the SQL, because putting a name of a field
-    // into a SelectQuery that it does not recognize (because it's outer) just
-    // makes it treat it as a string.
+    // Replace the placeholder with the outer, correlated field. For example,
+    // change the placeholder ':users_uid' into the outer field 'users.uid'. It
+    // is necessary to work directly with the SQL, because putting a name of a
+    // field into a SelectQuery that it does not recognize (because it's outer)
+    // just makes it treat it as a string. Using this handler on a view with a
+    // base table that isn't the one defined in the outer field causes SQL
+    // errors since the base table is hard-coded in the handler data. So
+    // replace the outer field base table with the relationship. We use the
+    // argument table since it will always match the outer field's table.
+    // @see https://www.drupal.org/node/2295379
+    if ($this->relationship) {
+      $outer_field = str_replace($this->definition['argument table'], $this->relationship, $this->definition['outer field']);
+    }
+    else {
+      // Just use the default outer field.
+      $outer_field = $this->definition['outer field'];
+    }
     $outer_placeholder = ':' . str_replace('.', '_', $this->definition['outer field']);
-    $subquery_sql = str_replace($outer_placeholder, $this->definition['outer field'], $subquery_sql);
+    $subquery_sql = str_replace($outer_placeholder, $outer_field, $subquery_sql);
 
     return $subquery_sql;
   }
