@@ -343,6 +343,7 @@ class views_plugin_cache extends views_plugin {
       'super-user' => $user->uid == 1,
     // special caching for super user.
       'language' => $GLOBALS['language']->language,
+      'language_content' => $GLOBALS['language_content']->language,
       'base_url' => $GLOBALS['base_url'],
     );
 
