@@ -98,6 +98,7 @@ class views_handler_relationship_translation extends views_handler_relationship 
     }
 
     $join->definition = $def;
+    $join->extra = "(%alias.tnid != 0  OR ({$def['left_table']}.tnid = 0 AND %alias.nid = {$def['left_table']}.nid))";
     $join->construct();
     $join->adjusted = TRUE;
 
