@@ -777,7 +777,7 @@ class views_handler_filter extends views_handler {
           $form[$value]['#multiple'] = TRUE;
         }
         unset($form[$value]['#default_value']);
-        if (empty($form_state['input'])) {
+        if (empty($form_state['input'][$value])) {
           $form_state['input'][$value] = $this->group_info;
         }
       }
