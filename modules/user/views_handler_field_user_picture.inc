@@ -106,7 +106,9 @@ class views_handler_field_user_picture extends views_handler_field {
         $picture_filepath = variable_get('user_picture_default', '');
       }
       if (file_valid_uri($picture_filepath)) {
-        $output = theme('image_style', array('style_name' => $this->options['image_style'], 'path' => $picture_filepath));
+        $account = user_load($this->get_value($values, 'uid'));
+        $alt = t("@user's picture", array('@user' => format_username($account)));
+        $output = theme('image_style', array('style_name' => $this->options['image_style'], 'path' => $picture_filepath, 'alt' => $alt));
         if ($this->options['link_photo_to_profile'] && user_access('access user profiles')) {
           $uid = $this->get_value($values, 'uid');
           $output = l($output, "user/$uid", array('html' => TRUE));
