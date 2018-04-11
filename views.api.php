@@ -954,9 +954,22 @@ function hook_views_form_substitutions() {
 }
 
 /**
- * Allows altering a view at the very beginning of views processing.
+ * Allows altering a view at the very beginning of processing a preview.
  *
  * Occurs before anything is done.
+ *
+ * This hook is only triggered when the one of the following are invoked:
+ * - $view->execute_display()
+ * - $view->preview()
+ *
+ * As such code placed in this hook will not fire during:
+ * - $view->build()
+ * - $view->execute()
+ * - $view->render()
+ *
+ * Likely, hook_views_pre_build() or hook_views_pre_execute() are much better
+ * choices for most use cases since they are always invoked, not just when
+ * previewing a display.
  *
  * Adding output to the view can be accomplished by placing text on
  * $view->attachment_before and $view->attachment_after.
@@ -968,15 +981,15 @@ function hook_views_form_substitutions() {
  * @param array $args
  *   An array of arguments passed into the view.
  */
-function hook_views_pre_view(&$view, &$display_id, &$args) {
+function hook_views_pre_preview(&$view, &$display_id, &$args) {
   // Change the display if the acting user has 'administer site configuration'
   // permission, to display something radically different.
   // (Note that this is not necessarily the best way to solve that task. Feel
   // free to contribute another example!)
   if (
-    $view->name == 'my_special_view' &&
-    user_access('administer site configuration') &&
-    $display_id == 'public_display'
+    $view->name == 'my_special_view'
+    && user_access('administer site configuration')
+    && $display_id == 'public_display'
   ) {
     $view->set_display('private_display');
   }
