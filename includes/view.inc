@@ -1426,14 +1426,14 @@ class view extends views_db_object {
       $this->set_arguments($args);
     }
 
-    // Trigger hook_views_pre_preview(). Allow other modules to modify the view
+    // Trigger hook_views_pre_view(). Allow other modules to modify the view
     // just prior to executing the preview.
-    foreach (module_implements('views_pre_preview') as $module) {
-      $function = $module . '_views_pre_preview';
+    foreach (module_implements('views_pre_view') as $module) {
+      $function = $module . '_views_pre_view';
       $function($this, $display_id, $this->args);
     }
 
-    // Allow hook_views_pre_preview() to set the dom_id, then ensure it is set.
+    // Allow hook_views_pre_view() to set the dom_id, then ensure it is set.
     $this->dom_id = !empty($this->dom_id) ? $this->dom_id : md5($this->name . REQUEST_TIME . rand());
 
     // Allow the display handler to set up for execution.

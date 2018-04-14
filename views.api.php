@@ -981,7 +981,7 @@ function hook_views_form_substitutions() {
  * @param array $args
  *   An array of arguments passed into the view.
  */
-function hook_views_pre_preview(&$view, &$display_id, &$args) {
+function hook_views_pre_view(&$view, &$display_id, &$args) {
   // Change the display if the acting user has 'administer site configuration'
   // permission, to display something radically different.
   // (Note that this is not necessarily the best way to solve that task. Feel
