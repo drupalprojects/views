@@ -1892,8 +1892,9 @@ class view extends views_db_object {
 
     $this->save_locale_strings();
 
-    // Clear caches.
-    views_invalidate_cache();
+    // Clear the relevant caches.
+    cache_clear_all('views_block_items:', 'cache_views', TRUE);
+    views_invalidate_cache('ctools_export:views_view:' . $this->name);
 
     // Notify modules that this view has been saved.
     module_invoke_all('views_view_save', $this);
@@ -1935,7 +1936,8 @@ class view extends views_db_object {
 
     if ($clear) {
       // Clear caches.
-      views_invalidate_cache();
+      cache_clear_all('views_block_items:', 'cache_views', TRUE);
+      views_invalidate_cache('ctools_export:views_view:' . $this->name);
     }
 
     // Notify modules that this view has been deleted.
